@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CURI – Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet | UCAD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue-deep:   #0a2d5e;
+      --blue-mid:    #1a4a8a;
+      --blue-light:  #2e6ec4;
+      --blue-pale:   #e8f0fb;
+      --gold:        #c8962a;
+      --gold-light:  #f0c060;
+      --white:       #ffffff;
+      --off-white:   #f5f7fb;
+      --text-dark:   #0d1b2a;
+      --text-mid:    #3a4a5c;
+      --text-light:  #6b7c93;
+      --border:      #d0dcea;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Sans 3', sans-serif; color: var(--text-dark); background: var(--white); line-height: 1.6; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 3px solid var(--blue-deep);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(10,45,94,0.10);
+    }
+    .header-inner {
+      max-width: 1180px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 76px;
+    }
+    .logo-block { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .logo-emblem {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--blue-deep);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--blue-deep); line-height: 1.1; }
+    .logo-sub { font-size: 0.68rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    nav ul { list-style: none; display: flex; gap: 4px; }
+    nav a { display: block; padding: 8px 14px; font-size: 0.875rem; font-weight: 500; color: var(--text-mid); text-decoration: none; border-radius: 4px; transition: background 0.2s, color 0.2s; }
+    nav a:hover, nav a.active { background: var(--blue-pale); color: var(--blue-deep); }
+    .nav-cta { background: var(--blue-deep) !important; color: var(--white) !important; padding: 8px 18px !important; border-radius: 6px !important; }
+    .nav-cta:hover { background: var(--blue-mid) !important; }
+
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--blue-deep); border-radius: 2px; transition: 0.3s; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 60%, #1e5fa8 100%);
+      color: var(--white); padding: 90px 24px 72px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; position: relative; }
+    .hero-top { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(200,150,42,0.25); color: var(--gold-light);
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(200,150,42,0.4);
+      margin-bottom: 20px;
+    }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.15; margin-bottom: 20px; }
+    .hero h1 span { color: var(--gold-light); }
+    .hero-desc { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.85); max-width: 460px; margin-bottom: 36px; line-height: 1.75; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn-primary { background: var(--gold); color: var(--white); padding: 13px 28px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-block; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--white); padding: 13px 28px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-decoration: none; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.45); transition: background 0.2s, border-color 0.2s; display: inline-block; }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.8); }
+
+    /* ── SLIDER ── */
+    .hero-slider {
+      position: relative; width: 100%; height: 320px;
+      border-radius: 14px; overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.15);
+      background: rgba(0,0,0,0.2);
+    }
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 10px;
+      opacity: 0; transition: opacity 0.7s ease;
+      background: linear-gradient(135deg, rgba(10,45,94,0.6), rgba(30,95,168,0.4));
+    }
+    .slide.active { opacity: 1; }
+    .slide-placeholder {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 2px dashed rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slide-label { color: rgba(255,255,255,0.6); font-size: 0.82rem; text-align: center; }
+    .slide-title { color: var(--white); font-weight: 600; font-size: 1rem; text-align: center; padding: 0 20px; }
+    .slide-upload-hint {
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(200,150,42,0.8); color: var(--white);
+      font-size: 0.68rem; font-weight: 600; padding: 4px 10px; border-radius: 4px;
+      letter-spacing: 0.06em;
+    }
+    .slider-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 7px; }
+    .dot-btn { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); border: none; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+    .dot-btn.active { background: var(--gold-light); transform: scale(1.2); }
+    .slider-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.15); border: none; cursor: pointer;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; color: white;
+    }
+    .slider-arrow:hover { background: rgba(255,255,255,0.28); }
+    .slider-arrow.prev { left: 12px; }
+    .slider-arrow.next { right: 12px; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px; padding: 20px 32px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-item { text-align: center; position: relative; }
+    .stat-item:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 10%; height: 80%;
+      width: 1px; background: rgba(255,255,255,0.15);
+    }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.65); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 80px 24px; }
+    .section-alt { background: var(--off-white); }
+    .container { max-width: 1180px; margin: 0 auto; }
+    .section-head { text-align: center; margin-bottom: 56px; }
+    .section-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--blue-light); margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 2.5vw, 2.2rem); font-weight: 700; color: var(--blue-deep); margin-bottom: 14px; }
+    .section-sub { font-size: 1rem; color: var(--text-light); max-width: 560px; margin: 0 auto; font-weight: 300; line-height: 1.75; }
+    .divider { width: 48px; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 2px; margin: 18px auto 0; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-img { position: relative; border-radius: 12px; overflow: visible; }
+    .about-visual {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-light));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 14px;
+    }
+    .about-visual-text { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.05rem; opacity: 0.85; }
+    .about-badge {
+      position: absolute; bottom: -14px; right: -14px;
+      background: var(--gold); color: var(--white);
+      padding: 14px 20px; border-radius: 8px; text-align: center;
+      box-shadow: 0 4px 20px rgba(200,150,42,0.35);
+    }
+    .about-badge strong { display: block; font-size: 1.6rem; font-family: 'Playfair Display', serif; }
+    .about-badge span { font-size: 0.75rem; }
+    .about-text h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--blue-deep); margin-bottom: 18px; }
+    .about-text p { color: var(--text-mid); margin-bottom: 16px; font-weight: 300; line-height: 1.8; }
+    .about-points { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+    .about-point { display: flex; align-items: flex-start; gap: 12px; }
+    .point-icon { width: 32px; height: 32px; flex-shrink: 0; background: var(--blue-pale); border-radius: 7px; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .point-text strong { display: block; color: var(--blue-deep); font-size: 0.9rem; }
+    .point-text span { font-size: 0.85rem; color: var(--text-light); }
+
+    /* ── FORMATIONS TABS ── */
+    .form-tabs {
+      display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .form-tab {
+      padding: 10px 22px; border-radius: 6px; border: 1.5px solid var(--border);
+      background: var(--white); color: var(--text-mid);
+      font-size: 0.875rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .form-tab:hover { border-color: var(--blue-light); color: var(--blue-light); }
+    .form-tab.active { background: var(--blue-deep); color: var(--white); border-color: var(--blue-deep); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .annee-intro {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--blue-pale); border: 1px solid var(--border);
+      border-radius: 8px; padding: 14px 18px;
+      margin-bottom: 28px;
+      font-size: 0.875rem; color: var(--text-mid);
+    }
+    .annee-intro strong { color: var(--blue-deep); }
+
+    .semestres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    .semestre-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .semestre-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 24px;
+    }
+    .semestre-header.blue { background: var(--blue-deep); }
+    .semestre-header.gold { background: linear-gradient(135deg, #7a4f00, var(--gold)); }
+    .semestre-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1rem;
+      font-weight: 700; color: var(--white); flex-shrink: 0;
+    }
+    .semestre-title { font-weight: 700; color: var(--white); font-size: 1rem; }
+    .semestre-sub { font-size: 0.72rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+    .semestre-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+    .ue-block {}
+    .ue-name {
+      font-size: 0.82rem; font-weight: 700; color: var(--blue-deep);
+      padding: 6px 10px; background: var(--blue-pale);
+      border-left: 3px solid var(--blue-light);
+      border-radius: 0 4px 4px 0; margin-bottom: 6px;
+    }
+    .ue-block.coming-soon .ue-name { background: #fff8e8; border-left-color: var(--gold); color: var(--gold); }
+    .ec-list { display: flex; flex-direction: column; gap: 4px; padding-left: 8px; }
+    .ec-item {
+      font-size: 0.8rem; color: var(--text-mid);
+      padding: 4px 0 4px 14px; position: relative;
+    }
+    .ec-item::before {
+      content: ''; position: absolute; left: 0; top: 50%;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); transform: translateY(-50%);
+    }
+
+    /* Filières 2e année */
+    .filiere-tabs {
+      display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .filiere-tab {
+      display: flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: 6px;
+      border: 1.5px solid var(--border);
+      background: var(--white); color: var(--text-mid);
+      font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filiere-tab:hover { border-color: var(--blue-light); color: var(--blue-light); }
+    .filiere-tab.active { background: var(--blue-mid); color: var(--white); border-color: var(--blue-mid); }
+    .filiere-content { display: none; }
+    .filiere-content.active { display: block; }
+
+    /* Diplômes */
+    .diplomes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .diplome-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-top: 4px solid var(--blue-deep);
+    }
+    .diplome-card.devweb, .diplome-card.devmobile { border-top-color: var(--blue-light); }
+    .diplome-card.marketing { border-top-color: var(--gold); }
+    .diplome-card.tronc { border-top-color: var(--blue-deep); }
+    .diplome-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(10,45,94,0.10); }
+    .diplome-icon { margin-bottom: 16px; }
+    .diplome-badge {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 3px 10px; border-radius: 12px;
+      background: var(--blue-pale); color: var(--blue-deep);
+      margin-bottom: 12px;
+    }
+    .diplome-badge.blue { background: #dce8f8; color: var(--blue-mid); }
+    .diplome-badge.gold { background: #fdf0d5; color: #7a4f00; }
+    .diplome-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--blue-deep); line-height: 1.4; margin-bottom: 8px;
+    }
+    .diplome-spec { font-size: 0.82rem; font-weight: 600; color: var(--gold); margin-bottom: 8px; }
+    .diplome-mention { font-size: 0.75rem; color: var(--text-light); font-style: italic; }
+
+    @media (max-width: 900px) {
+      .semestres-grid { grid-template-columns: 1fr; }
+      .diplomes-grid { grid-template-columns: 1fr; }
+      .filiere-tabs { flex-direction: column; }
+    }
+
+    /* ── PFE BLOC ── */
+    .pfe-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-bottom: 28px;
+    }
+    .pfe-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px;
+    }
+    .pfe-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--blue-pale); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pfe-icon.gold { background: #fdf0d5; }
+    .pfe-label { font-weight: 700; font-size: 0.88rem; color: var(--blue-deep); margin-bottom: 4px; }
+    .pfe-desc { font-size: 0.8rem; color: var(--text-mid); line-height: 1.5; }
+    @media (max-width: 900px) { .pfe-block { grid-template-columns: 1fr; } }
+
+    /* ── FORMATIONS (ancienne règle) ── */
+    .formations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .formation-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+    .formation-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(10,45,94,0.12); }
+    .card-header { background: var(--blue-deep); padding: 26px 24px 18px; }
+    .card-header.gold { background: linear-gradient(135deg, #7a4f00, var(--gold)); }
+    .card-header.mid  { background: linear-gradient(135deg, #0a3d7a, var(--blue-light)); }
+    .card-badge { display: inline-block; background: rgba(255,255,255,0.2); color: var(--white); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 12px; margin-bottom: 10px; }
+    .card-header h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); font-weight: 700; }
+    .card-body { padding: 20px 24px 22px; }
+    .card-body p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; }
+    .card-meta { display: flex; flex-direction: column; gap: 6px; }
+    .meta-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-light); }
+    .meta-item span.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* ── ACTUALITÉS ── */
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .news-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s; }
+    .news-card:hover { box-shadow: 0 8px 32px rgba(10,45,94,0.10); }
+    .news-img { height: 140px; display: flex; align-items: center; justify-content: center; }
+    .news-img.bg1 { background: linear-gradient(135deg, #e8f0fb, #c8d8f0); }
+    .news-img.bg2 { background: linear-gradient(135deg, #fdf3e0, #f5d8a0); }
+    .news-img.bg3 { background: linear-gradient(135deg, #e0f0e8, #a8d8b8); }
+    .news-body { padding: 20px; }
+    .news-date { font-size: 0.73rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .news-body h4 { font-size: 0.95rem; font-weight: 600; color: var(--blue-deep); margin-bottom: 8px; line-height: 1.4; }
+    .news-body p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 14px; }
+    .news-link { font-size: 0.8rem; font-weight: 600; color: var(--blue-light); text-decoration: none; }
+    .news-link:hover { color: var(--blue-deep); }
+
+    /* ── ÉQUIPE ── */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .team-card { text-align: center; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 32px 20px 24px; transition: transform 0.2s, box-shadow 0.2s; }
+    .team-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(10,45,94,0.10); }
+    .team-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--blue-deep); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold-light); margin: 0 auto 16px; }
+    .team-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--blue-deep); margin-bottom: 4px; }
+    .team-role { font-size: 0.78rem; color: var(--gold); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .team-dept { font-size: 0.78rem; color: var(--text-light); line-height: 1.5; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--blue-deep); margin-bottom: 24px; }
+    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+    .contact-icon { width: 44px; height: 44px; flex-shrink: 0; background: var(--blue-pale); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .contact-detail strong { display: block; font-size: 0.85rem; color: var(--blue-deep); margin-bottom: 3px; }
+    .contact-detail span { font-size: 0.85rem; color: var(--text-mid); }
+    .contact-map { background: var(--blue-pale); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); min-height: 340px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .map-placeholder { display: flex; align-items: center; justify-content: center; }
+    .map-placeholder-text { font-size: 0.9rem; color: var(--text-light); }
+    .map-address { font-size: 0.8rem; color: var(--text-mid); text-align: center; max-width: 240px; line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--blue-deep); color: rgba(255,255,255,0.7); padding: 56px 24px 24px; }
+    .footer-inner { max-width: 1180px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 24px; }
+    .footer-brand .logo-title { color: var(--white); font-size: 1.05rem; }
+    .footer-brand .logo-sub { color: rgba(255,255,255,0.5); }
+    .footer-brand p { margin-top: 14px; font-size: 0.82rem; line-height: 1.75; color: rgba(255,255,255,0.55); }
+    .footer-links-row { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+    .footer-links-row a { font-size: 0.78rem; color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-links-row a:hover { color: var(--gold-light); }
+    .footer-links-row span { color: rgba(255,255,255,0.25); }
+    .footer-col h5 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-light); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col a { font-size: 0.83rem; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+    .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+      nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border-bottom: 3px solid var(--blue-deep); box-shadow: 0 8px 24px rgba(10,45,94,0.12); padding: 16px; }
+      nav.open { display: block; }
+      nav ul { flex-direction: column; gap: 4px; }
+      .hero-top { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .stat-item::after { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .formations-grid { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- En tete (sans topbar) -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo-block">
+
+         <div class="logo-emblem">
+          <!-- Icône réseau/internet SVG professionnelle -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0c060" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg> 
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">CURI</span>
+          <span class="logo-sub">Université Cheikh Anta Diop de Dakar</span>
+        </div>
+      </a>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="#about" class="active">À propos</a></li>
+          <li><a href="#formations">Formations</a></li>
+          <li><a href="#actualites">Actualités</a></li>
+          <li><a href="#equipe">Équipe</a></li>
+          <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <!-- Texte + Slider côte à côte -->
+      <div class="hero-top">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Dakar, Sénégal
+          </div>
+          <h1>Centre Universitaire de Recherche et de Formation aux<br/><span>Technologies de l'Internet</span></h1>
+          <p class="hero-desc">
+            Le CURI est un pôle d'excellence académique au sein de l'Université Cheikh Anta Diop,
+            formant les spécialistes des technologies de l'internet pour le développement numérique de l'Afrique.
+          </p>
+          <div class="hero-btns">
+            <a href="#formations" class="btn-primary">Découvrir nos formations</a>
+            <a href="#contact" class="btn-outline">Nous contacter</a>
+          </div>
+        </div>
+
+        <!-- SLIDER D'IMAGES -->
+        <div class="hero-slider" id="heroSlider">
+          <div class="slide-upload-hint">Vos images ici</div>
+
+          <div class="slide active" id="slide-0">
+            <div class="slide-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+            <div class="slide-title">Corps Professoral du CURI — UCAD</div>
+            <div class="slide-label"><img src="slide01.jpg" alt="Corps Professoral" width="560" height="400"></div>
+          </div>
+          <div class="slide" id="slide-1">
+            <div class="slide-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+            <div class="slide-title">Salles de cours et laboratoires</div>
+            <div class="slide-label"><img src="presente.png" alt="presentation" width="560" height="395"></div>
+          </div>
+          <div class="slide" id="slide-2">
+            <div class="slide-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+            <div class="slide-title">Vie étudiante au CURI</div>
+            <div class="slide-label"><img src="etudiants.png" alt="presentation" width="560" height="400"></div>
+          </div>
+          <div class="slide" id="slide-3">
+            <div class="slide-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+            <div class="slide-title">Remise des diplômes</div>
+            <div class="slide-label"><img src="programs.jpg" alt="presentation" width="560" height="395">s</div>
+          </div>
+
+          <button class="slider-arrow prev" id="sliderPrev">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="slider-arrow next" id="sliderNext">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <div class="slider-dots" id="sliderDots">
+            <button class="dot-btn active" data-idx="0"></button>
+            <button class="dot-btn" data-idx="1"></button>
+            <button class="dot-btn" data-idx="2"></button>
+            <button class="dot-btn" data-idx="3"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS EN BAS -->
+      <div class="stats-bar fade-in">
+        <div class="stat-item">
+          <div class="stat-num">+500</div>
+          <div class="stat-label">Étudiants formés / an</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Enseignants chercheurs</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Années de formation</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2000+</div>
+          <div class="stat-label">Diplômés CURI</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid fade-in">
+        <div class="about-img">
+          <div class="about-visual">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8m-4-4v4"/>
+              <path d="M7 7h.01M11 7h6M7 11h.01M11 11h6"/>
+            </svg>
+            <div class="about-visual-text">CURI — UCAD</div>
+          </div>
+          <div class="about-badge">
+            <strong>2000+</strong>
+            <span>Diplômés</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <h2>Une institution au service du numérique africain</h2>
+          <p>
+            Le Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet (CURI)
+            est une entité académique de l'Université Cheikh Anta Diop de Dakar, dédiée à la formation
+            aux technologies internet, aux sciences du numérique et à la recherche appliquée.
+          </p>
+          <p>
+            Notre mission est de préparer des professionnels compétents capables de répondre
+            aux défis technologiques du continent africain, en combinant rigueur académique
+            et pratique professionnelle.
+          </p>
+          <div class="about-points">
+            <div class="about-point">
+              <div class="point-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+              <div class="point-text">
+                <strong>Mission</strong>
+                <span>Former des ingénieurs spécialisés dans les technologies de l'internet</span>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="point-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <div class="point-text">
+                <strong>Recherche</strong>
+                <span>Mener des travaux de recherche en lien avec les enjeux du développement</span>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="point-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="point-text">
+                <strong>Partenariats</strong>
+                <span>Collaborer avec le secteur privé et les institutions internationales</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMATIONS -->
+  <section class="section section-alt" id="formations">
+    <div class="container">
+      <div class="section-head fade-in">
+        <div class="section-tag">Offre académique</div>
+        <h2 class="section-title">Nos Formations</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Formation en deux ans menant au Diplôme d'Études Supérieures. Tronc commun en 1ère année, spécialisation en 2ème année.</p>
+      </div>
+
+      <!-- ONGLETS -->
+      <div class="form-tabs fade-in">
+        <button class="form-tab active" data-tab="annee1">1ère Année — Tronc Commun</button>
+        <button class="form-tab" data-tab="annee2">2ème Année — Spécialisations</button>
+        <button class="form-tab" data-tab="diplomes">Diplômes obtenus</button>
+      </div>
+
+      <!-- ANNÉE 1 -->
+      <div class="tab-content active fade-in" id="tab-annee1">
+        <div class="annee-intro">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <span>Tous les étudiants (Marketing Digital et Développement Web) sont regroupés en <strong>tronc commun</strong> durant la 1ère année.</span>
+        </div>
+        <div class="semestres-grid">
+          <div class="semestre-card">
+            <div class="semestre-header blue">
+              <div class="semestre-num">S1</div>
+              <div>
+                <div class="semestre-title">Semestre 1</div>
+                <div class="semestre-sub">Première année</div>
+              </div>
+            </div>
+            <div class="semestre-body">
+              <div class="ue-block">
+                <div class="ue-name">Environnement informatique 1</div>
+                <div class="ec-list">
+                  <div class="ec-item">Fondamentaux Systèmes d'exploitation</div>
+                  <div class="ec-item">Bureautique 1</div>
+                </div>
+              </div>
+              <div class="ue-block">
+                <div class="ue-name">Algorithme et Programmation 1</div>
+                <div class="ec-list">
+                  <div class="ec-item">Notions de base sur l'algorithme</div>
+                  <div class="ec-item">Fondamentaux Programmation en informatique</div>
+                </div>
+              </div>
+              <div class="ue-block">
+                <div class="ue-name">Outils de conception et Bases de données</div>
+                <div class="ec-list">
+                  <div class="ec-item">Outils de conception de logiciel</div>
+                  <div class="ec-item">Conception de Bases de données</div>
+                </div>
+              </div>
+              <div class="ue-block">
+                <div class="ue-name">Environnement du travail</div>
+                <div class="ec-list">
+                  <div class="ec-item">Projet professionnel personnel</div>
+                  <div class="ec-item">Droit et Environnement de travail</div>
+                  <div class="ec-item">Économie générale</div>
+                </div>
+              </div>
+              <div class="ue-block">
+                <div class="ue-name">Communication</div>
+                <div class="ec-list">
+                  <div class="ec-item">Techniques d'expression</div>
+                  <div class="ec-item">Anglais</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="semestre-card">
+            <div class="semestre-header gold">
+              <div class="semestre-num">S2</div>
+              <div>
+                <div class="semestre-title">Semestre 2</div>
+                <div class="semestre-sub">Première année</div>
+              </div>
+            </div>
+            <div class="semestre-body">
+              <div class="ue-block">
+                <div class="ue-name">Environnement Informatique 2</div>
+                <div class="ec-list">
+                  <div class="ec-item">Bureautique 2</div>
+                  <div class="ec-item">Généralités sur le Cloud et Réseaux sociaux</div>
+                </div>
+              </div>
+              <div class="ue-block">
+                <div class="ue-name">Technologies web et interactivité</div>
+                <div class="ec-list">
+                  <div class="ec-item">Langages de mises en forme de pages web statiques</div>
+                  <div class="ec-item">Langage de script</div>
+                </div>
+              </div>
+              <div class="ue-block">
+                <div class="ue-name">Infographie</div>
+                <div class="ec-list">
+                  <div class="ec-item">Les principes fondamentaux du traitement d'images</div>
+                  <div class="ec-item">Maîtrise de l'art du dessin vectoriel</div>
+                </div>
+              </div>
+              <div class="ue-block">
+                <div class="ue-name">Algorithme et Programmation 2</div>
+                <div class="ec-list">
+                  <div class="ec-item">Programmation avancée</div>
+                  <div class="ec-item">Algorithme avancé</div>
+                </div>
+              </div>
+              <div class="ue-block">
+                <div class="ue-name">Management et Marketing</div>
+                <div class="ec-list">
+                  <div class="ec-item">Marketing fondamental</div>
+                  <div class="ec-item">Communication d'entreprise</div>
+                  <div class="ec-item">Gestion de projet</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANNÉE 2 -->
+      <div class="tab-content fade-in" id="tab-annee2">
+        <div class="annee-intro">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8962a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div>
+            En 2ème année, les étudiants se séparent en trois filières de spécialisation sur deux ans :
+            <strong> Marketing Digital et E-commerce</strong>,
+            <strong> Développement Web Mobile et Multimédia</strong>, et
+            <strong> Web et Création Multimédia</strong>.
+            À la fin de chaque semestre, un <strong>projet de semestre</strong> est réalisé.
+            À l'issue de la 2ème année, chaque étudiant soutient un <strong>projet de fin d'études</strong> accompagné d'un <strong>mémoire rédigé et présenté</strong>.
+          </div>
+        </div>
+
+        <!-- Bloc PFE -->
+        <div class="pfe-block">
+          <div class="pfe-item">
+            <div class="pfe-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div>
+              <div class="pfe-label">Projet de semestre</div>
+              <div class="pfe-desc">À la fin de chaque semestre, les étudiants réalisent un projet appliqué en lien avec leur filière.</div>
+            </div>
+          </div>
+          <div class="pfe-item">
+            <div class="pfe-icon gold">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8962a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <div>
+              <div class="pfe-label">Projet de Fin d'Études + Mémoire</div>
+              <div class="pfe-desc">En fin de 2ème année, chaque étudiant soutient un projet de fin d'études devant un jury, accompagné d'un mémoire rédigé présentant le projet.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sous-onglets filières -->
+        <div class="filiere-tabs">
+          <button class="filiere-tab active" data-filiere="devweb">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Développement Web Mobile et Multimédia
+          </button>
+          <button class="filiere-tab" data-filiere="marketing">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Marketing Digital et E-commerce
+          </button>
+        </div>
+
+        <!-- Filière Dev Web -->
+        <div class="filiere-content active" id="filiere-devweb">
+          <div class="semestres-grid">
+            <div class="semestre-card">
+              <div class="semestre-header blue">
+                <div class="semestre-num">S3</div>
+                <div>
+                  <div class="semestre-title">Semestre 3</div>
+                  <div class="semestre-sub">Développement Web Mobile et Multimédia</div>
+                </div>
+              </div>
+              <div class="semestre-body">
+                <div class="ue-block">
+                  <div class="ue-name">Géolocalisation et Données</div>
+                  <div class="ec-list">
+                    <div class="ec-item">Géolocalisation et Cartographie</div>
+                    <div class="ec-item">Manipulation de données</div>
+                  </div>
+                </div>
+                <div class="ue-block">
+                  <div class="ue-name">Technologies web et interactivité avancée</div>
+                  <div class="ec-list">
+                    <div class="ec-item">UX Design</div>
+                    <div class="ec-item">Programmation avancée</div>
+                  </div>
+                </div>
+                <div class="ue-block">
+                  <div class="ue-name">Développement d'applications</div>
+                  <div class="ec-list">
+                    <div class="ec-item">Développement mobile sous Android</div>
+                    <div class="ec-item">Développement mobile avec les frameworks</div>
+                  </div>
+                </div>
+                <div class="ue-block">
+                  <div class="ue-name">Développement de jeux vidéo</div>
+                  <div class="ec-list">
+                    <div class="ec-item">Généralités sur les jeux vidéo</div>
+                    <div class="ec-item">Concepts de développement de jeux vidéo</div>
+                  </div>
+                </div>
+                <div class="ue-block">
+                  <div class="ue-name">Entrepreneuriat et Communication</div>
+                  <div class="ec-list">
+                    <div class="ec-item">Création d'entreprise</div>
+                    <div class="ec-item">Anglais</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="semestre-card">
+              <div class="semestre-header gold">
+                <div class="semestre-num">S4</div>
+                <div>
+                  <div class="semestre-title">Semestre 4</div>
+                  <div class="semestre-sub">Développement Web Mobile et Multimédia</div>
+                </div>
+              </div>
+              <div class="semestre-body">
+                <div class="ue-block coming-soon">
+                  <div class="ue-name">Programme en cours de mise à jour</div>
+                  <div class="ec-list">
+                    <div class="ec-item">Contactez l'administration pour plus d'informations</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filière Marketing -->
+        <div class="filiere-content" id="filiere-marketing">
+          <div class="semestres-grid">
+            <div class="semestre-card">
+              <div class="semestre-header blue">
+                <div class="semestre-num">S3</div>
+                <div>
+                  <div class="semestre-title">Semestre 3</div>
+                  <div class="semestre-sub">Marketing Digital et E-commerce</div>
+                </div>
+              </div>
+              <div class="semestre-body">
+                <div class="ue-block coming-soon">
+                  <div class="ue-name">Programme en cours de mise à jour</div>
+                  <div class="ec-list">
+                    <div class="ec-item">Contactez l'administration pour plus d'informations</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="semestre-card">
+              <div class="semestre-header gold">
+                <div class="semestre-num">S4</div>
+                <div>
+                  <div class="semestre-title">Semestre 4</div>
+                  <div class="semestre-sub">Marketing Digital et E-commerce</div>
+                </div>
+              </div>
+              <div class="semestre-body">
+                <div class="ue-block coming-soon">
+                  <div class="ue-name">Programme en cours de mise à jour</div>
+                  <div class="ec-list">
+                    <div class="ec-item">Contactez l'administration pour plus d'informations</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIPLÔMES -->
+      <div class="tab-content fade-in" id="tab-diplomes">
+        <div class="diplomes-grid">
+          <div class="diplome-card tronc">
+            <div class="diplome-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0a2d5e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <div class="diplome-badge">Tronc Commun</div>
+            <div class="diplome-title">Diplôme d'Études Supérieures en Internet Management et Technologies Web et Multimédia</div>
+            <div class="diplome-mention">— Toutes filières, 1ère année —</div>
+          </div>
+          <div class="diplome-card devweb">
+            <div class="diplome-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a4a8a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div class="diplome-badge blue">Filière 1</div>
+            <div class="diplome-title">DES Technologie Web et Multimédia</div>
+            <div class="diplome-spec">Spécialité : Web et Création Multimédia</div>
+            <div class="diplome-mention">— 2ème année, Développement Web Mobile et Multimédia —</div>
+          </div>
+          <div class="diplome-card devmobile">
+            <div class="diplome-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a4a8a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <div class="diplome-badge blue">Filière 2</div>
+            <div class="diplome-title">DES Technologie Web et Multimédia</div>
+            <div class="diplome-spec">Spécialité : Développement d'Applications Web et Mobile</div>
+            <div class="diplome-mention">— 2ème année, Développement Web Mobile et Multimédia —</div>
+          </div>
+          <div class="diplome-card marketing">
+            <div class="diplome-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7a4f00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="diplome-badge gold">Filière 3</div>
+            <div class="diplome-title">DES Internet Management et Technologies Web</div>
+            <div class="diplome-spec">Spécialité : E-commerce et Marketing Digital</div>
+            <div class="diplome-mention">— 2ème année, Marketing Digital et E-commerce —</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACTUALITÉS -->
+  <section class="section" id="actualites">
+    <div class="container">
+      <div class="section-head fade-in">
+        <div class="section-tag">Vie du campus</div>
+        <h2 class="section-title">Actualités et Événements</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Restez informés des dernières nouvelles, conférences et événements du CURI.</p>
+      </div>
+      <div class="news-grid fade-in">
+        <div class="news-card">
+          <div class="news-img bg1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <div class="news-body">
+            <div class="news-date">Juin 2025</div>
+            <h4>Ouverture des inscriptions 2025–2026</h4>
+            <p>Les dossiers de candidature pour toutes les formations du CURI sont désormais disponibles. Clôture le 31 juillet.</p>
+            <a href="#" class="news-link">Lire la suite →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-img bg2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c8962a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div class="news-body">
+            <div class="news-date">Mai 2025</div>
+            <h4>Remise des diplômes — Promotion 2025</h4>
+            <p>La cérémonie de remise des diplômes a réuni plus de 200 lauréats en présence du recteur de l'UCAD.</p>
+            <a href="#" class="news-link">Lire la suite →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-img bg3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 4-3 6-3 9H8c0-3-3-5-3-9a7 7 0 0 1 7-7z"/><path d="M9 17h6"/><path d="M9.5 21h5"/></svg>
+          </div>
+          <div class="news-body">
+            <div class="news-date">Avril 2025</div>
+            <h4>Hackathon CURI — Technologies Internet</h4>
+            <p>48h d'innovation : les étudiants ont développé des solutions numériques pour les services publics sénégalais.</p>
+            <a href="#" class="news-link">Lire la suite →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉQUIPE -->
+  <section class="section section-alt" id="equipe">
+    <div class="container">
+      <div class="section-head fade-in">
+        <div class="section-tag">Corps enseignant</div>
+        <h2 class="section-title">Notre Équipe Pédagogique</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Des enseignants-chercheurs reconnus, passionnés par la transmission du savoir et l'innovation numérique.</p>
+      </div>
+      <div class="team-grid fade-in">
+        <div class="team-card">
+          <div class="team-avatar">DT</div>
+          <h4>M. THIAM</h4>
+          <div class="team-role">Algorithmique</div>
+          <div class="team-dept">Algorithmique et Structures de Données</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">KD</div>
+          <h4>Mme K. T. DANSOKHO</h4>
+          <div class="team-role">Bases de données</div>
+          <div class="team-dept">Modélisation et Systèmes d'Information</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">MD</div>
+          <h4>M. DIASSY</h4>
+          <div class="team-role">Systèmes</div>
+          <div class="team-dept">Systèmes d'Exploitation et Réseaux</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0c060" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h4>Corps enseignant</h4>
+          <div class="team-role">15+ Enseignants</div>
+          <div class="team-dept">Professeurs, Maîtres de Conférences et Chargés de Cours</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head fade-in">
+        <div class="section-tag">Nous rejoindre</div>
+        <h2 class="section-title">Contact et Localisation</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Nous sommes disponibles pour répondre à toutes vos questions concernant les admissions, les formations ou les partenariats.</p>
+      </div>
+      <div class="contact-grid fade-in">
+        <div class="contact-info">
+          <h3>Coordonnées du CURI</h3>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-detail">
+                <strong>Adresse</strong>
+                <span>Campus de l'UCAD, Fann Résidence<br/>Dakar, République du Sénégal</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="contact-detail">
+                <strong>Téléphone</strong>
+                <span>+221 33 XXX XX XX</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div class="contact-detail">
+                <strong>Email</strong>
+                <span>contact@curi.ucad.sn</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="contact-detail">
+                <strong>Horaires d'accueil</strong>
+                <span>Lundi – Vendredi : 8h00 – 17h00<br/>Samedi : 8h00 – 12h00</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="contact-detail">
+                <strong>Site institutionnel</strong>
+                <span><a href="https://www.ucad.sn" target="_blank" style="color:var(--blue-light)">www.ucad.sn</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-map">
+          <div class="map-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#2e6ec4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>
+          </div>
+          <div class="map-placeholder-text">Localisation — UCAD Dakar</div>
+          <div class="map-address">Campus de l'Université Cheikh Anta Diop<br/>Fann Résidence, Dakar<br/>Sénégal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-block" style="gap:12px">
+            <div class="logo-emblem" style="width:40px;height:40px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0c060" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="logo-text">
+              <span class="logo-title">CURI</span>
+              <span class="logo-sub">UCAD Dakar</span>
+            </div>
+          </div>
+          <p>Le CURI forme les professionnels des technologies de l'internet au service du développement de l'Afrique, dans le cadre de l'Université Cheikh Anta Diop de Dakar.</p>
+          <div class="footer-links-row">
+            <a href="https://www.ucad.sn" target="_blank">ucad.sn</a>
+            <span>|</span>
+            <a href="mailto:contact@curi.ucad.sn">contact@curi.ucad.sn</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Formations</h5>
+          <ul>
+            <li><a href="#">Fondements Informatique</a></li>
+            <li><a href="#">Développement Web</a></li>
+            <li><a href="#">Réseaux et Internet</a></li>
+            <li><a href="#">Applications Web</a></li>
+            <li><a href="#">Formation Continue</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Informations</h5>
+          <ul>
+            <li><a href="#">Admissions</a></li>
+            <li><a href="#">Calendrier académique</a></li>
+            <li><a href="#">Règlement intérieur</a></li>
+            <li><a href="#">Bibliothèque</a></li>
+            <li><a href="#">Offres de stages</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Liens utiles</h5>
+          <ul>
+            <li><a href="https://www.ucad.sn" target="_blank">UCAD officiel</a></li>
+            <li><a href="#">Espace étudiant</a></li>
+            <li><a href="#">Alumni CURI</a></li>
+            <li><a href="#">Partenaires</a></li>
+            <li><a href="#">Nous contacter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 CURI — Université Cheikh Anta Diop de Dakar. Tous droits réservés.</span>
+        <span>
+          <a href="#">Mentions légales</a> &nbsp;|&nbsp;
+          <a href="#">Politique de confidentialité</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── ONGLETS FORMATIONS
+    document.querySelectorAll('.form-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ── SOUS-ONGLETS FILIÈRES
+    document.querySelectorAll('.filiere-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filiere-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.filiere-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('filiere-' + tab.dataset.filiere).classList.add('active');
+      });
+    });
+
+
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('main-nav');
+    hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+    hamburger.addEventListener('keydown', e => { if (e.key === 'Enter') nav.classList.toggle('open'); });
+
+    // ── ACTIVE NAV
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+      navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+    });
+
+    // ── FADE-IN
+    const faders = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    faders.forEach(f => obs.observe(f));
+
+    // ── SLIDER
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot-btn');
+    let current = 0;
+    let autoTimer;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function startAuto() { autoTimer = setInterval(() => goTo(current + 1), 4000); }
+    function resetAuto() { clearInterval(autoTimer); startAuto(); }
+
+    document.getElementById('sliderNext').addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+    document.getElementById('sliderPrev').addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    dots.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.idx)); resetAuto(); }));
+    startAuto();
+  </script>
+</body>
+</html>
