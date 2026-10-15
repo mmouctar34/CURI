@@ -1,0 +1,915 @@
+:root {
+  --bleu:#265593;--bleu2:#1a5296;--bleu3:#204a7d;
+  --or:#c8921a;--or2:#f0b830;
+  --blanc:#ffffff;--gris:#f4f6fa;
+  --texte:#1a2233;--moyen:#4a5568;--leger:#6b7c93;
+  --border:#dde3ed;--radius:10px;--trans:all 0.22s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{font-family:'Segoe UI',sans-serif;color:var(--texte);background:var(--blanc);line-height:1.6}
+body { padding-top: 68px; }
+a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;display:block}
+/* RECHERCHE */
+.search-wrap{position:relative}
+.search-box{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:24px;overflow:hidden;background:var(--blanc);transition:var(--trans)}
+.search-box:focus-within{border-color:var(--bleu3);box-shadow:0 0 0 3px rgba(46,110,196,.12)}
+.search-box input{border:none;padding:8px 16px;outline:none;font-size:.84rem;width:200px;font-family:inherit;color:var(--texte)}
+.search-box button{background:var(--bleu);color:var(--blanc);border:none;padding:8px 14px;cursor:pointer;transition:var(--trans);display:flex;align-items:center}
+.search-box button:hover{background:var(--bleu2)}
+
+@keyframes robotPulse {
+  0%  { box-shadow: 0 6px 28px rgba(11,48,96,.5), 0 0 0 0 rgba(240,184,48,.4); }
+  50% { box-shadow: 0 6px 28px rgba(11,48,96,.5), 0 0 0 12px rgba(240,184,48,.0); }
+  100%{ box-shadow: 0 6px 28px rgba(11,48,96,.5), 0 0 0 0 rgba(240,184,48,.0); }
+}
+
+
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* Slider pleine largeur sans bordures */
+.slider {
+  position: relative;
+  overflow: hidden;
+  background: #0b1a33;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.1) 60%);
+}
+.slide-txt {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+}
+.slide-titre {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+.slide-sous {
+  font-size: .82rem;
+  opacity: .75;
+}
+
+.search-results{
+  position:absolute;top:calc(100% + 8px);right:0;
+  width:360px;background:var(--blanc);
+  border:1px solid var(--border);border-radius:12px;
+  box-shadow:0 8px 32px rgba(11,48,96,.18);
+  z-index:999;overflow:hidden;
+  display:none;
+}
+.search-results.show{display:block}
+.search-result-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 16px;cursor:pointer;
+  border-bottom:1px solid var(--border);
+  transition:var(--trans);
+}
+.robot-btn { pointer-events: all !important; cursor: pointer; }
+.search-result-item:last-child{border-bottom:none}
+.search-result-item:hover{background:var(--gris)}
+.sr-icon{width:34px;height:34px;border-radius:7px;background:#e8f0fb;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--bleu3);font-size:.85rem}
+.sr-titre{font-size:.85rem;font-weight:600;color:var(--bleu);margin-bottom:2px}
+.sr-desc{font-size:.76rem;color:var(--leger);line-height:1.4}
+.sr-page{font-size:.68rem;color:var(--or);font-weight:600;margin-top:3px}
+.search-empty{padding:20px;text-align:center;color:var(--leger);font-size:.84rem}
+.search-highlight{background:#fef3c7;border-radius:3px;padding:0 2px;font-weight:600;color:var(--texte)}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.header{background:var(--blanc);border-bottom:3px solid var(--bleu);position:fixed;top:0;left: 0;right: 0;z-index:500;box-shadow:0 2px 12px rgba(11,48,96,.08);transition: transform .35s ease, box-shadow .35s ease;}
+.header.cachee {transform: translateY(-100%);box-shadow: none;}
+.header.visible {transform: translateY(0);}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:100px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center}
+.logo-img{border: 1px solid var(--blanc); vertical-align: top; max-width: 100%; height: auto}
+.logo-univ{font-size:.6rem;color:var(--leger);text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
+nav ul{display:flex;gap:4px;align-items:center}
+nav a{display:block;padding:7px 12px;border-radius:5px;font-size:.875rem;font-weight:500;color:var(--moyen);transition:var(--trans)}
+nav a:hover,nav a.active{background:#e8f0fb;color:var(--bleu)}
+nav a.cta{background:var(--bleu);color:var(--blanc)!important;padding:7px 16px;margin-left:4px;border-radius:6px}
+nav a.cta:hover{background:var(--bleu2)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.burger span{display:block;width:22px;height:2px;background:var(--bleu);border-radius:2px}
+.section{padding:68px 24px}.section.gris{background:var(--gris)}.section.sombre{background:var(--bleu);color:var(--blanc)}
+.s-head{text-align:center;margin-bottom:44px}
+.s-tag{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--bleu3);margin-bottom:10px}
+.s-titre{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:700;color:var(--bleu);margin-bottom:12px}
+.s-titre.blanc{color:var(--blanc)}
+.s-sous{font-size:.9rem;color:var(--leger);max-width:520px;margin:0 auto;line-height:1.75}
+.filet{width:44px;height:3px;background:linear-gradient(90deg,var(--or),var(--or2));border-radius:2px;margin:14px auto 0}
+.btn{display:inline-block;padding:11px 26px;border-radius:6px;font-weight:600;font-size:.875rem;cursor:pointer;transition:var(--trans);border:none}
+.btn-or{background:var(--or);color:var(--blanc)}.btn-or:hover{background:var(--or2);transform:translateY(-1px)}
+.btn-bleu{background:var(--bleu);color:var(--blanc)}.btn-bleu:hover{background:var(--bleu2)}
+.btn-outline{background:transparent;color:var(--blanc);border:1.5px solid rgba(255,255,255,.45)}.btn-outline:hover{background:rgba(255,255,255,.1)}
+.card{background:var(--blanc);border:1px solid var(--border);border-radius:var(--radius);padding:26px;box-shadow:0 4px 16px rgba(11,48,96,.08);transition:var(--trans)}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(11,48,96,.14)}
+.card-icon{width:52px;height:52px;border-radius:9px;background:#e8f0fb;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px;color:var(--bleu2)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.stats-bar{background:var(--bleu);padding:20px 24px}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{text-align:center;position:relative;padding:8px 0}
+.stat:not(:last-child)::after{content:'';position:absolute;right:0;top:15%;height:70%;width:1px;background:rgba(255,255,255,.12)}
+.stat-n{font-size:1.9rem;font-weight:700;color:var(--or2)}.stat-l{font-size:.75rem;color:rgba(255,255,255,.6);margin-top:2px}
+.upload-zone{background:var(--gris);border:2px dashed var(--border);border-radius:var(--radius);padding:28px;text-align:center;position:relative;cursor:pointer;transition:var(--trans)}
+.upload-zone:hover{border-color:var(--bleu3);background:#e8f0fb}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-zone p{font-size:.85rem;color:var(--leger);margin-top:8px}
+.preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px;margin-top:16px}
+.preview-item{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:16/10;background:var(--border)}
+.preview-item img{width:100%;height:100%;object-fit:cover}
+.preview-item button{position:absolute;top:5px;right:5px;background:rgba(220,0,0,.85);color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:.7rem;cursor:pointer}
+footer{background:var(--bleu);color:rgba(255,255,255,.65);padding:48px 24px 20px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;gap:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:18px}
+.footer-brand p{font-size:.78rem;line-height:1.75;color:rgba(255,255,255,.5);margin-top:10px}
+.footer-links{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.45)}.footer-links a:hover{color:var(--or2)}
+.footer-links span{color:rgba(255,255,255,.2)}
+.fcol h5{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--or2);margin-bottom:12px}
+.fcol ul{display:flex;flex-direction:column;gap:7px}
+.fcol a{font-size:.78rem;color:rgba(255,255,255,.55);transition:var(--trans)}.fcol a:hover{color:var(--blanc)}
+.footer-socials{display:flex;gap:8px;margin-top:12px}
+.footer-socials a{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:var(--trans)}
+.footer-socials a:hover{background:var(--or);color:var(--blanc)}
+.footer-bottom{display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,.35)}
+.footer-bottom a{color:rgba(255,255,255,.35)}.footer-bottom a:hover{color:rgba(255,255,255,.6)}
+.ia-btn{position:fixed;bottom:26px;right:26px;z-index:999;width:58px;height:58px;border-radius:50%;background:var(--bleu);color:var(--blanc);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(11,48,96,.35);display:flex;align-items:center;justify-content:center;transition:var(--trans)}
+.ia-btn:hover{background:var(--bleu2);transform:scale(1.08)}
+.ia-window{position:fixed;bottom:96px;right:26px;z-index:998;width:350px;height:500px;background:var(--blanc);border-radius:16px;box-shadow:0 12px 48px rgba(11,48,96,.22);display:flex;flex-direction:column;transform:scale(.9) translateY(20px);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.34,1.56,.64,1);overflow:hidden}
+.ia-window.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.ia-head{background:var(--bleu);color:var(--blanc);padding:12px 16px;display:flex;align-items:center;gap:10px}
+.ia-av{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.ia-info{flex:1}.ia-info strong{display:block;font-size:.88rem}.ia-info span{font-size:.68rem;color:rgba(255,255,255,.6)}
+.ia-dot{width:7px;height:7px;border-radius:50%;background:#4ade80}
+.ia-x{background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:4px}
+.ia-x:hover{color:var(--blanc)}
+.ia-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:9px}
+.ia-msg{max-width:85%;padding:9px 13px;border-radius:12px;font-size:.83rem;line-height:1.5}
+.ia-msg.bot{background:#e8f0fb;color:var(--texte);border-radius:12px 12px 12px 2px;align-self:flex-start}
+.ia-msg.user{background:var(--bleu);color:var(--blanc);border-radius:12px 12px 2px 12px;align-self:flex-end}
+.dots span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--bleu3);margin:0 2px;animation:dot 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dot{0%,80%,100%{transform:scale(.7);opacity:.5}40%{transform:scale(1);opacity:1}}
+.ia-chips{padding:6px 12px;display:flex;flex-wrap:wrap;gap:5px}
+.chip{background:#e8f0fb;color:var(--bleu);border:1px solid var(--border);border-radius:20px;padding:4px 11px;font-size:.73rem;cursor:pointer;transition:var(--trans)}
+.chip:hover{background:var(--bleu);color:var(--blanc)}
+.ia-bar{padding:9px 12px;border-top:1px solid var(--border);display:flex;gap:7px;align-items:center}
+.ia-bar input{flex:1;border:1px solid var(--border);border-radius:20px;padding:7px 13px;font-size:.83rem;outline:none;font-family:inherit}
+.ia-bar input:focus{border-color:var(--bleu3)}
+.ia-mic,.ia-send{width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.88rem;transition:var(--trans)}
+.ia-mic{background:var(--gris);color:var(--leger)}.ia-mic.on{background:#fee2e2;color:#dc2626}
+.ia-send{background:var(--bleu);color:var(--blanc)}.ia-send:hover{background:var(--bleu2)}
+.fi{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}.fi.v{opacity:1;transform:none}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;margin-bottom:5px;font-weight:500;font-size:.875rem}
+.form-group input,.form-group textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:7px;font-size:.875rem;font-family:inherit;outline:none;transition:var(--trans)}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--bleu3);box-shadow:0 0 0 3px rgba(46,110,196,.1)}
+.err-msg{color:#dc2626;font-size:.78rem;margin-top:4px;display:block}
+.ok-msg{background:#d1fae5;color:#065f46;padding:14px;border-radius:8px;margin-top:14px;font-size:.875rem}
+.page-header{background:linear-gradient(135deg,var(--bleu),var(--bleu2));color:var(--blanc);padding:60px 24px;text-align:center}
+.page-header h1{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;margin-bottom:10px}
+.page-header p{font-size:1rem;color:rgba(255,255,255,.8)}
+.tabs{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
+.tab{padding:8px 20px;border-radius:5px;border:1.5px solid var(--border);background:var(--blanc);color:var(--moyen);font-size:.85rem;font-weight:600;cursor:pointer;transition:var(--trans)}
+.tab.on{background:var(--bleu);color:var(--blanc);border-color:var(--bleu)}
+.tab-c{display:none}.tab-c.on{display:block}
+.sem-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sem-card{background:var(--blanc);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.sem-head{display:flex;align-items:center;gap:14px;padding:16px 20px}
+.sem-head.b{background:var(--bleu)}.sem-head.g{background:linear-gradient(135deg,#7a4f00,var(--or))}
+.sem-num{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--blanc);font-size:.9rem;flex-shrink:0}
+.sem-titre{font-weight:700;color:var(--blanc);font-size:.92rem}.sem-sous{font-size:.67rem;color:rgba(255,255,255,.65);margin-top:2px}
+.sem-body{padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.ue-nom{font-size:.78rem;font-weight:700;color:var(--bleu);background:#e8f0fb;border-left:3px solid var(--bleu3);padding:5px 10px;border-radius:0 4px 4px 0;margin-bottom:5px}
+.ecs{display:flex;flex-direction:column;gap:3px;padding-left:8px}
+.ec{font-size:.77rem;color:var(--moyen);padding:3px 0 3px 13px;position:relative}
+.ec::before{content:'';position:absolute;left:0;top:50%;width:5px;height:5px;border-radius:50%;background:var(--or);transform:translateY(-50%)}
+.fil-tabs{display:flex;gap:7px;margin-bottom:18px;flex-wrap:wrap}
+.fil-tab{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:5px;border:1.5px solid var(--border);background:var(--blanc);color:var(--moyen);font-size:.8rem;font-weight:600;cursor:pointer;transition:var(--trans)}
+.fil-tab.on{background:var(--bleu2);color:var(--blanc);border-color:var(--bleu2)}
+.fil-c{display:none}.fil-c.on{display:block}
+.info-bar{display:flex;gap:10px;align-items:flex-start;background:#e8f0fb;border-radius:8px;padding:12px 16px;font-size:.84rem;color:var(--moyen);margin-bottom:22px;line-height:1.6}
+.dipl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.dipl{background:var(--blanc);border:1px solid var(--border);border-top:3px solid var(--bleu);border-radius:var(--radius);padding:22px;transition:var(--trans)}
+.dipl.or{border-top-color:var(--or)}.dipl.b2{border-top-color:var(--bleu2)}
+.dipl:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(11,48,96,.1)}
+.dipl-badge{display:inline-block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:2px 9px;border-radius:10px;background:#e8f0fb;color:var(--bleu);margin-bottom:10px}
+.dipl-badge.or{background:#fdf0d5;color:#7a4f00}
+.dipl h4{font-size:.88rem;color:var(--bleu);line-height:1.4;margin-bottom:6px;font-weight:700}
+.dipl-spec{font-size:.78rem;color:var(--or);font-weight:600;margin-bottom:4px}
+.dipl small{font-size:.72rem;color:var(--leger);font-style:italic}
+.pfe-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+.pfe{display:flex;gap:12px;background:var(--blanc);border:1px solid var(--border);border-radius:8px;padding:14px}
+.pfe-ic{width:38px;height:38px;flex-shrink:0;border-radius:7px;background:#e8f0fb;display:flex;align-items:center;justify-content:center}
+.pfe-ic.or{background:#fdf0d5}
+.pfe strong{display:block;font-size:.84rem;color:var(--bleu);margin-bottom:3px}
+.pfe p{font-size:.77rem;color:var(--moyen);line-height:1.5}
+.team-card{background:var(--blanc);border:1px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;transition:var(--trans)}
+.team-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(11,48,96,.1)}
+.team-av{width:68px;height:68px;border-radius:50%;background:var(--bleu);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:var(--or2);margin:0 auto 14px}
+.team-card h4{font-size:.92rem;font-weight:700;color:var(--bleu);margin-bottom:4px}
+.team-role{font-size:.75rem;color:var(--or);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.team-dept{font-size:.76rem;color:var(--leger);line-height:1.5}
+.event-card{background:var(--blanc);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;transition:var(--trans)}
+.event-card:hover{box-shadow:0 8px 24px rgba(11,48,96,.1)}
+.event-date{background:var(--bleu);color:var(--blanc);padding:18px;text-align:center;min-width:88px;display:flex;flex-direction:column;justify-content:center;flex-shrink:0}
+.ev-day{font-size:1.9rem;font-weight:700;line-height:1}.ev-mois{font-size:.75rem;text-transform:uppercase}.ev-an{font-size:.68rem;opacity:.7;margin-top:2px}
+.event-body{padding:16px 20px;flex:1}
+.ev-tag{display:inline-block;padding:3px 10px;border-radius:15px;font-size:.7rem;font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.ev-tag.conf{background:#dbeafe;color:var(--bleu)}.ev-tag.atel{background:#fef3c7;color:#92400e}
+.ev-tag.jpo{background:#d1fae5;color:#065f46}.ev-tag.comp{background:#fee2e2;color:#991b1b}
+.event-body h3{font-size:.92rem;font-weight:600;color:var(--bleu);margin-bottom:6px}
+.event-body p{font-size:.8rem;color:var(--moyen);margin-bottom:4px}
+.event-card.past{opacity:.7}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:48px}
+.c-info h3{font-size:1.3rem;font-weight:700;color:var(--bleu);margin-bottom:20px}
+.c-items{display:flex;flex-direction:column;gap:16px}
+.c-item{display:flex;gap:12px;align-items:flex-start}
+.c-ic{width:38px;height:38px;flex-shrink:0;background:#e8f0fb;border-radius:7px;display:flex;align-items:center;justify-content:center}
+.c-item strong{display:block;font-size:.82rem;color:var(--bleu);margin-bottom:2px}
+.c-item span{font-size:.82rem;color:var(--moyen)}
+.c-map{background:#e8f0fb;border:1px solid var(--border);border-radius:var(--radius);min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px}
+.c-map p{font-size:.8rem;color:var(--moyen);line-height:1.5}
+.slider{position:relative;height:290px;border-radius:var(--radius);overflow:hidden;border:1.5px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.slide.on{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.slide-overlay{position:absolute;inset:0;background:rgba(11,48,96,.4)}
+.slide-txt{position:relative;z-index:1;text-align:center;color:var(--blanc)}
+.slide-titre{font-weight:600;font-size:.95rem}.slide-sous{font-size:.78rem;opacity:.75}
+.slide-hint{position:absolute;top:10px;right:10px;background:rgba(200,146,26,.85);color:var(--blanc);font-size:.65rem;font-weight:700;padding:3px 9px;border-radius:4px;z-index:2}
+.s-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
+.s-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);border:none;cursor:pointer;transition:var(--trans)}
+.s-dot.on{background:var(--or2)}
+.s-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blanc);transition:var(--trans);z-index:2;font-size:.9rem}
+.s-arr:hover{background:rgba(255,255,255,.28)}.s-arr.prev{left:10px}.s-arr.next{right:10px}
+@media(max-width:860px){
+  .burger{display:flex}
+  nav{display:none;position:absolute;top:68px;left:0;right:0;background:var(--blanc);border-bottom:2px solid var(--bleu);padding:12px 18px;box-shadow:0 8px 24px rgba(11,48,96,.1)}
+  nav.open{display:block}nav ul{flex-direction:column;gap:4px}
+  .grid-2,.grid-3,.grid-4,.sem-grid,.pfe-row,.dipl-grid,.contact-grid{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:14px}.stat::after{display:none}
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .ia-window{width:calc(100vw - 28px);right:14px}
+  .event-card{flex-direction:column}.event-date{flex-direction:row;gap:10px;padding:14px;min-width:unset} 
+}
+/* ── ACTUALITÉS AVEC IMAGE ── */
+.actu-card {
+  border-radius: 12px; overflow: hidden;
+  cursor: pointer; transition: transform .22s, box-shadow .22s;
+  box-shadow: 0 4px 16px rgba(11,48,96,.1);
+}
+.actu-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(11,48,96,.18); }
+.actu-bg {
+  position: relative; height: 260px;
+  background-size: cover; background-position: center;
+  display: flex; align-items: flex-end;
+}
+.actu-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.1) 100%);
+}
+.actu-content {
+  position: relative; z-index: 1;
+  padding: 20px; width: 100%;
+}
+.actu-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .95rem; margin-bottom: 10px;
+}
+.actu-date {
+  font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: rgba(255,255,255,.75); margin-bottom: 6px;
+}
+.actu-content h4 {
+  font-size: 1rem; font-weight: 700;
+  color: #fff; line-height: 1.35; margin-bottom: 10px;
+}
+.actu-lire {
+  font-size: .78rem; font-weight: 700;
+  color: #f0b830; letter-spacing: .04em;
+}
+
+/* ── MODALS ── */
+.modal-bg {
+  display: none; position: fixed; inset: 0; z-index: 9990;
+  background: rgba(11,48,96,.55); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+}
+.modal-bg.show { display: flex; animation: fadeIn .25s ease; }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+.modal-box {
+  background: #fff; border-radius: 14px;
+  padding: 32px 28px; max-width: 540px; width: 90%;
+  max-height: 80vh; overflow-y: auto;
+  position: relative; animation: slideUp .3s ease;
+  box-shadow: 0 20px 60px rgba(11,48,96,.25);
+}
+@keyframes slideUp { from { transform: translateY(30px); opacity:0; } to { transform: translateY(0); opacity:1; } }
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: #f4f6fa; border: none; border-radius: 50%;
+  width: 32px; height: 32px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #6b7c93; font-size: .85rem; transition: all .18s;
+}
+.modal-close:hover { background: #0b3060; color: #fff; }
+.modal-tag {
+  display: inline-block; padding: 3px 11px; border-radius: 12px;
+  font-size: .72rem; font-weight: 700; margin-bottom: 12px;
+}
+.modal-box h3 {
+  font-size: 1.2rem; font-weight: 700;
+  color: #0b1e37; margin-bottom: 16px; line-height: 1.35;
+}
+.modal-box p {
+  font-size: .88rem; color: #4a5568;
+  line-height: 1.75; margin-bottom: 12px;
+}
+  /* ── ÉVÉNEMENTS ── */
+    .ev-section { padding: 60px 24px; }
+    .ev-section.gris { background: #f4f6fa; }
+
+    /* Carte événement avec photo */
+    .ev-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(11,48,96,.09);
+      transition: transform .22s, box-shadow .22s;
+      cursor: pointer;
+    }
+    .ev-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(11,48,96,.16); }
+
+    /* Photo de l'événement */
+    .ev-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, #1a5296, #0b3060);
+    }
+    .ev-photo-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #1a5296, #0b3060);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: rgba(255,255,255,.5);
+    }
+
+    .ev-body { padding: 20px; }
+    .ev-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .ev-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .ev-tag.conf { background: #dbeafe; color: #1a5296; }
+    .ev-tag.atel { background: #fef3c7; color: #92400e; }
+    .ev-tag.jpo  { background: #d1fae5; color: #065f46; }
+    .ev-tag.comp { background: #fee2e2; color: #991b1b; }
+    .ev-tag.cerem { background: #ede9fe; color: #5b21b6; }
+    .ev-date-badge {
+      font-size: .72rem;
+      color: #6b7c93;
+      font-weight: 600;
+    }
+    .ev-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0b3060;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .ev-card p {
+      font-size: .82rem;
+      color: #4a5568;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .ev-infos {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 14px;
+    }
+    .ev-infos span {
+      font-size: .78rem;
+      color: #6b7c93;
+    }
+    .ev-infos i { color: #c8921a; margin-right: 6px; width: 14px; }
+    .btn-lire {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: #0b3060;
+      color: #fff;
+      border-radius: 6px;
+      font-size: .8rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background .18s;
+    }
+    .btn-lire:hover { background: #1a5296; }
+
+    /* Badge "À venir" */
+    .badge-avenir {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #f0b830;
+      color: #0b3060;
+      font-size: .65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 3px 10px;
+      border-radius: 12px;
+      z-index: 1;
+    }
+    .ev-card-wrap { position: relative; }
+
+    /* Grille événements */
+    .ev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media(max-width:860px) { .ev-grid { grid-template-columns: 1fr; } }
+
+    /* ── GALERIE ── */
+    .galerie-btn-wrap {
+      text-align: center;
+      margin: 40px 0 0;
+    }
+    .btn-galerie {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #0b3060, #1a5296);
+      color: #fff;
+      border-radius: 8px;
+      font-size: .95rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(11,48,96,.25);
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn-galerie:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(11,48,96,.3); }
+
+    /* ── MODAL ARTICLE ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9990;
+      background: rgba(11,48,96,.65);
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.show { display: flex; animation: fadeIn .25s ease; }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      position: relative;
+      animation: slideUp .3s ease;
+      box-shadow: 0 24px 64px rgba(11,48,96,.3);
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+    .modal-box::-webkit-scrollbar { width: 5px; }
+    .modal-box::-webkit-scrollbar-thumb { background: #dde3ed; border-radius: 5px; }
+
+    .modal-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 16px 16px 0 0;
+      display: block;
+    }
+    .modal-img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #1a5296, #0b3060);
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: rgba(255,255,255,.4);
+    }
+    .modal-content { padding: 28px; }
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255,255,255,.9);
+      border: none;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      z-index: 1;
+      transition: background .18s;
+    }
+    .modal-close:hover { background: #fff; }
+    .modal-tag-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .modal-content h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0b3060;
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+    .modal-infos {
+      background: #f4f6fa;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .modal-infos span { font-size: .83rem; color: #4a5568; }
+    .modal-infos i { color: #c8921a; margin-right: 7px; width: 14px; }
+    .modal-text p {
+      font-size: .88rem;
+      color: #4a5568;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .modal-text strong { color: #0b3060; }
+
+    /* Galerie photos dans le modal */
+    .modal-galerie {
+      margin-top: 20px;
+    }
+    .modal-galerie h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: #0b3060;
+      margin-bottom: 12px;
+    }
+    .modal-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .modal-photo {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .18s;
+    }
+    .modal-photo:hover { transform: scale(1.03); }
+    .modal-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .modal-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8f0fb, #c8d8f0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #2e6ec4;
+      border-radius: 8px;
+    }
+
+    /* ── MODAL GALERIE PRINCIPALE ── */
+    .galerie-categories {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .cat-btn {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1.5px solid #dde3ed;
+      background: #fff;
+      color: #4a5568;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .cat-btn.active, .cat-btn:hover {
+      background: #0b3060;
+      color: #fff;
+      border-color: #0b3060;
+    }
+    .galerie-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    @media(max-width:600px) { .galerie-grid { grid-template-columns: repeat(2, 1fr); } }
+    .galerie-item {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: linear-gradient(135deg, #e8f0fb, #c8d8f0);
+      transition: transform .18s;
+    }
+    .galerie-item:hover { transform: scale(1.03); }
+    .galerie-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .galerie-item-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(11,48,96,.8), transparent);
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 600;
+      padding: 12px 8px 6px;
+      opacity: 0;
+      transition: opacity .18s;
+    }
+    .galerie-item:hover .galerie-item-label { opacity: 1; } 
+    .galerie-placeholder-icon {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #2e6ec4;
+      font-size: .7rem;
+      font-weight: 600;
+    }
+
+    /* Animations au scroll */
+.fi-up    { opacity:0; transform:translateY(40px); transition:all .6s cubic-bezier(.22,1,.36,1); }
+.fi-left  { opacity:0; transform:translateX(-50px); transition:all .6s cubic-bezier(.22,1,.36,1); }
+.fi-right { opacity:0; transform:translateX(50px); transition:all .6s cubic-bezier(.22,1,.36,1); }
+.fi-zoom  { opacity:0; transform:scale(.85); transition:all .6s cubic-bezier(.34,1.56,.64,1); }
+.fi-up.v, .fi-left.v, .fi-right.v, .fi-zoom.v { opacity:1; transform:translate(0) scale(1); }
+
+/* Délais en cascade pour les grilles */
+.grid-3 .card:nth-child(1), .grid-4 .card:nth-child(1), .ev-grid > *:nth-child(1) { transition-delay:.05s; }
+.grid-3 .card:nth-child(2), .grid-4 .card:nth-child(2), .ev-grid > *:nth-child(2) { transition-delay:.15s; }
+.grid-3 .card:nth-child(3), .grid-4 .card:nth-child(3), .ev-grid > *:nth-child(3) { transition-delay:.25s; }
+.grid-4 .card:nth-child(4), .ev-grid > *:nth-child(4) { transition-delay:.35s; }
+
+@keyframes blink { 50% { border-color: transparent; } }
+
+
+    /* ── MODAL PHOTO ── 
+    <div class="ev-card-wrap">
+        <span class="badge-avenir">À venir</span>
+        <div class="ev-card" onclick="ouvrirArticle('ev-avenir-1')">
+          <!-- PHOTO — décommente et remplace par ta photo -->
+          <!-- <img class="ev-photo" src="images/jpo-2026.jpg" alt="JPO 2026"/> -->
+          <div class="ev-photo-placeholder">
+            <i class="fas fa-door-open" style="font-size:2.5rem"></i>
+            <span style="font-size:.75rem;font-weight:600">Ajoutez votre photo ici</span>
+          </div>
+          <div class="ev-body">
+            <div class="ev-meta">
+              <span class="ev-tag jpo">Portes Ouvertes</span>
+              <span class="ev-date-badge">15 Sep 2026</span>
+            </div>
+            <h3>Journée Portes Ouvertes — Rentrée 2026–2027</h3>
+            <p>Venez découvrir le CURI, rencontrer l'équipe pédagogique et visiter nos laboratoires informatiques.</p>
+            <div class="ev-infos">
+              <span><i class="fas fa-clock"></i>10h00 – 17h00</span>
+              <span><i class="fas fa-map-marker-alt"></i>Campus UCAD, Fann Résidence, Dakar</span>
+            </div>
+            <button class="btn-lire"><i class="fas fa-book-open"></i>Lire la suite</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ÉVÉNEMENT À VENIR 2 ── -->
+      <div class="ev-card-wrap">
+        <span class="badge-avenir">À venir</span>
+        <div class="ev-card" onclick="ouvrirArticle('ev-avenir-2')">
+          <!-- <img class="ev-photo" src="images/hackathon-2026.jpg" alt="Hackathon 2026"/> -->
+          <div class="ev-photo-placeholder">
+            <i class="fas fa-trophy" style="font-size:2.5rem"></i>
+            <span style="font-size:.75rem;font-weight:600">Ajoutez votre photo ici</span>
+          </div>
+          <div class="ev-body">
+            <div class="ev-meta">
+              <span class="ev-tag comp">Compétition</span>
+              <span class="ev-date-badge">22 Oct 2026</span>
+            </div>
+            <h3>Hackathon CURI 2026 — Technologies Internet</h3>
+            <p>48 heures pour créer des solutions numériques innovantes pour les services publics sénégalais.</p>
+            <div class="ev-infos">
+              <span><i class="fas fa-clock"></i>48 heures non-stop</span>
+              <span><i class="fas fa-map-marker-alt"></i>Campus UCAD, Dakar</span>
+            </div>
+            <button class="btn-lire"><i class="fas fa-book-open"></i>Lire la suite</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ÉVÉNEMENT À VENIR 3 ── -->
+      <div class="ev-card-wrap">
+        <span class="badge-avenir">À venir</span>
+        <div class="ev-card" onclick="ouvrirArticle('ev-avenir-3')">
+          <!-- <img class="ev-photo" src="images/conf-ia-2026.jpg" alt="Conférence IA"/> -->
+          <div class="ev-photo-placeholder">
+            <i class="fas fa-microphone" style="font-size:2.5rem"></i>
+            <span style="font-size:.75rem;font-weight:600">Ajoutez votre photo ici</span>
+          </div>
+          <div class="ev-body">
+            <div class="ev-meta">
+              <span class="ev-tag conf">Conférence</span>
+              <span class="ev-date-badge">20 Juil 2026</span>
+            </div>
+            <h3>Conférence — L'IA au service du développement africain</h3>
+            <p>Conférence internationale sur l'intégration de l'intelligence artificielle dans les systèmes éducatifs africains.</p>
+            <div class="ev-infos">
+              <span><i class="fas fa-clock"></i>14h00 – 17h00</span>
+              <span><i class="fas fa-map-marker-alt"></i>Amphithéâtre UCAD</span>
+            </div>
+            <button class="btn-lire"><i class="fas fa-book-open"></i>Lire la suite</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- fin ev-grid -->
+  </div>
+</section>   
+
+<!-- MODAL — JPO 2026 -->
+<div class="modal-overlay" id="modal-ev-avenir-1" onclick="fermerModal(event, this)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('show');document.body.style.overflow=''">
+      <i class="fas fa-times"></i>
+    </button>
+    <!-- <img class="modal-img" src="images/jpo-2026.jpg" alt="JPO 2026"/> -->
+    <div class="modal-img-placeholder"><i class="fas fa-door-open"></i></div>
+    <div class="modal-content">
+      <div class="modal-tag-row">
+        <span class="ev-tag jpo">Portes Ouvertes</span>
+        <span style="font-size:.8rem;color:#6b7c93;font-weight:600">15 Septembre 2026</span>
+      </div>
+      <h2>Journée Portes Ouvertes — Rentrée 2026–2027</h2>
+      <div class="modal-infos">
+        <span><i class="fas fa-clock"></i>10h00 – 17h00</span>
+        <span><i class="fas fa-map-marker-alt"></i>Campus UCAD, Fann Résidence, Dakar</span>
+        <span><i class="fas fa-users"></i>Ouvert à tous — Entrée libre</span>
+      </div>
+      <div class="modal-text">
+        <!-- CONTENU ARTICLE — Modifiez ce texte dans VS Code -->
+        <p>Le CURI vous ouvre ses portes pour la Journée Portes Ouvertes de la rentrée 2026–2027. Cet événement est l'occasion idéale pour les lycéens, bacheliers et leurs familles de découvrir le centre et ses formations.</p>
+        <p>Au programme : <strong>visites guidées des laboratoires</strong>, rencontres avec les enseignants et les étudiants, présentation des filières Développement Web Mobile et Marketing Digital, ainsi que des informations sur les modalités d'orientation via CampuSen.</p>
+        <p>Des anciens étudiants (Alumni) seront également présents pour partager leur expérience et répondre à vos questions sur les débouchés professionnels après le CURI.</p>
+        <p>Venez nombreux ! L'entrée est libre et ouverte à tous.</p>
+        <!-- FIN CONTENU -->
+      </div>
+      <div class="modal-galerie">
+        <h4><i class="fas fa-images" style="color:#c8921a;margin-right:6px"></i>Photos de l'événement</h4>
+        <div class="modal-photos">
+          <!-- PHOTOS — Décommentez et remplacez les src par vos fichiers -->
+           <div class="modal-photo"><img src="images/jpo-1.jpg" alt="JPO"/></div>
+          <div class="modal-photo"><img src="images/jpo-2.jpg" alt="JPO"/></div> 
+           <div class="modal-photo"><img src="images/jpo-3.jpg" alt="JPO"/></div> 
+          <div class="modal-photo"><div class="modal-photo-placeholder"><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><i class="fas fa-image"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — Hackathon 2026 -->
+<div class="modal-overlay" id="modal-ev-avenir-2" onclick="fermerModal(event, this)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('show');document.body.style.overflow=''">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-img-placeholder"><i class="fas fa-trophy"></i></div>
+    <div class="modal-content">
+      <div class="modal-tag-row">
+        <span class="ev-tag comp">Compétition</span>
+        <span style="font-size:.8rem;color:#6b7c93;font-weight:600">22 Octobre 2026</span>
+      </div>
+      <h2>Hackathon CURI 2026 — Technologies Internet</h2>
+      <div class="modal-infos">
+        <span><i class="fas fa-clock"></i>48 heures non-stop</span>
+        <span><i class="fas fa-map-marker-alt"></i>Campus UCAD, Dakar</span>
+        <span><i class="fas fa-users"></i>Ouvert aux étudiants du CURI et de l'UCAD</span>
+      </div>
+      <div class="modal-text">
+        <!-- CONTENU ARTICLE -->
+        <p>Le Hackathon CURI 2026 est de retour ! Pendant 48 heures non-stop, des équipes d'étudiants vont s'affronter pour développer des solutions numériques innovantes destinées aux services publics sénégalais.</p>
+        <p>Les thèmes retenus pour cette édition tournent autour de <strong>l'agriculture numérique</strong>, <strong>la santé connectée</strong> et <strong>l'éducation en ligne</strong>. Chaque équipe devra concevoir, développer et présenter une application fonctionnelle en 48h.</p>
+        <p>Un jury composé d'enseignants du CURI et de professionnels du secteur numérique sénégalais évaluera les projets. <strong>Des prix et certifications</strong> seront remis aux équipes gagnantes.</p>
+        <p>Inscriptions ouvertes : contactez-nous à contact@curi.ucad.sn</p>
+        <!-- FIN CONTENU -->
+      </div>
+      <div class="modal-galerie">
+        <h4><i class="fas fa-images" style="color:#c8921a;margin-right:6px"></i>Photos</h4>
+        <div class="modal-photos">
+          <div class="modal-photo"><div class="modal-photo-placeholder"><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><i class="fas fa-image"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — Conférence IA -->
+<div class="modal-overlay" id="modal-ev-avenir-3" onclick="fermerModal(event, this)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('show');document.body.style.overflow=''">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-img-placeholder"><i class="fas fa-microphone"></i></div>
+    <div class="modal-content">
+      <div class="modal-tag-row">
+        <span class="ev-tag conf">Conférence</span>
+        <span style="font-size:.8rem;color:#6b7c93;font-weight:600">20 Juillet 2026</span>
+      </div>
+      <h2>Conférence — L'IA au service du développement africain</h2>
+      <div class="modal-infos">
+        <span><i class="fas fa-clock"></i>14h00 – 17h00</span>
+        <span><i class="fas fa-map-marker-alt"></i>Amphithéâtre UCAD</span>
+        <span><i class="fas fa-users"></i>Entrée libre sur inscription</span>
+      </div>
+      <div class="modal-text">
+        <!-- CONTENU ARTICLE -->
+        <p>Le CURI organise une conférence internationale sur l'intégration de l'intelligence artificielle dans les systèmes éducatifs et économiques africains.</p>
+        <p>Des <strong>experts internationaux et locaux</strong> interviendront pour présenter les dernières avancées en IA et leurs applications concrètes dans le contexte africain : agriculture de précision, santé numérique, fintech et éducation.</p>
+        <p>Cette conférence est ouverte aux étudiants, enseignants, professionnels et toute personne intéressée par les technologies de l'avenir. Des ateliers pratiques suivront les conférences plénières.</p>
+        <!-- FIN CONTENU -->
+      </div>
+      <div class="modal-galerie">
+        <h4><i class="fas fa-images" style="color:#c8921a;margin-right:6px"></i>Photos</h4>
+        <div class="modal-photos">
+          <div class="modal-photo"><div class="modal-photo-placeholder"><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><i class="fas fa-image"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>   */
+

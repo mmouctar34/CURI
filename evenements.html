@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Événements — CURI | UCAD Dakar</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    /* ── ÉVÉNEMENTS ── */
+    .ev-section { padding: 60px 24px; }
+    .ev-section.gris { background: #f4f6fa; }
+
+    /* Carte événement avec photo */
+    .ev-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(11,48,96,.09);
+      transition: transform .22s, box-shadow .22s;
+      cursor: pointer;
+    }
+    .ev-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(11,48,96,.16); }
+
+    /* Photo de l'événement */
+    .ev-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, #1a5296, #0b3060);
+    }
+
+    .ev-photo-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #1a5296, #0b3060);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: rgba(255,255,255,.5);
+    }
+
+    .ev-body { padding: 20px; }
+    .ev-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .ev-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .ev-tag.conf { background: #dbeafe; color: #1a5296; }
+    .ev-tag.atel { background: #fef3c7; color: #92400e; }
+    .ev-tag.jpo  { background: #d1fae5; color: #065f46; }
+    .ev-tag.comp { background: #fee2e2; color: #991b1b; }
+    .ev-tag.cerem { background: #ede9fe; color: #5b21b6; }
+    .ev-date-badge {
+      font-size: .72rem;
+      color: #6b7c93;
+      font-weight: 600;
+    }
+    .ev-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0b3060;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .ev-card p {
+      font-size: .82rem;
+      color: #4a5568;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .ev-infos {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 14px;
+    }
+    .ev-infos span {
+      font-size: .78rem;
+      color: #6b7c93;
+    }
+    .ev-infos i { color: #c8921a; margin-right: 6px; width: 14px; }
+    .btn-lire {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: #0b3060;
+      color: #fff;
+      border-radius: 6px;
+      font-size: .8rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background .18s;
+    }
+    .btn-lire:hover { background: #1a5296; }
+
+    /* Badge "À venir" */
+    .badge-avenir {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #f0b830;
+      color: #0b3060;
+      font-size: .65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 3px 10px;
+      border-radius: 12px;
+      z-index: 1;
+    }
+    .ev-card-wrap { position: relative; }
+
+    /* Grille événements */
+    .ev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media(max-width:860px) { .ev-grid { grid-template-columns: 1fr; } }
+
+    /* ── GALERIE ── */
+    .galerie-btn-wrap {
+      text-align: center;
+      margin: 40px 0 0;
+    }
+    .btn-galerie {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #0b3060, #1a5296);
+      color: #fff;
+      border-radius: 8px;
+      font-size: .95rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(11,48,96,.25);
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn-galerie:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(11,48,96,.3); }
+
+    /* ── MODAL ARTICLE ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9990;
+      background: rgba(11,48,96,.65);
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.show { display: flex; animation: fadeIn .25s ease; }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      position: relative;
+      animation: slideUp .3s ease;
+      box-shadow: 0 24px 64px rgba(11,48,96,.3);
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+    .modal-box::-webkit-scrollbar { width: 5px; }
+    .modal-box::-webkit-scrollbar-thumb { background: #dde3ed; border-radius: 5px; }
+
+    .modal-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 16px 16px 0 0;
+      display: block;
+    }
+    .modal-img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #1a5296, #0b3060);
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: rgba(255,255,255,.4);
+    }
+    .modal-content { padding: 28px; }
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255,255,255,.9);
+      border: none;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      z-index: 1;
+      transition: background .18s;
+    }
+    .modal-close:hover { background: #fff; }
+    .modal-tag-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .modal-content h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0b3060;
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+    .modal-infos {
+      background: #f4f6fa;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .modal-infos span { font-size: .83rem; color: #4a5568; }
+    .modal-infos i { color: #c8921a; margin-right: 7px; width: 14px; }
+    .modal-text p {
+      font-size: .88rem;
+      color: #4a5568;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .modal-text strong { color: #0b3060; }
+
+    /* Galerie photos dans le modal */
+    .modal-galerie {
+      margin-top: 20px;
+    }
+    .modal-galerie h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: #0b3060;
+      margin-bottom: 18px;
+    }
+    /* Dans ton style ou style.css */
+.modal-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.modal-photo {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;          /* ← CLEF : coupe ce qui dépasse */
+  background: #e8f0fb;
+  position: relative;
+}
+
+.modal-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* ← remplit sans déformer */
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+    .modal-photo:hover { transform: scale(1.03); }
+    .modal-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .modal-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8f0fb, #c8d8f0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #2e6ec4;
+      border-radius: 10px;
+    }
+
+    /* ── MODAL GALERIE PRINCIPALE ── */
+    .galerie-categories {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .cat-btn {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1.5px solid #dde3ed;
+      background: #fff;
+      color: #4a5568;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .cat-btn.active, .cat-btn:hover {
+      background: #0b3060;
+      color: #fff;
+      border-color: #0b3060;
+    }
+    .galerie-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    @media(max-width:600px) { .galerie-grid { grid-template-columns: repeat(2, 1fr); } }
+    .galerie-item {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: linear-gradient(135deg, #e8f0fb, #c8d8f0);
+      transition: transform .18s;
+    }
+    .galerie-item:hover { transform: scale(1.03); }
+    .galerie-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .galerie-item-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(11,48,96,.8), transparent);
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 600;
+      padding: 12px 8px 6px;
+      opacity: 0;
+      transition: opacity .18s;
+    }
+    .galerie-item:hover .galerie-item-label { opacity: 1; }
+    .galerie-placeholder-icon {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #2e6ec4;
+      font-size: .7rem;
+      font-weight: 600;
+    }
+
+
+    
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+        <img src="logoUcadCURI 2.png" alt="UCAD CURI" style="width: 300px;height: 100px;object-fit:contain;border-radius: 100px;margin-left:15px">
+    </a>
+    <nav id="nav">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="formation.html">Formations</a></li>
+        <li><a href="debouches.html">Débouchés</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
+        <li><a href="evenements.html" class="active">Événements</a></li>
+        <li><a href="contact.html" class="cta">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- BARRE DE RECHERCHE -->
+    <div class="search-wrap">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Rechercher..." autocomplete="off"/>
+        <button id="searchBtn"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <h1>Événements et Actualités</h1>
+  <p>Conférences, hackathons, ateliers, journées portes ouvertes et galerie photos</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     ÉVÉNEMENTS À VENIR
+     Pour ajouter un événement à venir :
+     Copie une .ev-card-wrap et modifie le contenu
+     Pour ajouter une photo : remplace .ev-photo-placeholder par
+     <img class="ev-photo" src="images/nom.jpg" alt="Description"/>
+══════════════════════════════════════ -->
+<section class="ev-section">
+  <div class="container">
+    <div class="s-head fi">
+      <div class="s-tag">Agenda</div>
+      <h2 class="s-titre">Événements à venir</h2>
+      <div class="filet"></div>
+      <p class="s-sous">Les prochains événements organisés par le CURI et l'UCAD.</p>
+    </div>
+
+  <!--  ── ÉVÉNEMENT À VENIR 1 ── -->
+     <div style="text-align:center;padding:48px 24px;background:#f4f6fa;border-radius:14px;border:2px dashed #dde3ed">
+  <i class="fas fa-calendar-times" style="font-size:3rem;color:#dde3ed;margin-bottom:16px;display:block"></i>
+  <h3 style="color:#6b7c93;font-size:1rem;margin-bottom:8px">Aucun événement à venir pour le moment</h3>
+  <p style="color:#a0aec0;font-size:.85rem">Revenez bientôt — de nouveaux événements seront annoncés prochainement.</p>
+  <p style="color:#a0aec0;font-size:.85rem;margin-top:4px">Pour être informé : <a href="mailto:contact@curi.ucad.sn" style="color:#1a5296">curi@ucad.sn</a></p>
+</div>
+
+<!-- ══════════════════════════════════════
+     ÉVÉNEMENTS PASSÉS
+     Pour ajouter un événement passé :
+     Copie une .ev-card et modifie le contenu
+══════════════════════════════════════ -->
+<section class="ev-section gris">
+  <div class="container">
+    <div class="s-head fi">
+      <div class="s-tag">Historique</div>
+      <h2 class="s-titre">Événements passés</h2>
+      <div class="filet"></div>
+      <p class="s-sous">Retrouvez les moments forts de la vie du CURI.</p>
+    </div>
+
+    <div class="ev-grid fi">
+
+      <!-- ── ÉVÉNEMENT PASSÉ 1 — Portes ouvertes ── -->
+      <div class="ev-card-wrap">
+        <div class="ev-card" onclick="ouvrirArticle('ev-passe-1')">
+             <!-- <img class="ev-photo" src="images/VR2.jpg" alt="Portes ouvertes 2025"/> -->
+          <div class="ev-photo-placeholder">
+             <!-- <i class="fas fa-graduation-cap" style="font-size:2.5rem"></i>  -->
+            <img class="ev-photo" img src="images/VR2.jpg" alt="Portes ouvertes 2025" width="250px" height="100%"/>
+          </div>
+          <div class="ev-body">
+            <div class="ev-meta">
+              <span class="ev-tag cerem">Porte ouverte</span>
+              <span class="ev-date-badge">Juin 2025</span>
+            </div>
+            <h3>Portes ouvertes sur les réalités virtuelles - 2025</h3>
+            <p>Porte ouverte au CURI pour découvrir nos activités et nos laboratoires.</p>
+            <div class="ev-infos">
+              <span><i class="fas fa-clock"></i>48h</span>
+              <span><i class="fas fa-map-marker-alt"></i>Campus UCAD, Dakar</span>
+            </div>
+            <button class="btn-lire"><i class="fas fa-book-open"></i>Lire l'article</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ÉVÉNEMENT PASSÉ 2 — Cohorte 2025 ── -->
+      <div class="ev-card-wrap">
+        <div class="ev-card" onclick="ouvrirArticle('ev-passe-2')">
+          <!-- <img class="ev-photo" src="images/hackathon-2025.jpg" alt="Hackathon 2025"/> -->
+          <div class="ev-photo-placeholder">
+          <!--  <i class="fas fa-lightbulb" style="font-size:2.5rem"></i> -->
+           <img class="ev-photo" src="images/Gp5.jpg" alt="Cohorte 2025"/>
+          </div>
+          <div class="ev-body">
+            <div class="ev-meta">
+              <span class="ev-tag comp">Cohorte</span>
+              <span class="ev-date-badge">Avril 2025</span>
+            </div>
+            <h3>Cohorte CURI 2025 — Formation sur le leadership et la communication</h3>
+            <p>Les étudiants ont suivi une formation intensive sur le leadership et la communication.</p>
+            <div class="ev-infos">
+              <span><i class="fas fa-clock"></i>48 heures</span>
+              <span><i class="fas fa-map-marker-alt"></i>Campus UCAD, Dakar</span>
+            </div>
+            <button class="btn-lire"><i class="fas fa-book-open"></i>Lire l'article</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ÉVÉNEMENT PASSÉ 3 — Atelier ── -->
+      <div class="ev-card-wrap">
+        <div class="ev-card" onclick="ouvrirArticle('ev-passe-3')">
+          <!-- <img class="ev-photo" src="images/atelier-web-2025.jpg" alt="Atelier Web 2025"/> -->
+          <div class="ev-photo-placeholder">
+          <!--  <i class="fas fa-laptop-code" style="font-size:2.5rem"></i> -->
+            <img class="ev-photo" src="images/4.jpg" alt="Atelier Web 2025"/>
+          </div>
+          <div class="ev-body">
+            <div class="ev-meta">
+              <span class="ev-tag atel">Atelier</span>
+              <span class="ev-date-badge">Septembre 2024</span>
+            </div>
+            <h3>Atelier sur Technologies Immerives</h3>
+            <p> lancement des activités du Laboratoire sur les technologies immersives en collaboration avec <strong>Imisi3d</strong>.</p>
+            <div class="ev-infos">
+              <span><i class="fas fa-clock"></i>09h00 – 13h00</span>
+              <span><i class="fas fa-map-marker-alt"></i>CURI - UCAD3</span>
+            </div>
+            <button class="btn-lire"><i class="fas fa-book-open"></i>Lire l'article</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- fin ev-grid -->
+
+<!-- ── ÉVÉNEMENT PASSÉ 4 — Atelier SenAgro ── -->
+      <div class="ev-card-wrap">
+        <div class="ev-card" onclick="ouvrirArticle('ev-passe-4')">
+          <!-- <img class="ev-photo" src="images/atelier-web-2025.jpg" alt="Atelier Web 2025"/> -->
+          <div class="ev-photo-placeholder">
+          <!--  <i class="fas fa-laptop-code" style="font-size:2.5rem"></i> -->
+            <img class="ev-photo" src="images/senagro04.jpg" alt="Atelier SenAgro"/>
+          </div>
+          <div class="ev-body">
+            <div class="ev-meta">
+              <span class="ev-tag atel">Atelier</span>
+              <span class="ev-date-badge">Mars 2025</span>
+            </div>
+            <h3>Atelier SenAgro</h3>
+            <p>Atelier SenAgro sur l’intelligence artificielle et la science des données au service de l’agriculture.</p>
+            <div class="ev-infos">
+              <span><i class="fas fa-clock"></i>09h00 – 13h00</span>
+              <span><i class="fas fa-map-marker-alt"></i>Salle informatique CURI</span>
+            </div>
+            <button class="btn-lire"><i class="fas fa-book-open"></i>Lire l'article</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- fin ev-grid -->
+
+    <!-- ── ÉVÉNEMENT PASSÉ 5 — Hackathon PTN - Wutiko ── -->
+      <div class="ev-card-wrap">
+        <div class="ev-card" onclick="ouvrirArticle('ev-passe-5')">
+          <!--   <img class="ev-photo" src="images/wutiko2.jpg" alt="Atelier Web 2025"/> -->
+          <div class="ev-photo-placeholder">
+          <!--  <i class="fas fa-laptop-code" style="font-size:2.5rem"></i> -->
+        <img class="ev-photo" src="images/wutiko2.jpg" alt="Atelier SenAgro"/>
+          </div>
+          <div class="ev-body">
+            <div class="ev-meta">
+              <span class="ev-tag atel">Hackathon</span>
+              <span class="ev-date-badge">Novembre 2021</span>
+            </div>
+            <h3>Hackathon PTN_SNGL - Wutiko</h3>
+            <p>Hackathon sur l'intelligence artificielle et la science des données.</p>
+            <div class="ev-infos">
+              <span><i class="fas fa-clock"></i>09h00 – 18h00</span>
+              <span><i class="fas fa-map-marker-alt"></i>UCAD 2</span>
+            </div>
+            <button class="btn-lire"><i class="fas fa-book-open"></i>Lire l'article</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- fin ev-grid -->
+
+    <!-- BOUTON GALERIE -->
+    <div class="galerie-btn-wrap fi">
+      <button class="btn-galerie" onclick="ouvrirGalerie()">
+        <i class="fas fa-images"></i>
+        Voir toute la galerie photos
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     MODALS ARTICLES
+     Pour modifier le contenu d'un article :
+     Trouve le modal correspondant et change le texte
+     entre les balises <p>
+     Pour ajouter des photos à un article :
+     Décommente les <img> dans .modal-photos
+══════════════════════════════════════════════════ -->
+
+<!-- MODAL - Salon sur  2025 -->
+<div class="modal-overlay" id="modal-ev-passe-1" onclick="fermerModal(event, this)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('show');document.body.style.overflow=''">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-img-placeholder"><i class="fas fa-graduation-cap"></i></div>
+    <div class="modal-content">
+      <div class="modal-tag-row">
+        <span class="ev-tag cerem">Salon</span>
+        <span style="font-size:.8rem;color:#6b7c93;font-weight:600">Juin 2025</span>
+      </div>
+      <h2>Colab sur les Technologies immersives 2025</h2>
+      <div class="modal-infos">
+        <span><i class="fas fa-clock"></i>48 heures</span>
+        <span><i class="fas fa-map-marker-alt"></i>Campus UCAD, Dakar</span>
+      </div>
+      <div class="modal-text">
+        <!-- CONTENU ARTICLE -->
+        <p>Le Centre universitaire de recherche et de formation aux technologies de l'internet #CURI a ouvert ses portes à des lycéens de Keur Rokhaya, des Cours préparatoires de Dakar et du lycée d'excellence Mariama Bâ, pour une immersion au cœur des technologies innovantes.</p>
+        <p>Pendant 02 jours, ces jeunes découvrent les bases des technologies immersives, notamment la réalité virtuelle, avec pour ambition : éveiller des vocations et anciens les futurs acteurs du numérique.</p>
+        <p> Une initiative portée par le #CURI , en collaboration avec le programme AFRETEC et l'Association des Femmes Diplômées des Universités #ASEDU , pour rapprocher les lycéens des enjeux de demain.</p>
+        <p>Le CURI félicite chaleureusement tous ces jeunes et leur souhaite une brillante carrière dans le numérique.</p>
+        <!-- FIN CONTENU -->
+      </div>
+      <div class="modal-galerie">
+        <h4><i class="fas fa-images" style="color:#c8921a;margin-right:6px"></i>Photos de la cérémonie</h4>
+        <div class="modal-photos">
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/VR1.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/VR11.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/VR12.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — Conference  2025 -->
+<div class="modal-overlay" id="modal-ev-passe-2" onclick="fermerModal(event, this)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('show');document.body.style.overflow=''">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-img-placeholder"><i class="fas fa-lightbulb"></i></div>
+    <div class="modal-content">
+      <div class="modal-tag-row">
+        <span class="ev-tag comp">Colab</span>
+        <span style="font-size:.8rem;color:#6b7c93;font-weight:600">Avril 2025</span>
+      </div>
+      <h2>Conference  2025</h2>
+      <div class="modal-infos">
+        <span><i class="fas fa-clock"></i>48 heures</span>
+        <span><i class="fas fa-map-marker-alt"></i>Campus UCAD, Dakar</span>
+      </div>
+      <div class="modal-text">
+        <!-- CONTENU ARTICLE -->
+        <p>Le Centre Universitaire de Recherche et de formation aux technologies de l'Internet #CURI_UCAD avait accueilli une formation sur le Leadership et la Communication .</p>
+        <p>Une 1e cohorte de 20 doctorants-es de l'École Doctorale Mathématique Informatique EDMI UCAD avait été sélectionnée Cette activité s'inscrit dans le cadre du Programme AFRETEC (African Engineering and Technology Network), un consortium d'universités dont le responsable au niveau de l'UCAD est Pr Idrissa Sarr, Directeur du CURI </p>
+        <p>L'objectif est d'outiller les doctorants de compétences en leadership, en communication et en entreprenariat pour mieux impacter après la soutenance de thèse. « La différence au niveau des doctorants va se faire, non seulement du point de vue scientifique, mais surtout des attitudes qui seront développées », affirme le Pr Nalla Mbaye, membre du pool des formateurs. En matière de formation, les étudiants se sont engagés à prendre toutes les dispositions pour passer à l'action entrepreneuriale. Des attestations ont été remises en présence du Dr Lamine SANE Directeur Général de l'Agence Nationale de la Recherche Scientifique Appliquée.</p>
+        <!-- FIN CONTENU -->
+      </div>
+      <div class="modal-galerie">
+        <h4><i class="fas fa-images" style="color:#c8921a;margin-right:6px"></i>Photos du colab</h4>
+        <div class="modal-photos">
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/Gp4.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/Gp6.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/Gp7.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL — Laboratoire Immersives -->
+<div class="modal-overlay" id="modal-ev-passe-3" onclick="fermerModal(event, this)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('show');document.body.style.overflow=''">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-img-placeholder"><i class="fas fa-laptop-code"></i></div>
+    <div class="modal-content">
+      <div class="modal-tag-row">
+        <span class="ev-tag atel">Laboratoire</span>
+        <span style="font-size:.8rem;color:#6b7c93;font-weight:600">Septembre 2024</span>
+      </div>
+      <h2>Laboratoire sur les technologies immersives</h2>
+      <div class="modal-infos">
+        <span><i class="fas fa-clock"></i>09h00 – 15h00</span>
+        <span><i class="fas fa-map-marker-alt"></i>Salle informatique CURI</span>
+      </div>
+      <div class="modal-text">
+        <!-- CONTENU ARTICLE -->
+          <p>Le Centre Universitaire de Recherche et de formation aux technologies de l'Internet CURI UCAD a procédé ce mardi 10 septembre 2024 au lancement des activités du Laboratoire sur les technologies immersives.</p>
+        <p>Permettant de sous-marin dans une réalité virtuelle, de vivre des expériences comme si c'était du réel Ce projet est réalisé en collaboration avec Imisi3d.</p>
+        <p>Un institut basé au Nigeria qui intervient dans la création de réalité étendue Le mais est de voir comment ces technologies peuvent accompagner le monde universitaire sur le plan pédagogique. L'idée est aussi d'aller au-delà du milieu académique et de mettre ces outils au profit de la société. Dans le domaine de la médecine par exemple, cela revient à observer l'intérieur du corps humain, de savoir comment il est structuré. Ce qui facilite le travail du médecin. Dans le domaine de la culture, ces outils peuvent participer à la vulgarisation du patrimoine historique. Il en est de même de l'archéologie ou de l'exploitation minière. « Les technologies immersives nous donnent des moyens de révolutionner notre rapport avec les différentes disciplines citées mais aussi l'opportunité de créer de nouveaux métiers », Pr Idrissa Sarr Directeur du CURI .</p>
+                <!-- FIN CONTENU -->
+      </div>
+      <div class="modal-galerie">
+        <h4><i class="fas fa-images" style="color:#c8921a;margin-right:6px"></i>Photos du laboratoire</h4>
+        <div class="modal-photos">
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/1.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/2.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/3.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL 4 — Laboratoire Immersives -->
+<div class="modal-overlay" id="modal-ev-passe-4" onclick="fermerModal(event, this)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('show');document.body.style.overflow=''">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-img-placeholder"><i class="fas fa-laptop-code"></i></div>
+    <div class="modal-content">
+      <div class="modal-tag-row">
+        <span class="ev-tag atel">Laboratoire</span>
+        <span style="font-size:.8rem;color:#6b7c93;font-weight:600">Septembre 2024</span>
+      </div>
+      <h2>Atelier SenAgro</h2>
+      <div class="modal-infos">
+        <span><i class="fas fa-clock"></i>09h00 – 15h00</span>
+        <span><i class="fas fa-map-marker-alt"></i>Salle informatique CURI</span>
+      </div>
+      <div class="modal-text">
+        <!-- CONTENU ARTICLE -->
+         <p>CURI-UCAD : Atelier SenAgro sur l'intelligence artificielle et la science des données au service de l'agriculture L'importance de "l'intelligence artificielle et des données au service de l'agriculture" a été révélée dans le cadre du « SENAGRO WORKSHOP » organisé ce 30 avril 2024 au CURI de l'UCAD, en collaboration avec l'Université de Sorbonne, la Sagesse Devoir et le CNRS.</p>
+        <p>L'objectif de cet atelier est de renforcer les capacités des apprenants et des pratiquants sur les compétences nécessaires à la gestion des données au profit d'une agriculture intelligente. D'ailleurs, cette rencontre scientifique est l'occasion saisie par Mame Sokhatil Ndoye pour présenter ses travaux en vue d'une thèse sur le thème : « Identification de phènes racinaires améliorant l'acquisition du phosphore chez le mil Pennisetum glaucum (L) R Br à l'aide du modèle OpenSimRoot ».</p>
+        <p>Le Centre Universitaire de Recherche et de formation aux technologies de l'Internet (CURI) est créé en février 2021 pour répondre au besoin de renforcement du capital humain dans le domaine du numérique afin de soutenir le processus de transformation numérique du Sénégal. L'actuel Directeur est le Pr Idrissa Sarr .</p>
+        <!-- FIN CONTENU -->
+      </div>
+      <div class="modal-galerie">
+        <h4><i class="fas fa-images" style="color:#c8921a;margin-right:6px"></i>Photos du laboratoire</h4>
+        <div class="modal-photos">
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/senagro01.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/senagro02.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/senagro03.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL 5 — Hackathon -->
+<div class="modal-overlay" id="modal-ev-passe-5" onclick="fermerModal(event, this)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('show');document.body.style.overflow=''">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-img-placeholder"><i class="fas fa-laptop-code"></i></div>
+    <div class="modal-content">
+      <div class="modal-tag-row">
+        <span class="ev-tag atel">Hackathon</span>
+        <span style="font-size:.8rem;color:#6b7c93;font-weight:600">Septembre 2024</span>
+      </div>
+      <h2>Hackathon sur les technologies immersives</h2>
+      <div class="modal-infos">
+        <span><i class="fas fa-clock"></i>72h</span>
+        <span><i class="fas fa-map-marker-alt"></i>Salle informatique CURI</span>
+      </div>
+      <div class="modal-text">
+        <!-- CONTENU ARTICLE -->
+        <p> <strong>l’Université Cheikh Anta Diop de Dakar (UCAD) et la plateforme WUTIKO a organisé un « Hackathon » à l’UCAD de Dakar. La cérémonie d’ouverture s’est tenue hier, à la grande salle de conférence de l’UCAD 2... </strong></p>
+        <p>Un événement qui a permis aux étudiants volontaires de se réunir pendant 72 heures afin de travailler sur des projets de manière collaborative. A la fin de ce weekend de Hackathon, un concours de ‘pitching’ des projets sur l’innovation technologique et numérique et axé sur les secteurs cibles du PTN sera organisé. C’est une occasion pour les étudiants de réfléchir sur des solutions innovantes de l’utilisation d’une telle infrastructure, l’un des plus grands projets du Chef de l’Etat Macky SALL dans le secteur du numérique favorisant surtout la place des jeunes.</p>
+        <p>A travers ce Hackathon, poursuit la même source, « PTN cherche à intéresser l’ensemble du monde universitaire en particulier les jeunes sur les opportunités qu’offre ce projet dans le cadre du secteur du numérique. La découverte des différentes composantes lors de leur visite au PTN va permettre aux étudiants de comprendre les fonctions qui seront déployées dans ce parc notamment les plateformes, les secteurs prioritaires, l’éducation, la Santé, les services etc. C’est une occasion de mettre en compétition les étudiants dont les meilleures solutions ou applications relatives au besoin du secteur du numérique seront primées.</p>
+        <p>Pour mémoire, le parc de technologies numériques couvre une superficie totale de 25 hectares. Son financement est assuré d’une part par la Banque Africaine de Développement (BAD) à hauteur de 40 milliards de FCFA et d’autre part d’une contrepartie de l’État du Sénégal à l’ordre de 6 milliards de FCFA. Le PTN a pour ambition de faire du Sénégal un « Hub de services » au niveau régional, avec des infrastructures numériques de classe mondiale, attractives pour diversifier les sources de croissance à travers des investissements dans le digital et l’innovation permanente sur les technologies du futur.</p>
+        <!-- FIN CONTENU -->
+      </div>
+      <div class="modal-galerie">
+        <h4><i class="fas fa-images" style="color:#c8921a;margin-right:6px"></i>Photos du hackathon</h4>
+        <div class="modal-photos">
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/wutiko.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/wutiko0.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+          <div class="modal-photo"><div class="modal-photo-placeholder"><img src="images/wutiko1.jpg" alt=" width='100%' height='100%'"/><i class="fas fa-image"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MODAL GALERIE PRINCIPALE
+     Pour ajouter des photos à la galerie :
+     Copie un .galerie-item et remplace
+     .galerie-placeholder-icon par
+     <img src="images/ta-photo.jpg" alt=""/>
+     et modifie data-categorie et data-date
+══════════════════════════════════════ -->
+<div class="modal-overlay" id="modalGalerie" onclick="fermerModal(event, this)">
+  <div class="modal-box" style="max-width:800px">
+    <button class="modal-close" onclick="document.getElementById('modalGalerie').classList.remove('show');document.body.style.overflow=''">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-content">
+      <h2 style="margin-bottom:16px"><i class="fas fa-images" style="color:#c8921a;margin-right:10px"></i>Galerie Photos du CURI</h2>
+
+      <!-- Filtres par catégorie -->
+      <div class="galerie-categories">
+        <button class="cat-btn active" onclick="filtrerGalerie('tous', this)">Tous</button>
+        <button class="cat-btn" onclick="filtrerGalerie('remise', this)">Remise des diplômes</button>
+        <button class="cat-btn" onclick="filtrerGalerie('hackathon', this)">Hackathons</button>
+        <button class="cat-btn" onclick="filtrerGalerie('atelier', this)">Ateliers</button>
+        <button class="cat-btn" onclick="filtrerGalerie('conference', this)">Conférences</button>
+        <button class="cat-btn" onclick="filtrerGalerie('jpo', this)">Portes ouvertes</button>
+      </div>
+
+      <!-- Grille galerie -->
+      <div class="galerie-grid" id="galerieGrid">
+
+        <!-- ══ PHOTOS REMISE DES DIPLÔMES ══
+             Pour ajouter : remplace le placeholder par
+             <img src="images/ta-photo.jpg" alt="Description"/>
+             et garde data-categorie="remise" data-date="2025" -->
+
+        <div class="galerie-item" data-categorie="remise" data-date="2025">
+          <!-- <img src="images/remise-2025-1.jpg" alt="Remise 2025"/> -->
+          <div class="galerie-placeholder-icon">
+            <i class="fas fa-graduation-cap" style="font-size:2rem;color:#2e6ec4"></i>
+            <span>Remise 2025</span>
+          </div>
+          <div class="galerie-item-label">Remise des diplômes — 2025</div>
+        </div>
+
+        <div class="galerie-item" data-categorie="remise" data-date="2025">
+          <!-- <img src="images/remise-2025-2.jpg" alt="Remise 2025"/> -->
+          <div class="galerie-placeholder-icon">
+            <i class="fas fa-graduation-cap" style="font-size:2rem;color:#2e6ec4"></i>
+            <span>Remise 2025</span>
+          </div>
+          <div class="galerie-item-label">Remise des diplômes — 2025</div>
+        </div>
+
+        <!-- ══ PHOTOS HACKATHON ══ -->
+        <div class="galerie-item" data-categorie="hackathon" data-date="2025">
+          <!-- <img src="images/hackathon-2025-1.jpg" alt="Hackathon 2025"/> -->
+          <div class="galerie-placeholder-icon">
+            <i class="fas fa-trophy" style="font-size:2rem;color:#c8921a"></i>
+            <span>Hackathon 2025</span>
+          </div>
+          <div class="galerie-item-label">Hackathon CURI — 2025</div>
+        </div>
+
+        <div class="galerie-item" data-categorie="hackathon" data-date="2025">
+          <!-- <img src="images/hackathon-2025-2.jpg" alt="Hackathon 2025"/> -->
+          <div class="galerie-placeholder-icon">
+            <i class="fas fa-trophy" style="font-size:2rem;color:#c8921a"></i>
+            <span>Hackathon 2025</span>
+          </div>
+          <div class="galerie-item-label">Hackathon CURI — 2025</div>
+        </div>
+
+        <div class="galerie-item" data-categorie="hackathon" data-date="2025">
+          <!-- <img src="images/hackathon-2025-3.jpg" alt="Hackathon 2025"/> -->
+          <div class="galerie-placeholder-icon">
+            <i class="fas fa-lightbulb" style="font-size:2rem;color:#c8921a"></i>
+            <span>Hackathon 2025</span>
+          </div>
+          <div class="galerie-item-label">Hackathon CURI — 2025</div>
+        </div>
+
+        <!-- ══ PHOTOS ATELIERS ══ -->
+        <div class="galerie-item" data-categorie="atelier" data-date="2025">
+          <!-- <img src="images/atelier-2025-1.jpg" alt="Atelier 2025"/> -->
+          <div class="galerie-placeholder-icon">
+            <i class="fas fa-laptop-code" style="font-size:2rem;color:#065f46"></i>
+            <span>Atelier Web 2025</span>
+          </div>
+          <div class="galerie-item-label">Atelier Web — 2025</div>
+        </div>
+
+        <!-- ══ PHOTOS CONFÉRENCES ══ -->
+        <div class="galerie-item" data-categorie="conference" data-date="2025">
+          <!-- <img src="images/conf-2025-1.jpg" alt="Conférence 2025"/> -->
+          <div class="galerie-placeholder-icon">
+            <i class="fas fa-microphone" style="font-size:2rem;color:#1a5296"></i>
+            <span>Conférence 2025</span>
+          </div>
+          <div class="galerie-item-label">Conférence — 2025</div>
+        </div>
+
+        <!-- ══ PHOTOS JPO ══ -->
+        <div class="galerie-item" data-categorie="jpo" data-date="2025">
+          <!-- <img src="images/jpo-2025-1.jpg" alt="JPO 2025"/> -->
+          <div class="galerie-placeholder-icon">
+            <i class="fas fa-door-open" style="font-size:2rem;color:#1a5296"></i>
+            <span>JPO 2025</span>
+          </div>
+          <div class="galerie-item-label">Journée Portes Ouvertes — 2025</div>
+        </div>
+
+        <!-- AJOUTER UNE PHOTO ICI :
+        <div class="galerie-item" data-categorie="hackathon" data-date="2026">
+          <img src="images/ta-photo.jpg" alt="Description"/>
+          <div class="galerie-item-label">Titre de la photo</div>
+        </div>
+        -->
+
+      </div><!-- fin galerie-grid -->
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+ <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <img src="images/logo1.png "style="height:52px;object-fit:contain;margin-left:0">
+  </div>        
+  <p>Le CURI forme les spécialistes des technologies de l'internet pour le développement numérique de l'Afrique.</p>
+        <div class="footer-links"><a href="https://www.ucad.sn" target="_blank">ucad.sn</a><span>|</span><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></div>
+        <div class="footer-socials"><a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/?originalSubdomain=sn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://x.com/CURISENEGAL" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="fcol">
+  <h5>Liens utiles</h5>
+  <ul>
+    <li><a href="https://www.ucad.sn" target="_blank">
+      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
+      UCAD officiel
+    </a></li>
+    <li><a href="https://www.campusen.sn" target="_blank">
+      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
+      CampuSen (orientation)
+    </a></li>
+    <li><a href="https://fad.curi.ucad.sn/?redirect=0" target="_blank">
+      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
+      FAD CURI (formation à distance) 
+    </a></li>
+    <li><a href="http://bibnum.ucad.sn/" target="_blank">
+      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
+      Bibliothèque numérique
+    </a></li>
+   
+    <li><a href="https://pie.ucad.sn/" target="_blank">
+      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>Service Numérique
+    </a></li>
+  </ul>
+</div>
+      <div class="fcol"><h5>Navigation</h5><ul><li><a href="index.html">Accueil</a></li><li><a href="formation.html">Formations</a></li><li><a href="debouches.html">Débouchés</a></li><li><a href="equipe.html">Équipe</a></li><li><a href="evenements.html">Événements</a></li></ul></div>
+      <div class="fcol"><h5>Informations</h5><ul><li><a href="#">Admissions</a></li><li><a href="#">Calendrier</a></li><li><a href="#">Bibliothèque</a></li><li><a href="#">Stages</a></li><li><a href="#">Alumni</a></li></ul></div>
+      <div class="fcol"><h5>Contact</h5><ul><li><a href="#">Campus UCAD, Fann Résidence</a></li><li><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></li><li><a href="https://www.ucad.sn" target="_blank">www.ucad.sn</a></li><li><a href="contact.html">Formulaire de contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 CURI — Université Cheikh Anta Diop de Dakar. Tous droits réservés.</span><span><a href="#">Mentions légales</a> | <a href="#">Confidentialité</a></span></div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+
+<script>
+// ── FONCTIONS MODALS ÉVÉNEMENTS ──
+
+function ouvrirArticle(id) {
+  const modal = document.getElementById('modal-' + id);
+  if (modal) {
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function fermerModal(e, overlay) {
+  if (e.target === overlay) {
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
+
+function ouvrirGalerie() {
+  document.getElementById('modalGalerie').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+// Filtre galerie par catégorie
+function filtrerGalerie(categorie, btnEl) {
+  // Mettre à jour les boutons
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+
+  // Filtrer les items
+  document.querySelectorAll('.galerie-item').forEach(item => {
+    if (categorie === 'tous' || item.dataset.categorie === categorie) {
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// Fermer avec Échap
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.show').forEach(m => {
+      m.classList.remove('show');
+    });
+    document.body.style.overflow = '';
+  }
+});
+</script>
+
+</body>
+</html>
