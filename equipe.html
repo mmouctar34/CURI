@@ -1,299 +1,278 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Équipe — CURI | UCAD Dakar</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Équipe — CURI | UCAD Dakar</title>
+<meta name="description" content="Direction, enseignants-chercheurs et pôles du Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet.">
+<link rel="canonical" href="https://mmouctar34.github.io/CURI/equipe.html">
+<meta property="og:title" content="Équipe — CURI | UCAD Dakar">
+<meta property="og:description" content="Direction, enseignants-chercheurs et pôles du Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet.">
+<meta property="og:image" content="images/web/campus-1400.webp">
+<meta name="theme-color" content="#0a1c33">
+<link rel="icon" href="images/web/logo-curi.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">
-        <img src="logoUcadCURI 2.png" alt="UCAD CURI" style="width: 300px;height: 100px;object-fit:contain;border-radius: 100px;margin-left:15px">
+<a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="enveloppe entete__interieur">
+    <a class="marque" href="index.html">
+      <img src="images/web/logo-curi.png" alt="" width="42" height="42">
+      <span>
+        <span class="marque__nom">CURI</span>
+        <span class="marque__sous">Technologies de l'Internet · UCAD</span>
+      </span>
     </a>
-    <nav id="nav"><ul>
-      <li><a href="index.html">Accueil</a></li><li><a href="formation.html">Formations</a></li>
-      <li><a href="debouches.html">Débouchés</a></li>
-      <li><a href="equipe.html" class="active">Équipe</a></li>
-      <li><a href="evenements.html">Événements</a></li>
-      <li><a href="contact.html" class="cta">Contact</a></li>
-      <!-- BARRE DE RECHERCHE -->
-<div class="search-wrap">
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Rechercher..." autocomplete="off"/>
-    <button id="searchBtn"><i class="fas fa-search"></i></button>
-  </div>
-  <div class="search-results" id="searchResults"></div>
-</div> 
+    <nav class="nav-principale" aria-label="Navigation principale">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="formation.html">Formations</a></li>
+        <li><a href="debouches.html">Débouchés</a></li>
+        <li><a href="equipe.html" aria-current="page">Équipe</a></li>
+        <li><a href="evenements.html">Événements</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <div class="recherche">
+      <div class="recherche__champ">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label class="lecture-seule" for="recherche-bureau">Rechercher sur le site</label>
+        <input type="search" id="recherche-bureau" placeholder="Rechercher…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="resultats-bureau">
+        <button type="button" class="recherche__vider" aria-label="Effacer la recherche">✕</button>
+      </div>
+      <div class="recherche__panneau" id="resultats-bureau" role="listbox" aria-label="Résultats de recherche"></div>
+    </div>
+    <button type="button" class="bascule-menu" aria-expanded="false" aria-controls="tiroir-menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
-   
 
-<div class="page-header">
-  <h1>Notre Équipe Pédagogique</h1>
-  <p>Des enseignants-chercheurs passionnés au service de votre réussite</p>
+<div class="tiroir" id="tiroir-menu">
+  <div class="tiroir__recherche">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <label class="lecture-seule" for="recherche-mobile">Rechercher sur le site</label>
+    <input type="search" id="recherche-mobile" placeholder="Rechercher sur le site…" autocomplete="off">
+  </div>
+  <div class="recherche__panneau tiroir__panneau" style="position:static;opacity:1;transform:none;pointer-events:auto;box-shadow:none;border:0;padding:0"></div>
+  <nav aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html">Accueil <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="formation.html">Formations <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="debouches.html">Débouchés <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="equipe.html" aria-current="page">Équipe <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="evenements.html">Événements <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="contact.html">Contact <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+    </ul>
+  </nav>
+  <div class="tiroir__pied">
+    <a class="bouton bouton--bleu" href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a>
+  </div>
+  <div class="tiroir__contact">
+    <a href="tel:+221338219190">+221 33 821 91 90</a>
+    <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
+    <span>UCAD 3, Cité Claudel, Dakar</span>
+  </div>
 </div>
 
+<main id="contenu">
 
-<!-- ══════════════════════════════════════
-     ÉQUIPE ADMINISTRATIVE
-     Ajoute les membres administratifs
-══════════════════════════════════════ -->
-<section class="section gris">
-  <div class="container">
-    <div class="s-head fi">
-      <div class="s-tag">Administration</div>
-      <h2 class="s-titre">Équipe Administrative</h2>
-      <div class="filet"></div>
+  <section class="bandeau">
+    <div class="bandeau__fond">
+      <img src="images/web/campus-1400.webp" alt="" width="1400" height="519">
     </div>
-    <div class="grid-4 fi">
-
-      <!-- ADMIN 1 — À modifier -->
-      <div class="team-card">
-        <div class="team-av" style="background:#c8921a">D</div>
-        <h4>Pr IDRISSA SARR</h4>
-        <div class="team-role" style="color:#c8921a">Directeur du CURI</div>
-        <div class="team-dept"></div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av" style="background:#c8921a">RH</div>
-        <h4>Mr DIANDY</h4>
-        <div class="team-role" style="color:#c8921a">Chef de Département </div>
-        <div class="team-dept">Gestion du CURI</div>
-      </div>
-
-      <!-- CHARGÉ D'ÉTUDES — À modifier -->
-      <div class="team-card">
-        <div class="team-av" style="background:#c8921a">CE</div>
-        <h4>Mme MAREME AIDARA</h4>
-        <div class="team-role" style="color:#c8921a">Chargé d'Études</div>
-        <div class="team-dept">Suivi pédagogique et stages</div>
-      </div>
-
-
-      <div class="team-card">
-        <div class="team-av" style="background:#c8921a">S</div>
-        <h4>Mr KEBE</h4>
-        <div class="team-role" style="color:#c8921a">Scolarité</div>
-        <div class="team-dept">Gestion des inscriptions et dossiers étudiants</div>
-      </div>
-      
-</section>
-
-<!-- ══════════════════════════════════════
-     CORPS ENSEIGNANT
-     Pour ajouter un enseignant : copie un
-     bloc .team-card et modifie les initiales,
-     le nom, le rôle et le département
-══════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <div class="s-head fi">
-      <div class="s-tag">Corps enseignant</div>
-      <h2 class="s-titre">Enseignants et Chercheurs Intervenants</h2>
-      <div class="filet"></div>
+    <div class="bandeau__voile"></div>
+    <div class="enveloppe bandeau__interieur">
+      <nav class="ariane" aria-label="Fil d'Ariane">
+        <ol>
+          <li><a href="index.html">Accueil</a></li>
+          <li aria-hidden="true">›</li>
+          <li aria-current="page">Équipe</li>
+        </ol>
+      </nav>
+      <h1>L'équipe du centre</h1>
+      <p class="bandeau__texte">Direction, enseignants-chercheurs et équipe administrative du CURI.</p>
     </div>
-    <div class="grid-4 fi">
+  </section>
 
-      <!-- ENSEIGNANT 1 -->
-      <div class="team-card">
-        <div class="team-av">TH</div>
-        <h4>Mr THIAM</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Algorithmes et Structures de Données</div>
+  <section class="section">
+    <div class="enveloppe">
+      <div class="entete-section entete-section--large">
+        <h2>Direction</h2>
+        <p>Les noms et fonctions sont en cours de vérification auprès du centre avant publication.</p>
       </div>
-
-      <!-- ENSEIGNANT 2 -->
-      <div class="team-card">
-        <div class="team-av">KD</div>
-        <h4>Mme K. T. DANSOKHO</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Outils de développement logiciel</div>
-      </div>
-
-      <!-- ENSEIGNANT 3 -->
-      <div class="team-card">
-        <div class="team-av">BD</div>
-        <h4>Mr ALEX CORENTIN</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Systèmes d'Exploitation et Réseaux</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av">CE</div>
-        <h4>Mr MOCTAR DIOP</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Communication d'entreprise</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av">MF</div>
-        <h4>Mr BASSIROU KASSE</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Langages (HTML/CSS/JavaScript)</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av">AN</div>
-        <h4>Mr DIOUF</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Anglais</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av">GP</div>
-        <h4>Mme NDOYE</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Gestion de Projets</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av">TI</div>
-        <h4>Mr LO</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Traitement d'Images</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av">BD</div>
-        <h4>Mr DIASSE</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Base de Données</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av">MD</div>
-        <h4>Mr NDIAYE</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Marketing</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av">RS</div>
-        <h4>Mr NIANE</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Réseaux Sociaux</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av">B</div>
-        <h4>Mr DIA</h4>
-        <div class="team-role">Professeur</div>
-        <div class="team-dept">Bureautique</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     ÉQUIPE TECHNIQUE
-     Ajoute les membres de l'équipe technique
-     en copiant les blocs .team-card
-══════════════════════════════════════ -->
-<section class="section gris">
-  <div class="container">
-    <div class="s-head fi">
-      <div class="s-tag">Support technique</div>
-      <h2 class="s-titre">Équipe Technique</h2>
-      <div class="filet"></div>
-    </div>
-    <div class="grid-4 fi">
-
-      <!-- TECHNICIEN 1 — À modifier -->
-      <div class="team-card">
-        <div class="team-av" style="background:#1a5296">T1</div>
-        <h4>Mr CORENTIN</h4>
-        <div class="team-role" style="color:#1a5296">Technicien</div>
-        <div class="team-dept">Support informatique et laboratoires</div>
-      </div>
-
-      <div class="team-card">
-        <div class="team-av" style="background:#1a5296">T2</div>
-        <h4>Mr KASSE</h4>
-        <div class="team-role" style="color:#1a5296">Responsable</div>
-        <div class="team-dept">Langages de mise forme</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section gris">
-  <div class="container">
-    <div class="s-head fi"><div class="s-tag">Chiffres</div><h2 class="s-titre">L'équipe en chiffres</h2><div class="filet"></div></div>
-    <div class="grid-3 fi">
-      <div class="card" style="text-align:center">
-        <div style="font-size:2.5rem;font-weight:700;color:#f0b830;margin-bottom:8px">15+</div>
-        <h4 style="color:#0b3060;margin-bottom:6px">Enseignants</h4>
-        <p style="font-size:.84rem;color:#4a5568">Professeurs, maîtres de conférences et chargés de cours spécialisés</p>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="font-size:2.5rem;font-weight:700;color:#f0b830;margin-bottom:8px">2</div>
-        <h4 style="color:#0b3060;margin-bottom:6px">Filières</h4>
-        <p style="font-size:.84rem;color:#4a5568">Développement Web Mobile et Multimédia — Marketing Digital et E-commerce</p>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="font-size:2.5rem;font-weight:700;color:#f0b830;margin-bottom:8px">2000+</div>
-        <h4 style="color:#0b3060;margin-bottom:6px">Diplômés formés</h4>
-        <p style="font-size:.84rem;color:#4a5568">Depuis la création du CURI, plus de 2000 étudiants ont obtenu leur diplôme</p>
+      <div class="personnes">
+        <article class="personne">
+          <div class="personne__photo"><p class="personne__vide">Photo à fournir</p></div>
+          <h3><span class="a-confirmer">Nom à confirmer</span></h3>
+          <p>Direction du centre</p>
+        </article>
+        <article class="personne">
+          <div class="personne__photo"><p class="personne__vide">Photo à fournir</p></div>
+          <h3><span class="a-confirmer">Nom à confirmer</span></h3>
+          <p>Direction des études</p>
+        </article>
+        <article class="personne">
+          <div class="personne__photo"><p class="personne__vide">Photo à fournir</p></div>
+          <h3><span class="a-confirmer">Nom à confirmer</span></h3>
+          <p>Responsable administratif</p>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
- <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-    <img src="images/logo1.png "style="height:52px;object-fit:contain;margin-left:0">
-  </div>        
-  <p>Le CURI forme les spécialistes des technologies de l'internet pour le développement numérique de l'Afrique.</p>
-        <div class="footer-links"><a href="https://www.ucad.sn" target="_blank">ucad.sn</a><span>|</span><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></div>
-        <div class="footer-socials"><a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/?originalSubdomain=sn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://x.com/CURISENEGAL" target="_blank"><i class="fab fa-twitter"></i></a>
+  <section class="section section--brume">
+    <div class="enveloppe">
+      <div class="entete-section entete-section--large">
+        <h2>Enseignants et encadrement</h2>
+        <p>Le centre réunit des enseignants-chercheurs de l'UCAD et des intervenants professionnels.</p>
+      </div>
+      <div class="personnes">
+        <article class="personne">
+          <div class="personne__photo"><p class="personne__vide">Photo à fournir</p></div>
+          <h3><span class="a-confirmer">Nom à confirmer</span></h3>
+          <p>Développement web et mobile</p>
+        </article>
+        <article class="personne">
+          <div class="personne__photo"><p class="personne__vide">Photo à fournir</p></div>
+          <h3><span class="a-confirmer">Nom à confirmer</span></h3>
+          <p>Technologie web et multimédia</p>
+        </article>
+        <article class="personne">
+          <div class="personne__photo"><p class="personne__vide">Photo à fournir</p></div>
+          <h3><span class="a-confirmer">Nom à confirmer</span></h3>
+          <p>E-commerce et marketing digital</p>
+        </article>
+        <article class="personne">
+          <div class="personne__photo"><p class="personne__vide">Photo à fournir</p></div>
+          <h3><span class="a-confirmer">Nom à confirmer</span></h3>
+          <p>Réseaux et noms de domaine</p>
+        </article>
+      </div>
+      <p style="margin-top:2.5rem;font-size:var(--t-s);color:var(--texte-doux);max-width:62ch">
+        Avant de publier une photo ou un nom, demandez l'accord de la personne
+        concernée. La marche à suivre est décrite dans le fichier
+        <span class="domaine">README.md</span> du dépôt.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="enveloppe">
+      <div class="entete-section entete-section--large">
+        <h2>Les pôles du centre</h2>
+        <p>Le CURI s'organise en pôles. Leur description reste à compléter avec la direction.</p>
+      </div>
+      <div class="grille-cartes">
+        <article class="carte">
+          <h3>Formation</h3>
+          <p>Les trois spécialités en formation initiale, la formation continue et les sessions certifiantes.</p>
+        </article>
+        <article class="carte">
+          <h3>Noms de domaine</h3>
+          <p>La gestion du domaine national <span class="domaine">.sn</span>, portée par NIC Sénégal.</p>
+        </article>
+        <article class="carte">
+          <h3>Recherche et innovation</h3>
+          <p>Travaux et ateliers du centre, dont le laboratoire de réalité virtuelle et augmentée.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="enveloppe">
+      <div class="appel">
+        <div>
+          <h2>Une question&nbsp;?</h2>
+          <p>L'équipe du centre répond par téléphone, par e-mail, ou sur place à UCAD&nbsp;3.</p>
+        </div>
+        <div class="appel__actions">
+          <a class="bouton bouton--or" href="contact.html">Nous écrire</a>
+          <a class="bouton bouton--clair" href="tel:+221338219190">+221 33 821 91 90</a>
         </div>
       </div>
-      <div class="fcol">
-  <h5>Liens utiles</h5>
-  <ul>
-    <li><a href="https://www.ucad.sn" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      UCAD officiel
-    </a></li>
-    <li><a href="https://www.campusen.sn" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      CampuSen (orientation)
-    </a></li>
-    <li><a href="https://fad.curi.ucad.sn/?redirect=0" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      FAD CURI (formation à distance) 
-    </a></li>
-    <li><a href="http://bibnum.ucad.sn/" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      Bibliothèque numérique
-    </a></li>
-   
-    <li><a href="https://pie.ucad.sn/" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>Service Numérique
-    </a></li>
-  </ul>
-</div>
-      <div class="fcol"><h5>Navigation</h5><ul><li><a href="index.html">Accueil</a></li><li><a href="formation.html">Formations</a></li><li><a href="debouches.html">Débouchés</a></li><li><a href="equipe.html">Équipe</a></li><li><a href="evenements.html">Événements</a></li></ul></div>
-      <div class="fcol"><h5>Informations</h5><ul><li><a href="#">Admissions</a></li><li><a href="#">Calendrier</a></li><li><a href="#">Bibliothèque</a></li><li><a href="#">Stages</a></li><li><a href="#">Alumni</a></li></ul></div>
-      <div class="fcol"><h5>Contact</h5><ul><li><a href="#">Campus UCAD, Fann Résidence</a></li><li><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></li><li><a href="https://www.ucad.sn" target="_blank">www.ucad.sn</a></li><li><a href="contact.html">Formulaire de contact</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2025 CURI — Université Cheikh Anta Diop de Dakar. Tous droits réservés.</span><span><a href="#">Mentions légales</a> | <a href="#">Confidentialité</a></span></div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="enveloppe">
+    <div class="pied__grille">
+      <div>
+        <a class="pied__marque" href="index.html">
+          <img src="images/web/logo-curi.png" alt="" width="46" height="46">
+          <span>CURI</span>
+        </a>
+        <p class="pied__intro">
+          Centre Universitaire de Recherche et de Formation aux Technologies de
+          l'Internet, Université Cheikh Anta Diop de Dakar. Gestionnaire du
+          domaine national <span class="domaine">.sn</span>.
+        </p>
+        <div class="pied__reseaux">
+          <a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank" rel="noopener" aria-label="Le CURI sur Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/" target="_blank" rel="noopener" aria-label="Le CURI sur LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5A1.5 1.5 0 1 1 5 6.5a1.5 1.5 0 0 1 0-3ZM3.5 8h3v12.5h-3Zm6 0h2.9v1.7h.1c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v7.7h-3v-6.8c0-1.6 0-3.7-2.2-3.7s-2.6 1.8-2.6 3.6v6.9h-3Z"/></svg>
+          </a>
+          <a href="https://x.com/CURISENEGAL" target="_blank" rel="noopener" aria-label="Le CURI sur X">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6Zm-1.1 16h1.8L7.7 4.8H5.8Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <nav aria-labelledby="pied-site">
+        <h2 id="pied-site">Le site</h2>
+        <ul>
+          <li><a href="formation.html">Formations</a></li>
+          <li><a href="debouches.html">Débouchés</a></li>
+          <li><a href="equipe.html">Équipe</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Liens utiles</h2>
+        <ul>
+          <li><a href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a></li>
+          <li><a href="http://bibnum.ucad.sn/" target="_blank" rel="noopener">Bibliothèque numérique</a></li>
+          <li><a href="https://pie.ucad.sn/" target="_blank" rel="noopener">Services numériques UCAD</a></li>
+          <li><a href="https://www.campusen.sn" target="_blank" rel="noopener">Campusen</a></li>
+          <li><a href="https://www.ucad.sn" target="_blank" rel="noopener">Site de l'UCAD</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 id="pied-contact">Nous trouver</h2>
+        <div class="pied__contact" aria-labelledby="pied-contact">
+          <div>
+            <strong>Adresse</strong>
+            <span>UCAD 3, Cité Claudel,<br>allées Bougainvillées, Dakar</span>
+          </div>
+          <div>
+            <strong>Téléphone</strong>
+            <a href="tel:+221338219190">+221 33 821 91 90</a>
+          </div>
+          <div>
+            <strong>E-mail</strong>
+            <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pied__bas">
+      <span>© <span data-annee>2026</span> CURI — Université Cheikh Anta Diop de Dakar</span>
+      <ul>
+        <li><a href="contact.html">Mentions légales</a></li>
+        <li><a href="contact.html">Confidentialité</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 

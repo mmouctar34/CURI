@@ -1,474 +1,514 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="CURI – Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet, UCAD Dakar"/>
-  <title>CURI — Accueil | UCAD Dakar</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CURI — Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet | UCAD</title>
+<meta name="description" content="Le CURI forme au développement web et mobile, au multimédia et au commerce en ligne à l'Université Cheikh Anta Diop de Dakar, et gère le domaine national .sn.">
+<link rel="canonical" href="https://mmouctar34.github.io/CURI/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CURI — Technologies de l'Internet, UCAD Dakar">
+<meta property="og:description" content="Formations au numérique à l'UCAD et gestion du domaine national .sn.">
+<meta property="og:image" content="images/web/hero-1600.webp">
+<meta property="og:locale" content="fr_SN">
+<meta name="theme-color" content="#0a1c33">
+<link rel="icon" href="images/web/logo-curi.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header class="header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">
-  <img src="logoUcadCURI 2.png" alt="UCAD CURI" style="width: 300px;height: 100px;object-fit:contain;border-radius: 100px;margin-left:15px">
-</a> 
-    <nav id="nav">
+
+<a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+<!-- ============================ EN-TÊTE ============================ -->
+<header class="entete">
+  <div class="enveloppe entete__interieur">
+
+    <a class="marque" href="index.html">
+      <img src="images/web/logo-curi.png" alt="" width="42" height="42">
+      <span>
+        <span class="marque__nom">CURI</span>
+        <span class="marque__sous">Technologies de l'Internet · UCAD</span>
+      </span>
+    </a>
+
+    <nav class="nav-principale" aria-label="Navigation principale">
       <ul>
-        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="index.html" aria-current="page">Accueil</a></li>
         <li><a href="formation.html">Formations</a></li>
         <li><a href="debouches.html">Débouchés</a></li>
         <li><a href="equipe.html">Équipe</a></li>
         <li><a href="evenements.html">Événements</a></li>
-        <li><a href="contact.html" class="cta">Contact</a></li>
-        <!-- BARRE DE RECHERCHE -->
-<div class="search-wrap">
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Rechercher..." autocomplete="off"/>
-    <button id="searchBtn"><i class="fas fa-search"></i></button>
-  </div>
-  <div class="search-results" id="searchResults"></div>
-</div> 
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+
+    <div class="recherche">
+      <div class="recherche__champ">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label class="lecture-seule" for="recherche-bureau">Rechercher sur le site</label>
+        <input type="search" id="recherche-bureau" placeholder="Rechercher…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="resultats-bureau">
+        <button type="button" class="recherche__vider" aria-label="Effacer la recherche">✕</button>
+      </div>
+      <div class="recherche__panneau" id="resultats-bureau" role="listbox" aria-label="Résultats de recherche"></div>
+    </div>
+
+    <button type="button" class="bascule-menu" aria-expanded="false" aria-controls="tiroir-menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+
   </div>
 </header>
 
-<!-- HERO -->
-<!-- ══════════════════════════════════════
-     HERO — VIDÉO OU IMAGE DE FOND
-     
-     OPTION A — Vidéo de fond :
-     Décommente le bloc <video> et mets ton fichier
-     
-     OPTION B — Image de fond :
-     Change l'URL dans background-image
-══════════════════════════════════════ -->
-<section style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden">
-
-  <!-- ── OPTION A : VIDÉO DE FOND
-       Décommente ce bloc et mets ton fichier vidéo -->
-       <video autoplay muted loop playsinline
-         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:0;transform:scale(1.0)">
-    <source src="images/accueil.mp4" type="video/mp4"/>
-
-  </video> 
-  
-<div style="display:inline-flex;gap:20px;margin-top:30px;font-size:.8rem;color:rgba(255,255,255,.7)">
-  <span><i class="fas fa-circle" style="color:#4ade80;font-size:.5rem;margin-right:6px"></i> <span id="visiteurs">42</span> visiteurs en ligne</span>
-  <span><i class="fas fa-eye" style="margin-right:6px"></i> <span id="totalVues">1 234</span> vues aujourd'hui</span>
-</div>
-  <!-- ── OPTION B : IMAGE DE FOND
-       Remplace l'URL par ta photo du campus UCAD 
-  <div style="
-    position:absolute;inset:0;z-index:0;
-    background:url('images/téléchargement.jpg') center/cover no-repeat;
-    background-color:#0b3060;"></div> -->
-
-  <!-- Overlay sombre pour lisibilité du texte -->
-  <div style="position:absolute;inset:0;z-index:1;background:rgba(11,48,96,0.70)"></div>
-
-  <!-- Contenu texte centré -->
-  <div style="position:relative;z-index:2;max-width:900px;margin:0 auto;padding:120px 24px 60px;text-align:center">
-
-    <div style="display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#f0b830;border:1px solid rgba(240,184,48,.4);background:rgba(240,184,48,.1);padding:5px 14px;border-radius:20px;margin-bottom:24px">
-      <i class="fas fa-map-marker-alt"></i> Dakar, Sénégal — UCAD
-    </div>
-
-   <h1 style="font-size:clamp(2rem,5vw,3.6rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px">
-  Bienvenue au <span style="color:#4fc3f7">CURI</span><span id="typed-text"></span>
-  <span style="border-right:3px solid #4fc3f7;animation:blink 1s infinite"></span>
-</h1>
-
-    <h2 style="font-size:clamp(1rem,2.2vw,1.5rem);font-weight:400;color:rgba(255,255,255,.88);margin-bottom:20px;line-height:1.5">
-      Centre Universitaire de Recherche et de Formation aux<br/>
-      <span style="color:#4fc3f7;font-weight:700">Technologies de l'Internet</span>
-    </h2>
-
-    <p style="font-size:.97rem;color:rgba(255,255,255,.75);max-width:580px;margin:0 auto 36px;line-height:1.8">
-      Pôle d'excellence académique de l'UCAD, le CURI forme en deux ans les spécialistes des technologies internet pour le développement numérique de l'Afrique.
-    </p>
-
-    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:48px">
-      <a href="formation.html" class="btn btn-or" style="padding:14px 32px;font-size:.95rem">
-        <i class="fas fa-graduation-cap" style="margin-right:8px"></i>Nos formations
-      </a>
-      <a href="contact.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:6px;font-weight:600;font-size:.95rem;border:2px solid rgba(255,255,255,.45);color:#fff;transition:all .22s;cursor:pointer" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='transparent'">
-        <i class="fas fa-envelope"></i>Nous contacter
-      </a>
-    </div>
-
-    <!-- Flèche vers le bas -->
-    <div style="animation:bounce 2s infinite;opacity:.6">
-      <i class="fas fa-chevron-down" style="color:#fff;font-size:1.3rem"></i>
-    </div>
+<!-- Menu mobile -->
+<div class="tiroir" id="tiroir-menu">
+  <div class="tiroir__recherche">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <label class="lecture-seule" for="recherche-mobile">Rechercher sur le site</label>
+    <input type="search" id="recherche-mobile" placeholder="Rechercher sur le site…" autocomplete="off">
   </div>
-</section>
+  <div class="recherche__panneau tiroir__panneau" style="position:static;opacity:1;transform:none;pointer-events:auto;box-shadow:none;border:0;padding:0"></div>
 
-<!-- STATS -->
-<!-- STATISTIQUES ANIMÉES
-     Les chiffres montent jusqu'à la valeur finale
-     quand la section devient visible -->
-<div class="stats-bar" id="statsBar" style="background:linear-gradient(135deg,#0b3060,#1a5296)">
-  <div class="stats-inner">
-    <div class="stat">
-      <i class="fas fa-user-graduate" style="color:#f0b830;font-size:1.4rem;margin-bottom:6px;display:block"></i>
-      <div class="stat-n" data-target="200" data-suffix="+">0</div>
-      <div class="stat-l">Étudiants / an</div>
-    </div>
-    <div class="stat">
-      <i class="fas fa-chalkboard-teacher" style="color:#f0b830;font-size:1.4rem;margin-bottom:6px;display:block"></i>
-      <div class="stat-n" data-target="20" data-suffix="+">0</div>
-      <div class="stat-l">Enseignants</div>
-    </div>
-    <div class="stat">
-      <i class="fas fa-calendar-alt" style="color:#f0b830;font-size:1.4rem;margin-bottom:6px;display:block"></i>
-      <div class="stat-n" data-target="2" data-suffix="">0</div>
-      <div class="stat-l">Ans de formation</div>
-    </div>
-    <div class="stat">
-      <i class="fas fa-award" style="color:#f0b830;font-size:1.4rem;margin-bottom:6px;display:block"></i>
-      <div class="stat-n" data-target="2000" data-suffix="+">0</div>
-      <div class="stat-l">Diplômés</div>
-    </div>
+  <nav aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html" aria-current="page">Accueil <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="formation.html">Formations <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="debouches.html">Débouchés <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="equipe.html">Équipe <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="evenements.html">Événements <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="contact.html">Contact <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+    </ul>
+  </nav>
+
+  <div class="tiroir__pied">
+    <a class="bouton bouton--bleu" href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a>
   </div>
-</div>
-   <!-- ══════════════════════════════════════
-     SLIDER FUSIONNÉ — 5 à 6 PHOTOS
-     
-     Pour ajouter vos photos :
-     Décommentez chaque <img> et remplacez
-     le src par votre fichier image.
-     
-     Structure d'une slide avec photo :
-     <div class="slide on/[vide]" id="sl0">
-       <img src="images/votre-photo.jpg" alt="Description"/>
-       <div class="slide-overlay"></div>
-       <div class="slide-txt">
-         <div class="slide-titre">Titre</div>
-         <div class="slide-sous">Sous-titre</div>
-       </div>
-     </div>
-══════════════════════════════════════ -->
-<div style="background:#0b1a33;padding:0">
-  <div class="slider" id="slider" style="height:420px;border-radius:0;border:none;max-width:100%">
 
-    <!-- SLIDE 1 — Campus -->
-    <div class="slide on" id="sl0">
-     <img src="images/administration.jpg" alt="Campus CURI"/>
-      <!-- <div class="slide-overlay"></div> -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.4)">
-        <i class="fas fa-university" style="font-size:3rem"></i>
-        <div class="slide-titre" style="color:rgba(255,255,255,.5)">Campus du CURI — UCAD</div>
-       <!--   <div class="slide-sous">Décommentez &lt;img src="images/campus.jpg"/&gt;</div>  -->
-      </div>
-    </div>
-
-    <!-- SLIDE 2 — Salles de cours -->
-    <div class="slide" id="sl1">
-      <img src="images/travail.jpg" alt="Salles de cours"/> 
-      <!-- <div class="slide-overlay"></div> -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.4)">
-        <i class="fas fa-chalkboard-teacher" style="font-size:3rem"></i>
-        <div class="slide-titre" style="color:rgba(255,255,255,.5)">Salles de cours et laboratoires</div>
-      <!--   <div class="slide-sous">Décommentez &lt;img src="images/salles.jpg"/&gt;</div> -->
-      </div>
-    </div>
-
-    <!-- SLIDE 3 — Étudiants -->
-    <div class="slide" id="sl2">
-       <img src="images/etudiants.jpg" alt="Étudiants"/> 
-      <!-- <div class="slide-overlay"></div> -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.4)">
-        <i class="fas fa-users" style="font-size:3rem"></i>
-        <div class="slide-titre" style="color:rgba(255,255,255,.5)">Vie étudiante au CURI</div>
-      <!--  <div class="slide-sous">Décommentez &lt;img src="images/etudiants.jpg"/&gt;</div> -->
-      </div>
-    </div>
-
-    <!-- SLIDE 4 — Remise des diplômes -->
-    <div class="slide" id="sl3">
-       <img src="images/images.jpg" alt="Remise des diplômes"/> 
-      <!-- <div class="slide-overlay"></div> -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.4)">
-        <i class="fas fa-award" style="font-size:3rem"></i>
-        <div class="slide-titre" style="color:rgba(255,255,255,.5)">Remise des diplômes</div>
-      <!--  <div class="slide-sous">Décommentez &lt;img src="images/diplomes.jpg"/&gt;</div> -->
-      </div>
-    </div>
-
-    <!-- SLIDE 5 — Hackathon -->
-    <div class="slide" id="sl4">
-       <img src="images/Corentin 01.jpg" alt="Hackathon CURI"/> 
-      <!-- <div class="slide-overlay"></div> -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.4)">
-        <i class="fas fa-trophy" style="font-size:3rem"></i>
-        <div class="slide-titre" style="color:rgba(255,255,255,.5)">Hackathon CURI</div>
-      <!--  <div class="slide-sous">Décommentez &lt;img src="images/hackathon.jpg"/&gt;</div> -->
-      </div>
-    </div>
-
-    <!-- SLIDE 6 — Équipe enseignante (optionnelle) -->
-    <div class="slide" id="sl5">
-      <img src="images/numbers.jpeg" alt="Équipe enseignante"/> 
-      <!-- <div class="slide-overlay"></div> -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.4)">
-        <i class="fas fa-user-tie" style="font-size:3rem"></i>
-        <div class="slide-titre" style="color:rgba(255,255,255,.5)">Notre équipe enseignante</div>
-       <!--  <div class="slide-sous">Décommentez &lt;img src="images/equipe.jpg"/&gt;</div> -->
-      </div>
-    </div>
-
-    <button class="s-arr prev" id="slPrev">&#8249;</button>
-    <button class="s-arr next" id="slNext">&#8250;</button>
-
-    <div class="s-dots">
-      <button class="s-dot on" data-i="0"></button>
-      <button class="s-dot" data-i="1"></button>
-      <button class="s-dot" data-i="2"></button>
-      <button class="s-dot" data-i="3"></button>
-      <button class="s-dot" data-i="4"></button>
-      <button class="s-dot" data-i="5"></button>
-    </div>
+  <div class="tiroir__contact">
+    <a href="tel:+221338219190">+221 33 821 91 90</a>
+    <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
+    <span>UCAD 3, Cité Claudel, Dakar</span>
   </div>
 </div>
 
+<main id="contenu">
 
+  <!-- ============================ HÉROS ============================ -->
+  <section class="heros">
+    <div class="heros__fond">
+      <img src="images/web/hero-1600.webp"
+           srcset="images/web/hero-900.webp 900w, images/web/hero-1600.webp 1080w"
+           sizes="100vw"
+           alt="" width="1080" height="547" fetchpriority="high">
+    </div>
+    <div class="heros__voile"></div>
 
-<!-- À PROPOS -->
-<section class="section" id="about">
-  <div class="container">
-    <div class="grid-2 fi" style="align-items:center;gap:56px">
-      <div style="position:relative">
-        <!-- VIDÉO YOUTUBE — Remplacez TON_ID_VIDEO par l'ID de votre vidéo YouTube
-     Ex : si l'URL est https://www.youtube.com/watch?v=abc123xyz
-     alors TON_ID_VIDEO = abc123xyz
-     Remplacez aux 2 endroits ci-dessous -->
-<div style="position:relative;width:100%;aspect-ratio:4/3;border-radius:10px;overflow:hidden;cursor:pointer"
-     onclick="window.open('https://www.youtube.com/watch?v=49ruFeCfYO4','_blank')">
-  <!-- Miniature auto-générée par YouTube -->
-  <img
-    src="https://img.youtube.com/vi/49ruFeCfYO4/maxresdefault.jpg"
-    alt="Vidéo CURI"
-    style="width:100%;height:100%;object-fit:cover"/>
-  <!-- Overlay sombre -->
-  <!-- <div style="position:absolute;inset:0;background:rgba(11,48,96,0.3)"></div> -->
-  <div style="position:absolute;inset:0;z-index:1;background:rgba(1, 23, 52, 0.65)"></div>
-  <!-- Bouton Play -->
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-              width:64px;height:64px;border-radius:50%;background:rgba(220,0,0,0.9);
-              display:flex;align-items:center;justify-content:center;
-              box-shadow:0 4px 20px rgba(0,0,0,0.4)">
-    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="white">
-      <polygon points="5 3 19 12 5 21 5 3"/>
-    </svg>
-  </div>
-  <!-- Label -->
-  <div style="position:absolute;bottom:14px;left:0;right:0;text-align:center;
-              color:white;font-size:.78rem;font-weight:600">
-    ▶ Découvrir le CURI
-  </div>
-</div>
-        <div class="about-badge"><strong>2000+</strong><small>Diplômés</small></div>
+    <div class="enveloppe heros__interieur">
+      <div class="heros__contenu anime-entree">
+        <p class="heros__domaine">
+          <span class="heros__point"></span>
+          nic.sn — registre du domaine national
+        </p>
+        <h1>L'internet sénégalais s'apprend ici<span class="point-or">.</span></h1>
+        <p class="heros__texte">
+          Le CURI forme au développement, au multimédia et au commerce en ligne
+          à l'Université Cheikh Anta Diop — et gère le domaine
+          <span class="domaine">.sn</span>, confié à l'UCAD depuis 1993.
+        </p>
+        <div class="heros__actions">
+          <a class="bouton bouton--or" href="formation.html">Voir les formations</a>
+          <a class="bouton bouton--clair" href="contact.html">Nous écrire</a>
+        </div>
       </div>
-      
+    </div>
+  </section>
+
+  <!-- Rail de repères -->
+  <div class="enveloppe rail">
+    <div class="rail__grille">
+      <div class="rail__bloc">
+        <span class="rail__nombre">1993</span>
+        <span class="rail__legende">Le domaine <span class="domaine">.sn</span> est confié à l'UCAD</span>
+      </div>
+      <div class="rail__bloc">
+        <span class="rail__nombre">2021</span>
+        <span class="rail__legende">Création du centre, en février</span>
+      </div>
+      <div class="rail__bloc">
+        <span class="rail__nombre">3</span>
+        <span class="rail__legende">Spécialités en formation initiale</span>
+      </div>
+      <div class="rail__bloc">
+        <span class="rail__nombre">2 <span class="unite">ans</span></span>
+        <span class="rail__legende">Pour le diplôme de formation initiale</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ DEUX MISSIONS ============================ -->
+  <section class="section" id="missions">
+    <div class="enveloppe">
+      <div class="entete-section entete-section--large">
+        <h2>Un centre, deux métiers</h2>
+        <p>Le CURI enseigne les technologies de l'Internet, et il en fait tourner une partie : le registre du domaine national.</p>
+      </div>
+
+      <div class="missions">
+
+        <article class="mission">
+          <span class="mission__marque">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          </span>
+          <h3>Former</h3>
+          <p>
+            Trois spécialités en formation initiale, ouvertes aussi aux
+            professionnels en formation continue et certifiante. Les cours se
+            tiennent sur le campus, avec des salles de travaux pratiques et un
+            laboratoire de réalité virtuelle et augmentée.
+          </p>
+          <p class="mission__note">
+            <a class="lien-fleche" href="formation.html">
+              Les formations en détail
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </p>
+        </article>
+
+        <article class="mission mission--accent">
+          <span class="mission__marque">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/></svg>
+          </span>
+          <h3>Faire tourner le <span class="domaine">.sn</span></h3>
+          <p>
+            La gestion du domaine national est confiée à l'UCAD depuis 1993 et
+            portée par NIC Sénégal. Le centre travaille avec l'ICANN, l'AFNIC et
+            l'AFTLD, et organise des ateliers DNS et DNSSEC pour les
+            professionnels de la région.
+          </p>
+          <p class="mission__note">
+            <a class="lien-fleche" href="evenements.html#dnssec" style="color:var(--or-clair)">
+              Les ateliers techniques
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FORMATIONS ============================ -->
+  <section class="section section--brume">
+    <div class="enveloppe">
+      <div class="entete-rang">
+        <div class="entete-section">
+          <h2>Trois spécialités</h2>
+          <p>Deux ans de formation initiale, un diplôme, un métier.</p>
+        </div>
+        <a class="bouton bouton--contour" href="formation.html">Toutes les formations</a>
+      </div>
+
+      <div class="formations">
+
+        <a class="formation" href="formation.html#developpement">
+          <div class="formation__corps">
+            <div class="formation__tete">
+              <h3>Développement web et mobile</h3>
+              <span class="formation__fleche" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </div>
+            <p>Concevoir une application complète et la mettre en production : interface, serveur, base de données, téléphone.</p>
+            <p class="formation__meta">
+              <span>Formation initiale</span>
+              <span>2 ans</span>
+              <span>Projet de fin d'études</span>
+            </p>
+          </div>
+          <div class="formation__vignette">
+            <img src="images/web/code-1000.webp" srcset="images/web/code-620.webp 620w, images/web/code-1000.webp 736w" sizes="22rem" alt="" width="736" height="571" loading="lazy">
+          </div>
+        </a>
+
+        <a class="formation" href="formation.html#multimedia">
+          <div class="formation__corps">
+            <div class="formation__tete">
+              <h3>Technologie web et multimédia</h3>
+              <span class="formation__fleche" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </div>
+            <p>Produire les contenus et les interfaces d'un site : graphisme, audiovisuel, intégration et publication en ligne.</p>
+            <p class="formation__meta">
+              <span>Formation initiale</span>
+              <span>2 ans</span>
+              <span>Atelier et studio</span>
+            </p>
+          </div>
+          <div class="formation__vignette">
+            <img src="images/web/vr-1200.webp" srcset="images/web/vr-700.webp 700w, images/web/vr-1200.webp 1200w" sizes="22rem" alt="" width="1200" height="800" loading="lazy">
+          </div>
+        </a>
+
+        <a class="formation" href="formation.html#ecommerce">
+          <div class="formation__corps">
+            <div class="formation__tete">
+              <h3>E-commerce et marketing digital</h3>
+              <span class="formation__fleche" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </div>
+            <p>Lancer et piloter une activité en ligne : stratégie, acquisition, contenus, paiement et mesure des résultats.</p>
+            <p class="formation__meta">
+              <span>Formation initiale</span>
+              <span>2 ans</span>
+              <span>Projet d'entreprise</span>
+            </p>
+          </div>
+          <div class="formation__vignette">
+            <img src="images/web/travail-1000.webp" srcset="images/web/travail-620.webp 620w, images/web/travail-1000.webp 736w" sizes="22rem" alt="" width="736" height="981" loading="lazy">
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ UNE ANNÉE AU CURI ============================ -->
+  <section class="section">
+    <div class="enveloppe">
+      <div class="entete-section">
+        <h2>Une année au centre</h2>
+        <p>Du premier cours au projet de fin d'études, le déroulé est le même pour les trois spécialités.</p>
+      </div>
+
+      <div class="sequence">
+        <ol class="sequence__liste">
+          <li class="sequence__etape">
+            <span class="sequence__numero" aria-hidden="true">1</span>
+            <div>
+              <h3>Cours et travaux pratiques</h3>
+              <p>Des séances en salle, suivies d'exercices sur machine dans les salles du centre.</p>
+            </div>
+          </li>
+          <li class="sequence__etape">
+            <span class="sequence__numero" aria-hidden="true">2</span>
+            <div>
+              <h3>Encadrement pédagogique</h3>
+              <p>Un suivi rapproché par les enseignants, en petit groupe.</p>
+            </div>
+          </li>
+          <li class="sequence__etape">
+            <span class="sequence__numero" aria-hidden="true">3</span>
+            <div>
+              <h3>Laboratoires</h3>
+              <p>Salles équipées pour le réseau, le développement, et le laboratoire de réalité virtuelle et augmentée.</p>
+            </div>
+          </li>
+          <li class="sequence__etape">
+            <span class="sequence__numero" aria-hidden="true">4</span>
+            <div>
+              <h3>Projets de semestre</h3>
+              <p>Un travail en équipe rendu et soutenu à la fin de chaque semestre.</p>
+            </div>
+          </li>
+          <li class="sequence__etape">
+            <span class="sequence__numero" aria-hidden="true">5</span>
+            <div>
+              <h3>Vie de promotion</h3>
+              <p>Journées d'intégration, hackathons et ateliers ouverts aux étudiants.</p>
+            </div>
+          </li>
+          <li class="sequence__etape">
+            <span class="sequence__numero" aria-hidden="true">6</span>
+            <div>
+              <h3>Projet de fin d'études</h3>
+              <p>Le travail qui clôt le cursus et sert de première référence professionnelle.</p>
+            </div>
+          </li>
+        </ol>
+
+        <figure class="sequence__image">
+          <img src="images/web/travail-1000.webp" srcset="images/web/travail-620.webp 620w, images/web/travail-1000.webp 736w" sizes="(min-width: 60rem) 24rem, 100vw" alt="Étudiants du CURI travaillant ensemble sur leurs ordinateurs portables" width="736" height="981" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ PARTENAIRES ============================ -->
+  <section class="section section--encre">
+    <div class="enveloppe">
+      <div class="entete-section entete-section--large">
+        <h2>Des partenaires de la gouvernance de l'internet</h2>
+        <p>Le centre travaille avec les organisations qui administrent les noms de domaine en Afrique et dans le monde.</p>
+      </div>
+      <ul class="partenaires">
+        <li class="partenaire">NIC Sénégal</li>
+        <li class="partenaire">ICANN</li>
+        <li class="partenaire">AFNIC</li>
+        <li class="partenaire">AFTLD</li>
+      </ul>
+      <p style="margin-top:1.75rem;font-size:var(--t-s);max-width:62ch">
+        Ces quatre organisations figurent sur les supports des ateliers DNS et DNSSEC
+        organisés par le centre. La liste complète des partenaires reste à compléter
+        avec la direction.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ ACTUALITÉS ============================ -->
+  <section class="section section--brume">
+    <div class="enveloppe">
+      <div class="entete-rang">
+        <div class="entete-section">
+          <h2>La vie du centre</h2>
+          <p>Ateliers techniques, hackathons et moments de promotion.</p>
+        </div>
+        <a class="bouton bouton--contour" href="evenements.html">Tous les événements</a>
+      </div>
+
+      <div class="actus">
+
+        <a class="actu actu--vedette" href="evenements.html#dnssec">
+          <div class="actu__image">
+            <img src="images/web/amphi-1200.webp" srcset="images/web/amphi-700.webp 700w, images/web/amphi-1200.webp 1080w" sizes="(min-width: 56rem) 40rem, 100vw" alt="Amphithéâtre de l'UCAD rempli lors d'une conférence du centre" width="1080" height="608" loading="lazy">
+          </div>
+          <div class="actu__corps">
+            <p class="actu__date">7 – 11 novembre 2022</p>
+            <h3>Formation hybride DNS et DNSSEC</h3>
+            <p>Une conférence publique au Centre de conférences UCAD 2, puis quatre jours d'atelier dans la salle de formation du centre, avec NIC Sénégal, l'ICANN, l'AFNIC et l'AFTLD.</p>
+            <span class="lien-fleche">Lire l'événement
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="actu" href="evenements.html#hackathon">
+          <div class="actu__image">
+            <img src="images/web/hackathon-1200.webp" srcset="images/web/hackathon-700.webp 700w, images/web/hackathon-1200.webp 1200w" sizes="(min-width: 56rem) 20rem, 100vw" alt="Participants d'un hackathon réunis devant les banderoles des partenaires" width="1200" height="900" loading="lazy">
+          </div>
+          <div class="actu__corps">
+            <p class="actu__date">Date à confirmer</p>
+            <h3>Hackathon étudiant</h3>
+            <p>Le centre accueille des hackathons avec ses partenaires. Le détail de cette édition reste à compléter.</p>
+          </div>
+        </a>
+
+        <a class="actu" href="evenements.html#labo">
+          <div class="actu__image">
+            <img src="images/web/vr-1200.webp" srcset="images/web/vr-700.webp 700w, images/web/vr-1200.webp 1200w" sizes="(min-width: 56rem) 20rem, 100vw" alt="Participants portant des casques de réalité virtuelle lors d'un atelier" width="1200" height="800" loading="lazy">
+          </div>
+          <div class="actu__corps">
+            <p class="actu__date">Date à confirmer</p>
+            <h3>Laboratoire réalité virtuelle</h3>
+            <p>Le centre dispose d'un laboratoire AR/VR, utilisé en atelier avec les étudiants et des publics invités.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ APPEL ============================ -->
+  <section class="section">
+    <div class="enveloppe">
+      <div class="appel">
+        <div>
+          <h2>Vous souhaitez rejoindre le centre ?</h2>
+          <p>Écrivez-nous ou passez à UCAD 3 : l'équipe répond aux questions sur l'admission, le déroulement des cours et la formation continue.</p>
+        </div>
+        <div class="appel__actions">
+          <a class="bouton bouton--or" href="contact.html">Nous écrire</a>
+          <a class="bouton bouton--clair" href="tel:+221338219190">+221 33 821 91 90</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ PIED DE PAGE ============================ -->
+<footer class="pied">
+  <div class="enveloppe">
+    <div class="pied__grille">
+
       <div>
-        <div class="s-tag">À propos</div>
-        <h2 class="s-titre">Une institution au service du numérique africain</h2>
-        <p style="color:#4a5568;line-height:1.8;margin-bottom:14px;font-size:.94rem">Le CURI est une entité académique de l'Université Cheikh Anta Diop de Dakar, dédiée à la formation aux technologies de l'internet, aux sciences du numérique et à la recherche appliquée.</p>
-        <p style="color:#4a5568;line-height:1.8;font-size:.94rem">En deux ans, nos étudiants acquièrent les compétences nécessaires pour répondre aux défis numériques du continent africain.</p>
-        <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:32px;height:32px;background:#e8f0fb;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-bullseye" style="color:#2e6ec4"></i></div>
-            <div><strong style="display:block;font-size:.88rem;color:#0b3060">Mission</strong><span style="font-size:.82rem;color:#4a5568">Former des spécialistes des technologies de l'internet</span></div>
+        <a class="pied__marque" href="index.html">
+          <img src="images/web/logo-curi.png" alt="" width="46" height="46">
+          <span>CURI</span>
+        </a>
+        <p class="pied__intro">
+          Centre Universitaire de Recherche et de Formation aux Technologies de
+          l'Internet, Université Cheikh Anta Diop de Dakar. Gestionnaire du
+          domaine national <span class="domaine">.sn</span>.
+        </p>
+        <div class="pied__reseaux">
+          <a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank" rel="noopener" aria-label="Le CURI sur Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/" target="_blank" rel="noopener" aria-label="Le CURI sur LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5A1.5 1.5 0 1 1 5 6.5a1.5 1.5 0 0 1 0-3ZM3.5 8h3v12.5h-3Zm6 0h2.9v1.7h.1c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v7.7h-3v-6.8c0-1.6 0-3.7-2.2-3.7s-2.6 1.8-2.6 3.6v6.9h-3Z"/></svg>
+          </a>
+          <a href="https://x.com/CURISENEGAL" target="_blank" rel="noopener" aria-label="Le CURI sur X">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6Zm-1.1 16h1.8L7.7 4.8H5.8Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <nav aria-labelledby="pied-site">
+        <h2 id="pied-site">Le site</h2>
+        <ul>
+          <li><a href="formation.html">Formations</a></li>
+          <li><a href="debouches.html">Débouchés</a></li>
+          <li><a href="equipe.html">Équipe</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Liens utiles</h2>
+        <ul>
+          <li><a href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a></li>
+          <li><a href="http://bibnum.ucad.sn/" target="_blank" rel="noopener">Bibliothèque numérique</a></li>
+          <li><a href="https://pie.ucad.sn/" target="_blank" rel="noopener">Services numériques UCAD</a></li>
+          <li><a href="https://www.campusen.sn" target="_blank" rel="noopener">Campusen</a></li>
+          <li><a href="https://www.ucad.sn" target="_blank" rel="noopener">Site de l'UCAD</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 id="pied-contact">Nous trouver</h2>
+        <div class="pied__contact" aria-labelledby="pied-contact">
+          <div>
+            <strong>Adresse</strong>
+            <span>UCAD 3, Cité Claudel,<br>allées Bougainvillées, Dakar</span>
           </div>
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:32px;height:32px;background:#e8f0fb;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-book-open" style="color:#2e6ec4"></i></div>
-            <div><strong style="display:block;font-size:.88rem;color:#0b3060">Recherche</strong><span style="font-size:.82rem;color:#4a5568">Travaux de recherche appliquée liés aux enjeux du développement</span></div>
+          <div>
+            <strong>Téléphone</strong>
+            <a href="tel:+221338219190">+221 33 821 91 90</a>
           </div>
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:32px;height:32px;background:#e8f0fb;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-handshake" style="color:#2e6ec4"></i></div>
-            <div><strong style="display:block;font-size:.88rem;color:#0b3060">Partenariats</strong><span style="font-size:.82rem;color:#4a5568">Collaboration avec le secteur privé et les institutions internationales</span></div>
+          <div>
+            <strong>E-mail</strong>
+            <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
           </div>
         </div>
       </div>
+
     </div>
-  </div>
-</section>
 
-<!-- ACTUALITÉS -->
-<section class="section gris">
-  <div class="container">
-    <div class="s-head fi"><div class="s-tag">Vie du campus</div><h2 class="s-titre">Actualités et Événements</h2><div class="filet"></div></div>
-    <!-- ACTUALITÉS AVEC IMAGES DE FOND + MODAL
-     Pour changer l'image de fond de chaque carte :
-     remplace l'URL dans background-image par ton fichier
-     ex: background-image:url('images/inscription.jpg') -->
-
-<!-- CARTE 1 -->
-<div class="actu-card" onclick="ouvrirModal('modal1')">
-  <!-- IMAGE DE FOND — remplace l'URL ci-dessous par ta photo -->
-  <!-- background-image:url('images/telechargement.jpg') -->
-<div class="actu-bg" style="background-image:url('images/recteur.jpg');background-size:cover;background-position:center">   
-   <div class="actu-overlay"></div>
-    <div class="actu-content">
-      <div class="actu-icon" style="background:rgba(255,255,255,.15)">
-        <i class="fas fa-bell" style="color:#306df0"></i>
-      </div>
-      <div class="actu-date">Juin 2025</div>
-      <h4>Ouverture des inscriptions 2025–2026</h4>
-      <span class="actu-lire">Lire la suite →</span>
+    <div class="pied__bas">
+      <span>© <span data-annee>2026</span> CURI — Université Cheikh Anta Diop de Dakar</span>
+      <ul>
+        <li><a href="contact.html">Mentions légales</a></li>
+        <li><a href="contact.html">Confidentialité</a></li>
+      </ul>
     </div>
-  </div>
-</div>
-
-<!-- CARTE 2 -->
-<div class="actu-card" onclick="ouvrirModal('modal2')">
-  <!-- background-image:url('images/remise-diplomes.jpg') -->
-<div class="actu-bg" style="background-image:url('images/etudiants.jpg');background-size:cover;background-position:center">
-    <div class="actu-overlay"></div>
-    <div class="actu-content">
-      <div class="actu-icon" style="background:rgba(255,255,255,.15)">
-        <i class="fas fa-award" style="color:#306df0"></i>
-      </div>
-      <div class="actu-date">Mai 2025</div>
-      <h4> Atelier SenAgro sur l'intelligence artificielle et la science des données au service de l'agriculture</h4>
-      <span class="actu-lire">Lire la suite →</span>
-    </div>
-  </div>
-</div>
-
-<!-- CARTE 3 -->
-<div class="actu-card" onclick="ouvrirModal('modal3')">
-  <!-- background-image:url('images/hackathon.jpg') -->
-<div class="actu-bg" style="background-image:url('images/ordi.jpg');background-size:cover;background-position:center">
-    <div class="actu-overlay"></div>
-    <div class="actu-content">
-      <div class="actu-icon" style="background:rgba(255,255,255,.15)">
-        <i class="fas fa-lightbulb" style="color:#306df0"></i>
-      </div>
-      <div class="actu-date">Avril 2025</div>
-      <h4>Hackathon mobile CICES Dakar 2026 — Teranga Skills Promotion 9</h4>
-      <span class="actu-lire">Lire la suite →</span>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     MODALS ACTUALITÉS
-     Pour modifier le contenu d'un article :
-     change le texte entre les balises <p>
-══════════════════════════════════════ -->
-
-<!-- MODAL 1 — Inscriptions -->
-<div class="modal-bg" id="modal1" onclick="fermerModal(event,this)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="document.getElementById('modal1').style.display='none'">
-      <i class="fas fa-times"></i>
-    </button>
-    <div class="modal-tag" style="background:#e8f0fb;color:#0b3060">Juin 2025</div>
-    <h3>Ouverture des inscriptions 2025–2026</h3>
-    <!-- CONTENU DE L'ARTICLE — modifie ce texte -->
-    <p>Les dossiers de candidature pour toutes les formations du CURI sont désormais disponibles. La rentrée académique 2025–2026 approche et le centre vous ouvre ses portes.</p>
-    <p>Pour postuler, rendez-vous sur la plateforme <strong>CampuSen (www.campusen.sn)</strong> après l'obtention de votre BAC. Choisissez la formation <em>Développement Web Mobile et Multimédia</em> à l'Université Cheikh Anta Diop de Dakar.</p>
-    <p><strong>Date limite :</strong> 31 juillet 2025</p>
-    <p>Pour toute question, contactez-nous à <a href="mailto:contact@curi.ucad.sn" style="color:#1a5296">contact@curi.ucad.sn</a></p>
-    <!-- FIN CONTENU -->
-  </div>
-</div>
-
-<!-- MODAL 2 — Remise des diplômes -->
-<div class="modal-bg" id="modal2" onclick="fermerModal(event,this)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="document.getElementById('modal2').style.display='none'">
-      <i class="fas fa-times"></i>
-    </button>
-    <div class="modal-tag" style="background:#fdf0d5;color:#7a4f00">Mai 2025</div>
-    <h3>Atelier SenAgro sur l'intelligence artificielle et la science des données au service de l'agriculture</h3>
-    <!-- CONTENU DE L'ARTICLE — modifie ce texte -->
-    <p>L'atelier SenAgro sur l'intelligence artificielle et la science des données s'est déroulé avec succès sur le campus de l'Université Cheikh Anta Diop de Dakar.</p>
-    <p>Les participants ont découvert les applications pratiques de ces technologies dans le domaine agricole, notamment pour l'optimisation des rendements et la gestion des ressources naturelles.</p>
-    <p>Le CURI remercie tous les intervenants et participants pour leur engagement et leur contribution à cet événement innovant.</p>
-    <!-- FIN CONTENU -->
-  </div>
-</div>
-
-<!-- MODAL 3 — Hackathon -->
-<div class="modal-bg" id="modal3" onclick="fermerModal(event,this)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="document.getElementById('modal3').style.display='none'">
-      <i class="fas fa-times"></i>
-    </button>
-    <div class="modal-tag" style="background:#d1fae5;color:#05508d">Avril 2025</div>
-    <h3>Hackathon CURI — Technologies Internet</h3>
-    <!-- CONTENU DE L'ARTICLE — modifie ce texte -->
-    <p>Le Hackathon CURI s'est déroulé sur 48 heures non-stop. Les étudiants ont formé des équipes pour développer des solutions numériques innovantes destinées aux services publics sénégalais.</p>
-    <p>Les projets présentés ont couvert des domaines variés : santé numérique, éducation en ligne, gestion administrative et agriculture connectée.</p>
-    <p>Les équipes gagnantes ont reçu des prix et certifications remis par le jury composé d'enseignants du CURI et de professionnels du secteur numérique.</p>
-    <!-- FIN CONTENU -->
-  </div>
-</div>
-  </div>
-  <!-- ANIMATION SLIDE UP POUR LES MODALS -->
-<style>
-@keyframes slideUp {
-  from { transform:translateY(30px); opacity:0; }
-  to   { transform:translateY(0); opacity:1; }
-}
-</style>
-</section>
-
-
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
- <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-    <img src="images/logo1.png "style="height:52px;object-fit:contain;margin-left:0">
-  </div>        
-  <p>Le CURI forme les spécialistes des technologies de l'internet pour le développement numérique de l'Afrique.</p>
-        <div class="footer-links"><a href="https://www.ucad.sn" target="_blank">ucad.sn</a><span>|</span><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></div>
-        <div class="footer-socials"><a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/?originalSubdomain=sn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://x.com/CURISENEGAL" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-      <div class="fcol">
-  <h5>Liens utiles</h5>
-  <ul>
-    <li><a href="https://www.ucad.sn" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      UCAD officiel
-    </a></li>
-    <li><a href="https://www.campusen.sn" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      CampuSen (orientation)
-    </a></li>
-    <li><a href="https://fad.curi.ucad.sn/?redirect=0" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      FAD CURI (formation à distance) 
-    </a></li>
-    <li><a href="http://bibnum.ucad.sn/" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      Bibliothèque numérique
-    </a></li>
-   
-    <li><a href="https://pie.ucad.sn/" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>Service Numérique
-    </a></li>
-  </ul>
-</div>
-      <div class="fcol"><h5>Navigation</h5><ul><li><a href="index.html">Accueil</a></li><li><a href="formation.html">Formations</a></li><li><a href="debouches.html">Débouchés</a></li><li><a href="equipe.html">Équipe</a></li><li><a href="evenements.html">Événements</a></li></ul></div>
-      <div class="fcol"><h5>Informations</h5><ul><li><a href="#">Admissions</a></li><li><a href="#">Calendrier</a></li><li><a href="#">Bibliothèque</a></li><li><a href="#">Stages</a></li><li><a href="#">Alumni</a></li></ul></div>
-      <div class="fcol"><h5>Contact</h5><ul><li><a href="#">Campus UCAD, Fann Résidence</a></li><li><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></li><li><a href="https://www.ucad.sn" target="_blank">www.ucad.sn</a></li><li><a href="contact.html">Formulaire de contact</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><span>© 2025 CURI — Université Cheikh Anta Diop de Dakar. Tous droits réservés.</span><span><a href="#">Mentions légales</a> | <a href="#">Confidentialité</a></span></div>
   </div>
 </footer>
+
 <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mmouctar34.github.io/CURI/sitemap.xml

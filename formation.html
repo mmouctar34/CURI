@@ -1,351 +1,396 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Formations — CURI | UCAD Dakar</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formations — CURI | UCAD Dakar</title>
+<meta name="description" content="Développement web et mobile, technologie web et multimédia, e-commerce et marketing digital : les formations du CURI à l'UCAD, en initiale, continue et certifiante.">
+<link rel="canonical" href="https://mmouctar34.github.io/CURI/formation.html">
+<meta property="og:title" content="Formations du CURI — UCAD Dakar">
+<meta property="og:description" content="Trois spécialités en deux ans, et des formations continues et certifiantes.">
+<meta property="og:image" content="images/web/code-1000.webp">
+<meta name="theme-color" content="#0a1c33">
+<link rel="icon" href="images/web/logo-curi.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header class="header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">
-        <img src="logoUcadCURI 2.png" alt="UCAD CURI" style="width: 300px;height: 100px;object-fit:contain;border-radius: 100px;margin-left:15px">
+
+<a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="enveloppe entete__interieur">
+    <a class="marque" href="index.html">
+      <img src="images/web/logo-curi.png" alt="" width="42" height="42">
+      <span>
+        <span class="marque__nom">CURI</span>
+        <span class="marque__sous">Technologies de l'Internet · UCAD</span>
+      </span>
     </a>
-    <nav id="nav"><ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="formation.html" class="active">Formations</a></li>
-      <li><a href="debouches.html">Débouchés</a></li>
-      <li><a href="equipe.html">Équipe</a></li>
-      <li><a href="evenements.html">Événements</a></li>
-      <li><a href="contact.html" class="cta">Contact</a></li>
-      <!-- BARRE DE RECHERCHE -->
-<div class="search-wrap">
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Rechercher..." autocomplete="off"/>
-    <button id="searchBtn"><i class="fas fa-search"></i></button>
-  </div>
-  <div class="search-results" id="searchResults"></div>
-</div> 
+    <nav class="nav-principale" aria-label="Navigation principale">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="formation.html" aria-current="page">Formations</a></li>
+        <li><a href="debouches.html">Débouchés</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
+        <li><a href="evenements.html">Événements</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <div class="recherche">
+      <div class="recherche__champ">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label class="lecture-seule" for="recherche-bureau">Rechercher sur le site</label>
+        <input type="search" id="recherche-bureau" placeholder="Rechercher…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="resultats-bureau">
+        <button type="button" class="recherche__vider" aria-label="Effacer la recherche">✕</button>
+      </div>
+      <div class="recherche__panneau" id="resultats-bureau" role="listbox" aria-label="Résultats de recherche"></div>
+    </div>
+    <button type="button" class="bascule-menu" aria-expanded="false" aria-controls="tiroir-menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<div class="page-header">
-  <h1>Nos Formations</h1>
-  <p>Deux ans pour maîtriser les technologies de l'internet — Tronc commun puis spécialisation</p>
+<div class="tiroir" id="tiroir-menu">
+  <div class="tiroir__recherche">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <label class="lecture-seule" for="recherche-mobile">Rechercher sur le site</label>
+    <input type="search" id="recherche-mobile" placeholder="Rechercher sur le site…" autocomplete="off">
+  </div>
+  <div class="recherche__panneau tiroir__panneau" style="position:static;opacity:1;transform:none;pointer-events:auto;box-shadow:none;border:0;padding:0"></div>
+  <nav aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html">Accueil <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="formation.html" aria-current="page">Formations <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="debouches.html">Débouchés <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="equipe.html">Équipe <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="evenements.html">Événements <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="contact.html">Contact <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+    </ul>
+  </nav>
+  <div class="tiroir__pied">
+    <a class="bouton bouton--bleu" href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a>
+  </div>
+  <div class="tiroir__contact">
+    <a href="tel:+221338219190">+221 33 821 91 90</a>
+    <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
+    <span>UCAD 3, Cité Claudel, Dakar</span>
+  </div>
 </div>
 
-<section class="section">
-  <div class="container">
-    <div class="tabs fi">
-      <button class="tab on" data-t="an1">1ère Année — Tronc Commun</button>
-      <button class="tab" data-t="an2">2ème Année — Spécialisations</button>
-      <button class="tab" data-t="dipl">Diplômes</button>
-    </div>
+<main id="contenu">
 
-    <!-- ANNÉE 1 -->
-    <div class="tab-c on fi" id="an1">
-      <div class="info-bar">
-        <i class="fas fa-info-circle" style="color:#2e6ec4;flex-shrink:0;margin-top:2px"></i>
-        Tous les étudiants — Marketing Digital et Développement Web — suivent un <strong>&nbsp;tronc commun&nbsp;</strong> en 1ère année.
+  <section class="bandeau">
+    <div class="bandeau__fond">
+      <img src="images/web/code-1000.webp" alt="" width="736" height="571">
+    </div>
+    <div class="bandeau__voile"></div>
+    <div class="enveloppe bandeau__interieur">
+      <nav class="ariane" aria-label="Fil d'Ariane">
+        <ol>
+          <li><a href="index.html">Accueil</a></li>
+          <li aria-hidden="true">›</li>
+          <li aria-current="page">Formations</li>
+        </ol>
+      </nav>
+      <h1>Formations</h1>
+      <p class="bandeau__texte">
+        Trois spécialités en formation initiale, ouvertes aussi aux
+        professionnels en formation continue et certifiante.
+      </p>
+    </div>
+  </section>
+
+  <!-- Les trois manières de se former -->
+  <section class="section" id="types">
+    <div class="enveloppe">
+      <div class="entete-section entete-section--large">
+        <h2>Trois manières de se former</h2>
+        <p>Le centre accueille des étudiants en cursus diplômant comme des professionnels déjà en poste.</p>
       </div>
-      <div class="sem-grid">
-        <div class="sem-card">
-          <div class="sem-head b">
-            <div class="sem-num">S1</div>
-            <div><div class="sem-titre">Semestre 1</div><div class="sem-sous">Première année</div></div>
-          </div>
-          <div class="sem-body">
-            <div><div class="ue-nom">Environnement informatique 1</div><div class="ecs"><div class="ec">Fondamentaux Systèmes d'exploitation</div><div class="ec">Bureautique 1</div></div></div>
-            <div><div class="ue-nom">Algorithme et Programmation 1</div><div class="ecs"><div class="ec">Notions de base sur l'algorithme</div><div class="ec">Fondamentaux Programmation en informatique</div></div></div>
-            <div><div class="ue-nom">Outils de conception et Bases de données</div><div class="ecs"><div class="ec">Outils de conception de logiciel</div><div class="ec">Conception de Bases de données</div></div></div>
-            <div><div class="ue-nom">Environnement du travail</div><div class="ecs"><div class="ec">Projet professionnel personnel</div><div class="ec">Droit et Environnement de travail</div><div class="ec">Économie générale</div></div></div>
-            <div><div class="ue-nom">Communication</div><div class="ecs"><div class="ec">Techniques d'expression</div><div class="ec">Anglais</div></div></div>
-          </div>
-        </div>
-        <div class="sem-card">
-          <div class="sem-head g">
-            <div class="sem-num">S2</div>
-            <div><div class="sem-titre">Semestre 2</div><div class="sem-sous">Première année</div></div>
-          </div>
-          <div class="sem-body">
-            <div><div class="ue-nom">Environnement Informatique 2</div><div class="ecs"><div class="ec">Bureautique 2</div><div class="ec">Généralités sur le Cloud et Réseaux sociaux</div></div></div>
-            <div><div class="ue-nom">Technologies web et interactivité</div><div class="ecs"><div class="ec">Langages de mises en forme de pages web statiques</div><div class="ec">Langage de script</div></div></div>
-            <div><div class="ue-nom">Infographie</div><div class="ecs"><div class="ec">Principes fondamentaux du traitement d'images</div><div class="ec">Maîtrise de l'art du dessin vectoriel</div></div></div>
-            <div><div class="ue-nom">Algorithme et Programmation 2</div><div class="ecs"><div class="ec">Programmation avancée</div><div class="ec">Algorithme avancé</div></div></div>
-            <div><div class="ue-nom">Management et Marketing</div><div class="ecs"><div class="ec">Marketing fondamental</div><div class="ec">Communication d'entreprise</div><div class="ec">Gestion de projet</div></div></div>
-          </div>
-        </div>
+      <div class="trio">
+        <article class="trio__bloc">
+          <span class="trio__duree">2 ans</span>
+          <h3>Formation initiale</h3>
+          <p>Le cursus diplômant, en deux ans, dans l'une des trois spécialités du centre. C'est la voie des étudiants qui arrivent après le baccalauréat ou un premier diplôme.</p>
+        </article>
+        <article class="trio__bloc">
+          <span class="trio__duree">Durée variable</span>
+          <h3>Formation continue</h3>
+          <p>Des sessions pour les actifs qui veulent mettre à jour leurs compétences sans quitter leur emploi. Le calendrier et les modules sont fixés avec la direction.</p>
+        </article>
+        <article class="trio__bloc">
+          <span class="trio__duree">Sur session</span>
+          <h3>Formation certifiante</h3>
+          <p>Des formations menées avec des partenaires certificateurs, comme les ateliers DNS et DNSSEC conduits avec NIC Sénégal, l'ICANN, l'AFNIC et l'AFTLD.</p>
+        </article>
       </div>
     </div>
+  </section>
 
-    <!-- ANNÉE 2 -->
-    <div class="tab-c fi" id="an2">
-      <div class="info-bar" style="background:#fdf0d5;color:#7a4f00">
-        <i class="fas fa-code-branch" style="color:#c8921a;flex-shrink:0;margin-top:2px"></i>
-        En 2ème année, les étudiants se spécialisent. Chacun soutient un <strong>&nbsp;Projet de Fin d'Études&nbsp;</strong> et rédige un <strong>&nbsp;mémoire&nbsp;</strong> en fin de parcours.
+  <!-- Les trois spécialités -->
+  <section class="section section--brume">
+    <div class="enveloppe">
+      <div class="entete-section">
+        <h2>Les trois spécialités</h2>
+        <p>Même durée, même rythme, trois métiers différents à la sortie.</p>
       </div>
-      <div class="pfe-row">
-        <div class="pfe">
-          <div class="pfe-ic"><i class="fas fa-file-alt" style="color:#2e6ec4"></i></div>
-          <div><strong>Projet de semestre</strong><p>Un projet appliqué à remettre à la fin de chaque semestre.</p></div>
-        </div>
-        <div class="pfe">
-          <div class="pfe-ic or"><i class="fas fa-trophy" style="color:#c8921a"></i></div>
-          <div><strong>Projet de Fin d'Études + Mémoire</strong><p>Soutenance devant jury + mémoire rédigé en fin de 2ème année.</p></div>
-        </div>
+
+      <div class="grille-cartes">
+
+        <article class="carte" id="developpement">
+          <span class="carte__marque">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 16-4-4 4-4"/><path d="m16 8 4 4-4 4"/><path d="m13 5-2 14"/></svg>
+          </span>
+          <h3>Développement web et mobile</h3>
+          <p>Concevoir une application du début à la fin : interface, logique serveur, base de données, mise en production, puis portage sur téléphone.</p>
+          <p><strong>Ce que vous saurez faire</strong></p>
+          <p><span class="a-confirmer">Liste des modules à compléter avec l'équipe pédagogique</span></p>
+        </article>
+
+        <article class="carte" id="multimedia">
+          <span class="carte__marque">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          </span>
+          <h3>Technologie web et multimédia</h3>
+          <p>Produire les contenus et les interfaces d'un site : identité graphique, image, son et vidéo, intégration, publication et mise à jour.</p>
+          <p><strong>Ce que vous saurez faire</strong></p>
+          <p><span class="a-confirmer">Liste des modules à compléter avec l'équipe pédagogique</span></p>
+        </article>
+
+        <article class="carte" id="ecommerce">
+          <span class="carte__marque">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 3.5-4 3 2.5L20 7"/></svg>
+          </span>
+          <h3>E-commerce et marketing digital</h3>
+          <p>Lancer une activité en ligne et la faire vivre : offre, boutique, paiement, acquisition de clients, contenus et lecture des résultats.</p>
+          <p><strong>Ce que vous saurez faire</strong></p>
+          <p><span class="a-confirmer">Liste des modules à compléter avec l'équipe pédagogique</span></p>
+        </article>
+
       </div>
-      <div class="fil-tabs">
-        <button class="fil-tab on" data-f="dw"><i class="fas fa-code"></i> Développement Web Mobile et Multimédia</button>
-        <button class="fil-tab" data-f="mk"><i class="fas fa-chart-line"></i> Marketing Digital et E-commerce</button>
-      </div>
-      <div class="fil-c on" id="dw">
-        <div class="sem-grid">
-          <div class="sem-card">
-            <div class="sem-head b"><div class="sem-num">S3</div><div><div class="sem-titre">Semestre 3</div><div class="sem-sous">Développement Web Mobile et Multimédia</div></div></div>
-            <div class="sem-body">
-              <div><div class="ue-nom">Géolocalisation et Données</div><div class="ecs"><div class="ec">Géolocalisation et Cartographie</div><div class="ec">Manipulation de données</div></div></div>
-              <div><div class="ue-nom">Technologies web et interactivité avancée</div><div class="ecs"><div class="ec">UX Design</div><div class="ec">Programmation avancée</div></div></div>
-              <div><div class="ue-nom">Développement d'applications</div><div class="ecs"><div class="ec">Développement mobile sous Android</div><div class="ec">Développement mobile avec les frameworks</div></div></div>
-              <div><div class="ue-nom">Développement de jeux vidéo</div><div class="ecs"><div class="ec">Généralités sur les jeux vidéo</div><div class="ec">Concepts de développement de jeux vidéo</div></div></div>
-              <div><div class="ue-nom">Entrepreneuriat et Communication</div><div class="ecs"><div class="ec">Création d'entreprise</div><div class="ec">Anglais</div></div></div>
-            </div>
+    </div>
+  </section>
+
+  <!-- Candidater -->
+  <section class="section" id="candidater">
+    <div class="enveloppe">
+      <div class="contact-grille">
+        <div>
+          <div class="entete-section">
+            <h2>Candidater</h2>
+            <p>Les étapes pour rejoindre le centre. Les conditions exactes sont en cours de vérification avec la direction.</p>
           </div>
-          <div class="sem-card">
-            <div class="sem-head g"><div class="sem-num">S4</div><div><div class="sem-titre">Semestre 4</div><div class="sem-sous">Développement Web Mobile et Multimédia</div></div></div>
-            <div class="sem-body">
-              <div style="background:#fff8e8;border-left:3px solid #c8921a;padding:10px;border-radius:0 6px 6px 0">
-                <div style="font-size:.78rem;font-weight:700;color:#c8921a;margin-bottom:5px">Programme en cours de mise à jour</div>
-                <div class="ec">Contactez l'administration pour plus d'informations</div>
+          <ol class="sequence__liste">
+            <li class="sequence__etape">
+              <span class="sequence__numero" aria-hidden="true">1</span>
+              <div>
+                <h3>Vérifier les conditions</h3>
+                <p><span class="a-confirmer">Diplôme requis et prérequis à confirmer</span></p>
               </div>
+            </li>
+            <li class="sequence__etape">
+              <span class="sequence__numero" aria-hidden="true">2</span>
+              <div>
+                <h3>Préparer le dossier</h3>
+                <p><span class="a-confirmer">Pièces à fournir à confirmer</span></p>
+              </div>
+            </li>
+            <li class="sequence__etape">
+              <span class="sequence__numero" aria-hidden="true">3</span>
+              <div>
+                <h3>Déposer la candidature</h3>
+                <p><span class="a-confirmer">Canal et période de dépôt à confirmer</span></p>
+              </div>
+            </li>
+            <li class="sequence__etape">
+              <span class="sequence__numero" aria-hidden="true">4</span>
+              <div>
+                <h3>Suivre la réponse</h3>
+                <p>En attendant, l'équipe répond directement par téléphone et par e-mail.</p>
+              </div>
+            </li>
+          </ol>
+          <p style="margin-top:2rem">
+            <a class="bouton bouton--bleu" href="contact.html">Poser une question</a>
+          </p>
+        </div>
+
+        <aside class="carte">
+          <h3>Déjà étudiant au centre ?</h3>
+          <p>Les cours, les ressources et les résultats de semestre se trouvent sur la plateforme du CURI.</p>
+          <p style="margin-top:1.5rem">
+            <a class="bouton bouton--or" href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Ouvrir la plateforme</a>
+          </p>
+          <hr style="margin:2rem 0;border:none;border-top:1px solid var(--trait)">
+          <h3>Calendrier universitaire</h3>
+          <p><span class="a-confirmer">Dates de rentrée, de semestres et d'examens à fournir par la scolarité</span></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Questions fréquentes -->
+  <section class="section section--brume">
+    <div class="enveloppe">
+      <div class="entete-section">
+        <h2>Questions fréquentes</h2>
+      </div>
+      <div class="accordeon">
+        <div class="accordeon__element">
+          <h3>
+            <button type="button" class="accordeon__bouton" aria-expanded="false" aria-controls="faq-1">
+              Faut-il savoir programmer avant d'entrer ?
+              <span class="accordeon__signe" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </span>
+            </button>
+          </h3>
+          <div class="accordeon__panneau" id="faq-1">
+            <div class="accordeon__contenu">
+              <p><span class="a-confirmer">Réponse à rédiger avec l'équipe pédagogique</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="accordeon__element">
+          <h3>
+            <button type="button" class="accordeon__bouton" aria-expanded="false" aria-controls="faq-2">
+              Les cours se tiennent-ils en présentiel ?
+              <span class="accordeon__signe" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </span>
+            </button>
+          </h3>
+          <div class="accordeon__panneau" id="faq-2">
+            <div class="accordeon__contenu">
+              <p>Les cours ont lieu sur le campus, à UCAD 3. Le centre utilise aussi une plateforme en ligne pour les ressources et les résultats, et certaines formations certifiantes se déroulent en mode hybride.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordeon__element">
+          <h3>
+            <button type="button" class="accordeon__bouton" aria-expanded="false" aria-controls="faq-3">
+              Peut-on se former tout en travaillant ?
+              <span class="accordeon__signe" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </span>
+            </button>
+          </h3>
+          <div class="accordeon__panneau" id="faq-3">
+            <div class="accordeon__contenu">
+              <p>Oui. En plus du cursus initial, le centre propose de la formation continue pour les actifs et des formations certifiantes menées avec des partenaires. Écrivez au centre pour connaître les sessions ouvertes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordeon__element">
+          <h3>
+            <button type="button" class="accordeon__bouton" aria-expanded="false" aria-controls="faq-4">
+              Combien coûte la formation ?
+              <span class="accordeon__signe" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </span>
+            </button>
+          </h3>
+          <div class="accordeon__panneau" id="faq-4">
+            <div class="accordeon__contenu">
+              <p><span class="a-confirmer">Frais de scolarité à confirmer avec la direction</span></p>
             </div>
           </div>
         </div>
       </div>
-      <div class="fil-c" id="mk">
-  <div class="sem-grid">
+    </div>
+  </section>
 
-    <!-- SEMESTRE 3 — Marketing Digital -->
-    <div class="sem-card">
-      <div class="sem-head b">
-        <div class="sem-num">S3</div>
+  <section class="section">
+    <div class="enveloppe">
+      <div class="appel">
         <div>
-          <div class="sem-titre">Semestre 3</div>
-          <div class="sem-sous">E-Commerce et Marketing Digital</div>
+          <h2>Une question sur une formation ?</h2>
+          <p>L'équipe répond sur les conditions d'admission, le déroulement des cours et les sessions de formation continue.</p>
         </div>
-      </div>
-      <div class="sem-body">
-
-        <div>
-          <div class="ue-nom">Stratégie et Contenu Web</div>
-          <div class="ecs">
-            <div class="ec">Mise en place d'une stratégie éditoriale web</div>
-            <div class="ec">Techniques de rédaction d'articles web</div>
-          </div>
+        <div class="appel__actions">
+          <a class="bouton bouton--or" href="contact.html">Nous écrire</a>
+          <a class="bouton bouton--clair" href="tel:+221338219190">+221 33 821 91 90</a>
         </div>
-
-        <div>
-          <div class="ue-nom">Marché et Commerce en Ligne</div>
-          <div class="ecs">
-            <div class="ec">Analyse du marché numérique</div>
-            <div class="ec">Techniques de vente en ligne</div>
-            <div class="ec">Distribution et merchandising</div>
-          </div>
-        </div>
-
-        <div>
-          <div class="ue-nom">Environnement Légal et Digital</div>
-          <div class="ecs">
-            <div class="ec">Environnement digital et réglementation</div>
-            <div class="ec">Statistiques appliquées au e-commerce</div>
-          </div>
-        </div>
-
-        <div>
-          <div class="ue-nom">Communication Digitale</div>
-          <div class="ecs">
-            <div class="ec">Médias sociaux, e-réputation et omni-canalité</div>
-            <div class="ec">Développement personnel et rédaction de cahiers des charges</div>
-          </div>
-        </div>
-
       </div>
     </div>
+  </section>
 
-    <!-- SEMESTRE 4 — Marketing Digital -->
-    <div class="sem-card">
-      <div class="sem-head g">
-        <div class="sem-num">S4</div>
-        <div>
-          <div class="sem-titre">Semestre 4</div>
-          <div class="sem-sous">E-Commerce et Marketing Digital</div>
+</main>
+
+<footer class="pied">
+  <div class="enveloppe">
+    <div class="pied__grille">
+      <div>
+        <a class="pied__marque" href="index.html">
+          <img src="images/web/logo-curi.png" alt="" width="46" height="46">
+          <span>CURI</span>
+        </a>
+        <p class="pied__intro">
+          Centre Universitaire de Recherche et de Formation aux Technologies de
+          l'Internet, Université Cheikh Anta Diop de Dakar. Gestionnaire du
+          domaine national <span class="domaine">.sn</span>.
+        </p>
+        <div class="pied__reseaux">
+          <a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank" rel="noopener" aria-label="Le CURI sur Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/" target="_blank" rel="noopener" aria-label="Le CURI sur LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5A1.5 1.5 0 1 1 5 6.5a1.5 1.5 0 0 1 0-3ZM3.5 8h3v12.5h-3Zm6 0h2.9v1.7h.1c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v7.7h-3v-6.8c0-1.6 0-3.7-2.2-3.7s-2.6 1.8-2.6 3.6v6.9h-3Z"/></svg>
+          </a>
+          <a href="https://x.com/CURISENEGAL" target="_blank" rel="noopener" aria-label="Le CURI sur X">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6Zm-1.1 16h1.8L7.7 4.8H5.8Z"/></svg>
+          </a>
         </div>
       </div>
-      <div class="sem-body">
-
-        <div>
-          <div class="ue-nom">Référencement et Stratégie Digitale</div>
-          <div class="ecs">
-            <div class="ec">Référencement et optimisation (SEO)</div>
-            <div class="ec">Démarches de stratégie digitale</div>
-            <div class="ec">Marketing programmatique</div>
+      <nav aria-labelledby="pied-site">
+        <h2 id="pied-site">Le site</h2>
+        <ul>
+          <li><a href="formation.html">Formations</a></li>
+          <li><a href="debouches.html">Débouchés</a></li>
+          <li><a href="equipe.html">Équipe</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Liens utiles</h2>
+        <ul>
+          <li><a href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a></li>
+          <li><a href="http://bibnum.ucad.sn/" target="_blank" rel="noopener">Bibliothèque numérique</a></li>
+          <li><a href="https://pie.ucad.sn/" target="_blank" rel="noopener">Services numériques UCAD</a></li>
+          <li><a href="https://www.campusen.sn" target="_blank" rel="noopener">Campusen</a></li>
+          <li><a href="https://www.ucad.sn" target="_blank" rel="noopener">Site de l'UCAD</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 id="pied-contact">Nous trouver</h2>
+        <div class="pied__contact" aria-labelledby="pied-contact">
+          <div>
+            <strong>Adresse</strong>
+            <span>UCAD 3, Cité Claudel,<br>allées Bougainvillées, Dakar</span>
+          </div>
+          <div>
+            <strong>Téléphone</strong>
+            <a href="tel:+221338219190">+221 33 821 91 90</a>
+          </div>
+          <div>
+            <strong>E-mail</strong>
+            <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
           </div>
         </div>
-
-        <div>
-          <div class="ue-nom">Management et Relation Client</div>
-          <div class="ecs">
-            <div class="ec">Management et prises de décisions</div>
-            <div class="ec">Customer Relationship Management (CRM)</div>
-            <div class="ec">Gestion de la force de vente</div>
-            <div class="ec">Système d'information marketing</div>
-          </div>
-        </div>
-
-        <div>
-          <div class="ue-nom">Sécurité et Propriété Intellectuelle</div>
-          <div class="ecs">
-            <div class="ec">Sécurisation des données et paiements</div>
-            <div class="ec">Propriété intellectuelle et industrielle</div>
-            <div class="ec">Fondamentaux de la sécurité des SI</div>
-          </div>
-        </div>
-
       </div>
     </div>
-
-  </div>
-</div>
-
-    <!-- DIPLÔMES -->
-    <div class="tab-c fi" id="dipl">
-      <div class="dipl-grid">
-        <div class="dipl"><div class="dipl-badge">Tronc Commun</div><h4>DES Internet Management et Technologies Web et Multimédia</h4><small>— Toutes filières, 1ère année —</small></div>
-        <div class="dipl b2"><div class="dipl-badge">Filière 1</div><h4>DES Technologie Web et Multimédia</h4><div class="dipl-spec">Spécialité : Web et Création Multimédia</div><small>— 2ème année —</small></div>
-        <div class="dipl b2"><div class="dipl-badge">Filière 2</div><h4>DES Technologie Web et Multimédia</h4><div class="dipl-spec">Spécialité : Développement d'Applications Web et Mobile</div><small>— 2ème année —</small></div>
-        <div class="dipl or"><div class="dipl-badge or">Filière 3</div><h4>DES Internet Management et Technologies Web</h4><div class="dipl-spec">Spécialité : E-commerce et Marketing Digital</div><small>— 2ème année —</small></div>
-      </div>
+    <div class="pied__bas">
+      <span>© <span data-annee>2026</span> CURI — Université Cheikh Anta Diop de Dakar</span>
+      <ul>
+        <li><a href="contact.html">Mentions légales</a></li>
+        <li><a href="contact.html">Confidentialité</a></li>
+      </ul>
     </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════
-     VIE ÉTUDIANTE AU CURI
-     Modifie les textes selon la réalité
-     du campus. Ajoute des photos si tu en as.
-══════════════════════════════════════ -->
-<section class="section gris">
-  <div class="container">
-    <div class="s-head">
-      <div class="s-tag">Vie sur le campus</div>
-      <h2 class="s-titre">Une année au CURI — Comment ça se passe ?</h2>
-      <div class="filet"></div>
-      <p class="s-sous">Du premier cours jusqu'à la soutenance du mémoire, voici comment se déroule votre parcours au CURI.</p>
-    </div>
-    <div class="grid-3">
-
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-        <h3 style="color:#0b3060;margin-bottom:8px;font-size:.95rem">Les cours et TP</h3>
-        <p style="font-size:.84rem;color:#4a5568;line-height:1.7">
-          Les cours combinent théorie et pratique. Chaque Unité d'Enseignement est accompagnée de travaux pratiques en salle informatique. Les étudiants travaillent sur des projets réels dès le premier semestre.
-          <!-- Modifie selon la réalité -->
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-users"></i></div>
-        <h3 style="color:#0b3060;margin-bottom:8px;font-size:.95rem">L'encadrement pédagogique</h3>
-        <p style="font-size:.84rem;color:#4a5568;line-height:1.7">
-          Les étudiants bénéficient d'un suivi personnalisé par les enseignants. Des heures de permanence sont disponibles pour poser des questions. Le tutorat entre étudiants est également encouragé.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-laptop"></i></div>
-        <h3 style="color:#0b3060;margin-bottom:8px;font-size:.95rem">Les laboratoires</h3>
-        <p style="font-size:.84rem;color:#4a5568;line-height:1.7">
-          Le CURI dispose de laboratoires informatiques équipés. Les étudiants ont accès aux ordinateurs et aux outils nécessaires pour leurs travaux pratiques et leurs projets personnels.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
-        <h3 style="color:#0b3060;margin-bottom:8px;font-size:.95rem">Les projets de semestre</h3>
-        <p style="font-size:.84rem;color:#4a5568;line-height:1.7">
-          À la fin de chaque semestre, les étudiants réalisent un projet de groupe ou individuel. Ces projets permettent de mettre en pratique tout ce qui a été appris et sont notés par les enseignants.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-heart"></i></div>
-        <h3 style="color:#0b3060;margin-bottom:8px;font-size:.95rem">La vie sociale</h3>
-        <p style="font-size:.84rem;color:#4a5568;line-height:1.7">
-          Le campus de l'UCAD offre une vie étudiante riche. Les étudiants du CURI participent aux événements de l'université, aux clubs numériques et aux associations étudiantes.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-        <h3 style="color:#0b3060;margin-bottom:8px;font-size:.95rem">Le Projet de Fin d'Études</h3>
-        <p style="font-size:.84rem;color:#4a5568;line-height:1.7">
-          En fin de 2ème année, chaque étudiant choisit un sujet de PFE avec un directeur de mémoire. Il développe un projet complet et le soutient devant un jury. C'est le couronnement de deux années de formation.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
- <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-    <img src="images/logo1.png "style="height:52px;object-fit:contain;margin-left:0">
-  </div>        
-  <p>Le CURI forme les spécialistes des technologies de l'internet pour le développement numérique de l'Afrique.</p>
-        <div class="footer-links"><a href="https://www.ucad.sn" target="_blank">ucad.sn</a><span>|</span><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></div>
-        <div class="footer-socials"><a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/?originalSubdomain=sn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://x.com/CURISENEGAL" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-      <div class="fcol">
-  <h5>Liens utiles</h5>
-  <ul>
-    <li><a href="https://www.ucad.sn" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      UCAD officiel
-    </a></li>
-    <li><a href="https://www.campusen.sn" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      CampuSen (orientation)
-    </a></li>
-    <li><a href="https://fad.curi.ucad.sn/?redirect=0" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      FAD CURI (formation à distance) 
-    </a></li>
-    <li><a href="http://bibnum.ucad.sn/" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      Bibliothèque numérique
-    </a></li>
-   
-    <li><a href="https://pie.ucad.sn/" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>Service Numérique
-    </a></li>
-  </ul>
-</div>
-      <div class="fcol"><h5>Navigation</h5><ul><li><a href="index.html">Accueil</a></li><li><a href="formation.html">Formations</a></li><li><a href="debouches.html">Débouchés</a></li><li><a href="equipe.html">Équipe</a></li><li><a href="evenements.html">Événements</a></li></ul></div>
-      <div class="fcol"><h5>Informations</h5><ul><li><a href="#">Admissions</a></li><li><a href="#">Calendrier</a></li><li><a href="#">Bibliothèque</a></li><li><a href="#">Stages</a></li><li><a href="#">Alumni</a></li></ul></div>
-      <div class="fcol"><h5>Contact</h5><ul><li><a href="#">Campus UCAD, Fann Résidence</a></li><li><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></li><li><a href="https://www.ucad.sn" target="_blank">www.ucad.sn</a></li><li><a href="contact.html">Formulaire de contact</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><span>© 2025 CURI — Université Cheikh Anta Diop de Dakar. Tous droits réservés.</span><span><a href="#">Mentions légales</a> | <a href="#">Confidentialité</a></span></div>
   </div>
 </footer>
 

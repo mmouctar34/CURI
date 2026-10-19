@@ -1,179 +1,302 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact — CURI | UCAD Dakar</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — CURI | UCAD Dakar</title>
+<meta name="description" content="Adresse, téléphone, e-mail et plan d'accès du Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet, à UCAD 3, Dakar.">
+<link rel="canonical" href="https://mmouctar34.github.io/CURI/contact.html">
+<meta property="og:title" content="Contact — CURI | UCAD Dakar">
+<meta property="og:description" content="Adresse, téléphone, e-mail et plan d'accès du Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet, à UCAD 3, Dakar.">
+<meta property="og:image" content="images/web/campus-1400.webp">
+<meta name="theme-color" content="#0a1c33">
+<link rel="icon" href="images/web/logo-curi.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header class="header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">
-        <img src="logoUcadCURI 2.png" alt="UCAD CURI" style="width: 300px;height: 100px;object-fit:contain;border-radius: 100px;margin-left:15px">
+
+<a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="enveloppe entete__interieur">
+    <a class="marque" href="index.html">
+      <img src="images/web/logo-curi.png" alt="" width="42" height="42">
+      <span>
+        <span class="marque__nom">CURI</span>
+        <span class="marque__sous">Technologies de l'Internet · UCAD</span>
+      </span>
     </a>
-    <nav id="nav"><ul>
-      <li><a href="index.html">Accueil</a></li><li><a href="formation.html">Formations</a></li>
-      <li><a href="debouches.html">Débouchés</a></li><li><a href="equipe.html">Équipe</a></li>
-      <li><a href="evenements.html">Événements</a></li>
-      <li><a href="contact.html" class="cta active">Contact</a></li>
-      <!-- BARRE DE RECHERCHE -->
-<div class="search-wrap">
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Rechercher..." autocomplete="off"/>
-    <button id="searchBtn"><i class="fas fa-search"></i></button>
-  </div>
-  <div class="search-results" id="searchResults"></div>
-</div> 
+    <nav class="nav-principale" aria-label="Navigation principale">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="formation.html">Formations</a></li>
+        <li><a href="debouches.html">Débouchés</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
+        <li><a href="evenements.html">Événements</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
       </ul>
     </nav>
-    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <div class="recherche">
+      <div class="recherche__champ">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label class="lecture-seule" for="recherche-bureau">Rechercher sur le site</label>
+        <input type="search" id="recherche-bureau" placeholder="Rechercher…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="resultats-bureau">
+        <button type="button" class="recherche__vider" aria-label="Effacer la recherche">✕</button>
+      </div>
+      <div class="recherche__panneau" id="resultats-bureau" role="listbox" aria-label="Résultats de recherche"></div>
+    </div>
+    <button type="button" class="bascule-menu" aria-expanded="false" aria-controls="tiroir-menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<div class="page-header">
-  <h1>Contact et Localisation</h1>
-  <p>Nous sommes disponibles pour répondre à toutes vos questions</p>
+<div class="tiroir" id="tiroir-menu">
+  <div class="tiroir__recherche">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <label class="lecture-seule" for="recherche-mobile">Rechercher sur le site</label>
+    <input type="search" id="recherche-mobile" placeholder="Rechercher sur le site…" autocomplete="off">
+  </div>
+  <div class="recherche__panneau tiroir__panneau" style="position:static;opacity:1;transform:none;pointer-events:auto;box-shadow:none;border:0;padding:0"></div>
+  <nav aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html">Accueil <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="formation.html">Formations <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="debouches.html">Débouchés <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="equipe.html">Équipe <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="evenements.html">Événements <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="contact.html" aria-current="page">Contact <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+    </ul>
+  </nav>
+  <div class="tiroir__pied">
+    <a class="bouton bouton--bleu" href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a>
+  </div>
+  <div class="tiroir__contact">
+    <a href="tel:+221338219190">+221 33 821 91 90</a>
+    <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
+    <span>UCAD 3, Cité Claudel, Dakar</span>
+  </div>
 </div>
 
-<section class="section">
-  <div class="container">
-    <div class="contact-grid fi">
-      <div class="c-info">
-        <h3>Coordonnées du CURI</h3>
-        <div class="c-items">
-          <div class="c-item">
-            <div class="c-ic"><i class="fas fa-map-marker-alt" style="color:#2e6ec4"></i></div>
-            <div><strong>Adresse</strong><span>Campus UCAD, Fann Résidence<br/>Dakar, République du Sénégal</span></div>
+<main id="contenu">
+
+  <section class="bandeau">
+    <div class="bandeau__fond">
+      <img src="images/web/campus-1400.webp" alt="" width="1400" height="519">
+    </div>
+    <div class="bandeau__voile"></div>
+    <div class="enveloppe bandeau__interieur">
+      <nav class="ariane" aria-label="Fil d'Ariane">
+        <ol>
+          <li><a href="index.html">Accueil</a></li>
+          <li aria-hidden="true">›</li>
+          <li aria-current="page">Contact</li>
+        </ol>
+      </nav>
+      <h1>Nous écrire</h1>
+      <p class="bandeau__texte">Le centre se trouve à UCAD 3, Cité Claudel, allées Bougainvillées, à Dakar.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="enveloppe">
+      <div class="contact-grille">
+
+        <div>
+          <div class="entete-section">
+            <h2>Coordonnées</h2>
           </div>
-          <div class="c-item">
-            <div class="c-ic"><i class="fas fa-phone" style="color:#2e6ec4"></i></div>
-            <div><strong>Téléphone</strong><span>+221 33 821 91 90</span></div>
-          </div>
-          <div class="c-item">
-            <div class="c-ic"><i class="fas fa-envelope" style="color:#2e6ec4"></i></div>
-            <div><strong>Email</strong><span><a href="mailto:nic@nic.sn/curi@ucad.edu.sn" style="color:#1a5296">nic@nic.sn/curi@ucad.edu.sn</a></span></div>
-          </div>
-          <div class="c-item">
-            <div class="c-ic"><i class="fas fa-clock" style="color:#2e6ec4"></i></div>
-            <div><strong>Horaires d'accueil</strong><span>Lun – Ven : 8h00 – 17h00<br/>Samedi : 8h00 – 12h00</span></div>
-          </div>
-          <div class="c-item">
-            <div class="c-ic"><i class="fas fa-globe" style="color:#2e6ec4"></i></div>
-            <div><strong>Site institutionnel</strong><span><a href="https://www.ucad.sn" target="_blank" style="color:#1a5296">www.ucad.sn</a></span></div>
+          <div class="coordonnees">
+            <div class="coordonnee">
+              <span class="coordonnee__marque">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <div>
+                <strong>Adresse</strong>
+                <span>UCAD 3, Cité Claudel, allées Bougainvillées,<br>Dakar, Sénégal</span>
+              </div>
+            </div>
+            <div class="coordonnee">
+              <span class="coordonnee__marque">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+              </span>
+              <div>
+                <strong>Téléphone</strong>
+                <a href="tel:+221338219190">+221 33 821 91 90</a>
+              </div>
+            </div>
+            <div class="coordonnee">
+              <span class="coordonnee__marque">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+              </span>
+              <div>
+                <strong>E-mail</strong>
+                <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
+              </div>
+            </div>
+            <div class="coordonnee">
+              <span class="coordonnee__marque">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </span>
+              <div>
+                <strong>Horaires d'accueil</strong>
+                <span><span class="a-confirmer">Horaires à confirmer</span></span>
+              </div>
+            </div>
+            <div class="coordonnee">
+              <span class="coordonnee__marque">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+              </span>
+              <div>
+                <strong>Étudiants du centre</strong>
+                <a href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div>
-        <h3 style="font-size:1.3rem;font-weight:700;color:#0b3060;margin-bottom:20px">Formulaire de contact</h3>
-        <form id="contactForm">
-          <div class="form-group">
-            <label for="nom">Nom complet *</label>
-            <input type="text" id="nom" required placeholder="Votre nom"/>
-            <span class="err-msg" id="nomErr"></span>
+
+        <form class="formulaire" id="formulaire-contact" novalidate>
+          <h2 style="font-size:var(--t-xl)">Écrire au centre</h2>
+
+          <div class="champ">
+            <label for="nom">Nom complet</label>
+            <input type="text" id="nom" name="nom" autocomplete="name" required>
+            <p class="champ__erreur" id="nom-erreur" role="alert"></p>
           </div>
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" required placeholder="votre@email.com"/>
-            <span class="err-msg" id="curiErr"></span>
+
+          <div class="champ">
+            <label for="email">Adresse e-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <p class="champ__erreur" id="email-erreur" role="alert"></p>
           </div>
-          <div class="form-group">
-            <label for="sujet">Sujet</label>
-            <input type="text" id="sujet" placeholder="Objet de votre message"/>
+
+          <div class="champ">
+            <label for="sujet">Sujet <span style="font-weight:400;color:var(--texte-doux)">(facultatif)</span></label>
+            <input type="text" id="sujet" name="sujet">
           </div>
-          <div class="form-group">
-            <label for="message">Message *</label>
-            <textarea id="message" rows="5" required placeholder="Votre message..."></textarea>
-            <span class="err-msg" id="messageErr"></span>
+
+          <div class="champ">
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" required></textarea>
+            <p class="champ__erreur" id="message-erreur" role="alert"></p>
           </div>
-          <button type="submit" class="btn btn-bleu" style="width:100%">
-            <i class="fas fa-paper-plane" style="margin-right:8px"></i>Envoyer le message
-          </button>
-          <div class="ok-msg" id="formOk" style="display:none">
-            <i class="fas fa-check-circle"></i> Votre message a été envoyé avec succès. Nous vous répondrons sous 48h.
-          </div>
+
+          <p class="message-etat" id="formulaire-etat" data-ton="info" role="status" hidden></p>
+
+          <button type="submit" class="bouton bouton--bleu" style="width:100%">Préparer le message</button>
+
+          <p class="formulaire__note">
+            Le site est hébergé en pages statiques : ce bouton ouvre votre
+            logiciel de messagerie avec le message déjà écrit. Vous gardez la
+            main sur l'envoi. Pour un envoi direct depuis la page, il faudra
+            brancher un service d'envoi — voir le fichier
+            <span class="domaine">README.md</span> du dépôt.
+          </p>
         </form>
+
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section gris">
-  <div class="container">
-    <div class="s-head fi"><div class="s-tag">Localisation</div><h2 class="s-titre">Nous trouver</h2><div class="filet"></div></div>
-    <!-- CARTE GOOGLE MAPS — UCAD Fann Résidence Dakar
-     La carte est interactive : on peut zoomer, déplacer,
-     voir les alentours et l'emplacement exact de l'UCAD/CURI -->
-<div style="border-radius:12px;overflow:hidden;border:1px solid #dde3ed;box-shadow:0 4px 16px rgba(11,48,96,.1)">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.7!2d-17.4677!3d14.6937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec10d3f4edd5675%3A0x76e01a0fd7cf00ad!2sUniversit%C3%A9%20Cheikh%20Anta%20Diop%20de%20Dakar!5e0!3m2!1sfr!2ssn!4v1"
-    width="100%"
-    height="420"
-    style="border:0;display:block"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-    title="Localisation UCAD CURI Dakar">
-  </iframe>
-</div>
-<div style="margin-top:12px;text-align:center">
-  <a href="https://maps.google.com/?q=Université+Cheikh+Anta+Diop+de+Dakar,+Fann+Résidence,+Dakar"
-     target="_blank"
-     class="btn btn-bleu">
-    <i class="fas fa-directions" style="margin-right:6px"></i>
-    Obtenir l'itinéraire
-  </a>
-</div>
-  </div>
-</section>
+  <section class="section section--brume" id="acces">
+    <div class="enveloppe">
+      <div class="entete-section">
+        <h2>Venir au centre</h2>
+        <p>UCAD 3 se trouve à la Cité Claudel, en face de l'hôtel Terrou Bi, allées Bougainvillées.</p>
+      </div>
+      <div class="carte-lieu">
+        <iframe
+          title="Carte de localisation du CURI, UCAD 3, Cité Claudel, Dakar"
+          src="https://www.google.com/maps?q=Cit%C3%A9%20Claudel%2C%20All%C3%A9es%20Bougainvill%C3%A9es%2C%20Dakar%2C%20S%C3%A9n%C3%A9gal&amp;output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p style="margin-top:1.25rem">
+        <a class="bouton bouton--contour" href="https://www.google.com/maps/search/?api=1&amp;query=Cit%C3%A9+Claudel+All%C3%A9es+Bougainvill%C3%A9es+Dakar" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+      </p>
+      <p style="margin-top:1rem;font-size:var(--t-s);color:var(--texte-doux);max-width:62ch">
+        La carte pointe la Cité Claudel. Pour afficher la position exacte du
+        bâtiment, remplacez l'adresse de la carte par le lien d'intégration
+        fourni par Google Maps depuis la fiche officielle du centre.
+      </p>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
- <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-    <img src="images/logo1.png "style="height:52px;object-fit:contain;margin-left:0">
-  </div>        
-  <p>Le CURI forme les spécialistes des technologies de l'internet pour le développement numérique de l'Afrique.</p>
-        <div class="footer-links"><a href="https://www.ucad.sn" target="_blank">ucad.sn</a><span>|</span><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></div>
-        <div class="footer-socials"><a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/?originalSubdomain=sn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://x.com/CURISENEGAL" target="_blank"><i class="fab fa-twitter"></i></a>
+</main>
+
+<footer class="pied">
+  <div class="enveloppe">
+    <div class="pied__grille">
+      <div>
+        <a class="pied__marque" href="index.html">
+          <img src="images/web/logo-curi.png" alt="" width="46" height="46">
+          <span>CURI</span>
+        </a>
+        <p class="pied__intro">
+          Centre Universitaire de Recherche et de Formation aux Technologies de
+          l'Internet, Université Cheikh Anta Diop de Dakar. Gestionnaire du
+          domaine national <span class="domaine">.sn</span>.
+        </p>
+        <div class="pied__reseaux">
+          <a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank" rel="noopener" aria-label="Le CURI sur Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/" target="_blank" rel="noopener" aria-label="Le CURI sur LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5A1.5 1.5 0 1 1 5 6.5a1.5 1.5 0 0 1 0-3ZM3.5 8h3v12.5h-3Zm6 0h2.9v1.7h.1c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v7.7h-3v-6.8c0-1.6 0-3.7-2.2-3.7s-2.6 1.8-2.6 3.6v6.9h-3Z"/></svg>
+          </a>
+          <a href="https://x.com/CURISENEGAL" target="_blank" rel="noopener" aria-label="Le CURI sur X">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6Zm-1.1 16h1.8L7.7 4.8H5.8Z"/></svg>
+          </a>
         </div>
       </div>
-      <div class="fcol">
-  <h5>Liens utiles</h5>
-  <ul>
-    <li><a href="https://www.ucad.sn" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      UCAD officiel
-    </a></li>
-    <li><a href="https://www.campusen.sn" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      CampuSen (orientation)
-    </a></li>
-    <li><a href="https://fad.curi.ucad.sn/?redirect=0" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      FAD CURI (formation à distance) 
-    </a></li>
-    <li><a href="http://bibnum.ucad.sn/" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>
-      Bibliothèque numérique
-    </a></li>
-   
-    <li><a href="https://pie.ucad.sn/" target="_blank">
-      <i class="fas fa-external-link-alt" style="margin-right:5px;font-size:.65rem"></i>Service Numérique
-    </a></li>
-  </ul>
-</div>
-      <div class="fcol"><h5>Navigation</h5><ul><li><a href="index.html">Accueil</a></li><li><a href="formation.html">Formations</a></li><li><a href="debouches.html">Débouchés</a></li><li><a href="equipe.html">Équipe</a></li><li><a href="evenements.html">Événements</a></li></ul></div>
-      <div class="fcol"><h5>Informations</h5><ul><li><a href="#">Admissions</a></li><li><a href="#">Calendrier</a></li><li><a href="#">Bibliothèque</a></li><li><a href="#">Stages</a></li><li><a href="#">Alumni</a></li></ul></div>
-      <div class="fcol"><h5>Contact</h5><ul><li><a href="#">Campus UCAD, Fann Résidence</a></li><li><a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a></li><li><a href="https://www.ucad.sn" target="_blank">www.ucad.sn</a></li><li><a href="contact.html">Formulaire de contact</a></li></ul></div>
+      <nav aria-labelledby="pied-site">
+        <h2 id="pied-site">Le site</h2>
+        <ul>
+          <li><a href="formation.html">Formations</a></li>
+          <li><a href="debouches.html">Débouchés</a></li>
+          <li><a href="equipe.html">Équipe</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="pied-liens">
+        <h2 id="pied-liens">Liens utiles</h2>
+        <ul>
+          <li><a href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a></li>
+          <li><a href="http://bibnum.ucad.sn/" target="_blank" rel="noopener">Bibliothèque numérique</a></li>
+          <li><a href="https://pie.ucad.sn/" target="_blank" rel="noopener">Services numériques UCAD</a></li>
+          <li><a href="https://www.campusen.sn" target="_blank" rel="noopener">Campusen</a></li>
+          <li><a href="https://www.ucad.sn" target="_blank" rel="noopener">Site de l'UCAD</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 id="pied-contact">Nous trouver</h2>
+        <div class="pied__contact" aria-labelledby="pied-contact">
+          <div>
+            <strong>Adresse</strong>
+            <span>UCAD 3, Cité Claudel,<br>allées Bougainvillées, Dakar</span>
+          </div>
+          <div>
+            <strong>Téléphone</strong>
+            <a href="tel:+221338219190">+221 33 821 91 90</a>
+          </div>
+          <div>
+            <strong>E-mail</strong>
+            <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© 2025 CURI — Université Cheikh Anta Diop de Dakar. Tous droits réservés.</span><span><a href="#">Mentions légales</a> | <a href="#">Confidentialité</a></span></div>
+    <div class="pied__bas">
+      <span>© <span data-annee>2026</span> CURI — Université Cheikh Anta Diop de Dakar</span>
+      <ul>
+        <li><a href="contact.html">Mentions légales</a></li>
+        <li><a href="contact.html">Confidentialité</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
