@@ -56,10 +56,16 @@ Tout est en haut de `css/style.css`, dans le bloc `:root`. Par exemple le
 bleu principal :
 
 ```css
---bleu: #1c5ba8;
+--bleu: #17539c;
 ```
 
 Changez la valeur une fois, elle s'applique partout.
+
+### Ajouter une diapositive à l'accueil
+
+Dans `index.html`, copier un bloc `<div class="diapo__ecran">` et ajouter un
+bouton `<button class="diapo__point">` dans `.diapo__points`. Le script fait
+défiler automatiquement et se met en pause au survol.
 
 ### Ajouter un événement
 
@@ -190,10 +196,25 @@ Ces règles ont guidé la refonte. Les respecter évite de casser ce qui marche.
 
 **Polices**
 
-Le site charge Bricolage Grotesque et IBM Plex Sans depuis Google Fonts. Pour
-un site plus rapide et qui fonctionne sans dépendance extérieure, on peut
-télécharger ces polices (licence libre SIL OFL), les placer dans un dossier
-`fonts/` et les déclarer avec `@font-face` dans `css/style.css`.
+Le texte est en **Rubik**, chargée depuis Google Fonts. Les titres sont en
+**Georgia**, une police déjà présente sur la plupart des appareils : rien à
+télécharger, et un repli serif propre là où elle manque. C'est le même choix
+que le site de l'UAM, qui a servi de référence.
+
+Pour un site qui fonctionne sans dépendance extérieure, on peut télécharger
+Rubik (licence libre SIL OFL), la placer dans un dossier `fonts/` et la
+déclarer avec `@font-face` dans `css/style.css`.
+
+**Mise en page**
+
+Les titres de section sont centrés, précédés d'une petite ligne en capitales
+(`.tete__sur`). Le contenu tient dans un conteneur de 1140 px (`.enveloppe`).
+Les sections alternent fond blanc, fond gris clair (`.section--gris`) et fond
+bleu nuit (`.section--marine`).
+
+Les blocs marqués `.apparait` se révèlent au défilement. L'effet ne
+s'applique que si le JavaScript a pu marquer la page : sans JavaScript, tout
+reste visible. Ne retirez pas cette sécurité.
 
 ---
 

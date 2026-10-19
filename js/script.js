@@ -3,20 +3,22 @@
    Centre Universitaire de Recherche et de Formation aux Technologies
    de l'Internet — Université Cheikh Anta Diop de Dakar
 
-   Ce fichier est volontairement écrit en JavaScript simple, sans
-   bibliothèque, pour qu'un étudiant puisse le reprendre et le modifier.
+   JavaScript simple, sans bibliothèque, pour qu'un étudiant puisse le
+   reprendre et le modifier.
 
-   Sommaire :
-     1.  Index de recherche          — le seul endroit à modifier pour la recherche
+   Sommaire
+     1.  Index de recherche    — le seul endroit à modifier pour la recherche
      2.  Outils communs
      3.  En-tête collant
      4.  Menu mobile
      5.  Recherche dans l'en-tête
-     6.  Compteurs de chiffres
-     7.  Accordéon
-     8.  Galerie et visionneuse
-     9.  Formulaire de contact
-     10. Année du pied de page
+     6.  Diaporama d'accueil
+     7.  Carrousels
+     8.  Apparition au défilement
+     9.  Accordéon
+     10. Galerie et visionneuse
+     11. Formulaire de contact
+     12. Année du pied de page
    ========================================================================== */
 
 (function () {
@@ -88,14 +90,14 @@
       extrait: "Les métiers visés à la sortie et les secteurs qui recrutent.",
       page: "debouches.html",
       section: "Débouchés",
-      mots: "metier métier emploi travail carriere carrière salaire embauche stage insertion"
+      mots: "metier métier emploi travail carriere carrière embauche stage insertion"
     },
     {
       titre: "L'équipe du CURI",
       extrait: "Direction, enseignants-chercheurs et équipe administrative du centre.",
       page: "equipe.html",
       section: "Équipe",
-      mots: "enseignant professeur directeur personnel encadrement contact responsable"
+      mots: "enseignant professeur directeur personnel encadrement responsable pole pôle"
     },
     {
       titre: "Événements et actualités",
@@ -137,7 +139,7 @@
       extrait: "Les cours, ressources et résultats des étudiants du centre.",
       page: "https://fad.curi.ucad.sn",
       section: "Lien externe",
-      mots: "moodle cours en ligne ressources notes resultats résultats plateforme etudiant étudiant connexion"
+      mots: "moodle cours en ligne ressources notes resultats résultats plateforme connexion"
     }
   ];
 
@@ -175,7 +177,7 @@
   ).matches;
 
   /* ========================================================================
-     3. En-tête collant : ombre une fois la page défilée
+     3. En-tête collant
      ===================================================================== */
 
   var entete = $(".entete");
@@ -200,30 +202,27 @@
     bascule.setAttribute("aria-expanded", "false");
     bascule.setAttribute("aria-label", "Ouvrir le menu");
     tiroir.classList.remove("est-ouvert");
-    document.body.classList.remove("menu-ouvert");
+    document.body.classList.remove("sans-defilement");
   }
 
   if (bascule && tiroir) {
     bascule.addEventListener("click", function () {
-      var ouvert = bascule.getAttribute("aria-expanded") === "true";
-      if (ouvert) {
+      if (bascule.getAttribute("aria-expanded") === "true") {
         fermerMenu();
         return;
       }
       bascule.setAttribute("aria-expanded", "true");
       bascule.setAttribute("aria-label", "Fermer le menu");
       tiroir.classList.add("est-ouvert");
-      document.body.classList.add("menu-ouvert");
+      document.body.classList.add("sans-defilement");
     });
 
-    // Fermer en cliquant un lien du tiroir
     $$("a", tiroir).forEach(function (lien) {
       lien.addEventListener("click", fermerMenu);
     });
 
-    // Fermer si la fenêtre repasse en version bureau
     window.addEventListener("resize", function () {
-      if (window.innerWidth >= 1000) fermerMenu();
+      if (window.innerWidth >= 1024) fermerMenu();
     });
   }
 
@@ -231,7 +230,7 @@
      5. Recherche fondue dans l'en-tête
      ===================================================================== */
 
-  /** Calcule un score de pertinence ; 0 signifie « pas de correspondance ». */
+  /** Score de pertinence ; 0 signifie « pas de correspondance ». */
   function scorer(entree, termes) {
     var titre = normaliser(entree.titre);
     var extrait = normaliser(entree.extrait);
@@ -273,16 +272,9 @@
       });
   }
 
-  /**
-   * Met en évidence les termes trouvés, sans tenir compte des accents.
-   * On cherche les positions sur la version sans accent, puis on découpe
-   * le texte d'origine aux mêmes positions.
-   */
+  /** Met en évidence les termes trouvés, sans tenir compte des accents. */
   function surligner(texte, termes) {
     var sansAccent = normaliser(texte);
-
-    // Sécurité : si la normalisation a changé la longueur, on renonce au
-    // surlignage plutôt que de couper le texte au mauvais endroit.
     if (sansAccent.length !== texte.length) return echapper(texte);
 
     var plages = [];
@@ -302,7 +294,6 @@
       return a[0] - b[0];
     });
 
-    // Fusionne les plages qui se chevauchent
     var fusion = [plages[0]];
     for (var i = 1; i < plages.length; i++) {
       var derniere = fusion[fusion.length - 1];
@@ -327,12 +318,10 @@
   }
 
   var ICONE_RESULTAT =
-    '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>';
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>';
 
   function installerRecherche(conteneur, champ, panneau) {
     if (!champ || !panneau) return;
-
-    var resultats = [];
 
     function fermerPanneau() {
       panneau.classList.remove("est-visible");
@@ -341,7 +330,7 @@
 
     function dessiner(requete) {
       var termes = normaliser(requete).split(/\s+/).filter(Boolean);
-      resultats = chercher(requete);
+      var resultats = chercher(requete);
 
       if (!requete.trim()) {
         fermerPanneau();
@@ -392,7 +381,6 @@
       if (champ.value.trim()) dessiner(champ.value);
     });
 
-    // Navigation au clavier dans la liste
     champ.addEventListener("keydown", function (evenement) {
       var liens = $$(".recherche__resultat", panneau);
       if (evenement.key === "ArrowDown" && liens.length) {
@@ -465,55 +453,156 @@
   });
 
   /* ========================================================================
-     6. Compteurs de chiffres — une seule fois, à l'entrée dans l'écran
+     6. Diaporama d'accueil
+
+     Pour ajouter une diapositive : copier un bloc .diapo__ecran dans
+     index.html et ajouter un bouton dans .diapo__points. Le script
+     s'occupe du reste.
      ===================================================================== */
 
-  var compteurs = $$("[data-compteur]");
+  var diapo = $(".diapo");
 
-  if (compteurs.length && "IntersectionObserver" in window) {
-    var animerCompteur = function (element) {
-      var cible = parseFloat(element.getAttribute("data-compteur"));
-      if (isNaN(cible)) return;
-      if (mouvementReduit) {
-        element.textContent = cible.toLocaleString("fr-FR");
-        return;
-      }
-      var duree = 1100;
-      var depart = performance.now();
+  if (diapo) {
+    var ecrans = $$(".diapo__ecran", diapo);
+    var points = $$(".diapo__point", diapo);
+    var position = 0;
+    var minuterie = null;
+    var DUREE = 6500;
 
-      var pas = function (maintenant) {
-        var avancement = Math.min((maintenant - depart) / duree, 1);
-        // Courbe douce en fin de course
-        var douceur = 1 - Math.pow(1 - avancement, 3);
-        element.textContent = Math.round(cible * douceur).toLocaleString("fr-FR");
-        if (avancement < 1) requestAnimationFrame(pas);
-      };
-      requestAnimationFrame(pas);
+    var montrer = function (index) {
+      position = (index + ecrans.length) % ecrans.length;
+      ecrans.forEach(function (ecran, i) {
+        ecran.classList.toggle("est-active", i === position);
+        ecran.setAttribute("aria-hidden", i === position ? "false" : "true");
+      });
+      points.forEach(function (point, i) {
+        point.setAttribute("aria-selected", i === position ? "true" : "false");
+      });
     };
 
-    var observateur = new IntersectionObserver(
-      function (entrees) {
-        entrees.forEach(function (entree) {
-          if (!entree.isIntersecting) return;
-          animerCompteur(entree.target);
-          observateur.unobserve(entree.target);
-        });
-      },
-      { threshold: 0.4 }
-    );
+    var lancer = function () {
+      if (mouvementReduit || ecrans.length < 2) return;
+      arreter();
+      minuterie = window.setInterval(function () {
+        montrer(position + 1);
+      }, DUREE);
+    };
 
-    compteurs.forEach(function (element) {
-      observateur.observe(element);
+    var arreter = function () {
+      if (minuterie) window.clearInterval(minuterie);
+      minuterie = null;
+    };
+
+    points.forEach(function (point, i) {
+      point.addEventListener("click", function () {
+        montrer(i);
+        lancer();
+      });
     });
-  } else {
-    compteurs.forEach(function (element) {
-      var cible = parseFloat(element.getAttribute("data-compteur"));
-      if (!isNaN(cible)) element.textContent = cible.toLocaleString("fr-FR");
+
+    var avant = $(".diapo__fleche--avant", diapo);
+    var apres = $(".diapo__fleche--apres", diapo);
+
+    if (avant) {
+      avant.addEventListener("click", function () {
+        montrer(position - 1);
+        lancer();
+      });
+    }
+    if (apres) {
+      apres.addEventListener("click", function () {
+        montrer(position + 1);
+        lancer();
+      });
+    }
+
+    // On met en pause quand la personne survole ou navigue au clavier
+    diapo.addEventListener("mouseenter", arreter);
+    diapo.addEventListener("mouseleave", lancer);
+    diapo.addEventListener("focusin", arreter);
+    diapo.addEventListener("focusout", lancer);
+
+    // On met aussi en pause quand l'onglet n'est pas visible
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) arreter();
+      else lancer();
     });
+
+    montrer(0);
+    lancer();
   }
 
   /* ========================================================================
-     7. Accordéon
+     7. Carrousels
+     ===================================================================== */
+
+  $$(".carrousel").forEach(function (carrousel) {
+    var piste = $(".carrousel__piste", carrousel);
+    var precedent = $(".carrousel__bouton--precedent", carrousel);
+    var suivant = $(".carrousel__bouton--suivant", carrousel);
+    if (!piste) return;
+
+    var pas = function () {
+      var premier = piste.firstElementChild;
+      if (!premier) return piste.clientWidth;
+      return premier.getBoundingClientRect().width + 20;
+    };
+
+    if (precedent) {
+      precedent.addEventListener("click", function () {
+        piste.scrollBy({ left: -pas(), behavior: "smooth" });
+      });
+    }
+    if (suivant) {
+      suivant.addEventListener("click", function () {
+        piste.scrollBy({ left: pas(), behavior: "smooth" });
+      });
+    }
+
+    // Désactive les boutons aux extrémités
+    var majBoutons = function () {
+      var max = piste.scrollWidth - piste.clientWidth - 2;
+      if (precedent) precedent.disabled = piste.scrollLeft <= 2;
+      if (suivant) suivant.disabled = piste.scrollLeft >= max;
+      if (precedent) precedent.style.opacity = precedent.disabled ? "0.4" : "1";
+      if (suivant) suivant.style.opacity = suivant.disabled ? "0.4" : "1";
+    };
+
+    piste.addEventListener("scroll", majBoutons, { passive: true });
+    window.addEventListener("resize", majBoutons);
+    majBoutons();
+  });
+
+  /* ========================================================================
+     8. Apparition au défilement
+     ===================================================================== */
+
+  var aAnimer = $$(".apparait");
+
+  if (aAnimer.length) {
+    if (mouvementReduit || !("IntersectionObserver" in window)) {
+      aAnimer.forEach(function (element) {
+        element.classList.add("est-visible");
+      });
+    } else {
+      var observateur = new IntersectionObserver(
+        function (entrees) {
+          entrees.forEach(function (entree) {
+            if (!entree.isIntersecting) return;
+            entree.target.classList.add("est-visible");
+            observateur.unobserve(entree.target);
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      aAnimer.forEach(function (element) {
+        observateur.observe(element);
+      });
+    }
+  }
+
+  /* ========================================================================
+     9. Accordéon
      ===================================================================== */
 
   $$(".accordeon__bouton").forEach(function (bouton) {
@@ -528,7 +617,7 @@
   });
 
   /* ========================================================================
-     8. Galerie : filtres et visionneuse
+     10. Galerie : filtres et visionneuse
      ===================================================================== */
 
   var galerie = $(".galerie");
@@ -563,24 +652,23 @@
       });
     };
 
-    var afficher = function (position) {
+    var afficher = function (index) {
       var liste = elementsVisibles();
       if (!liste.length) return;
-      positionVue = (position + liste.length) % liste.length;
-      var bouton = liste[positionVue];
-      var image = $("img", bouton);
+      positionVue = (index + liste.length) % liste.length;
+      var image = $("img", liste[positionVue]);
       if (!image) return;
       imageVue.src = image.getAttribute("data-grand") || image.src;
       imageVue.alt = image.alt;
       if (legendeVue) legendeVue.textContent = image.alt;
     };
 
-    var ouvrirVisionneuse = function (position, source) {
+    var ouvrirVisionneuse = function (index, source) {
       declencheur = source || null;
-      afficher(position);
+      afficher(index);
       visionneuse.classList.add("est-ouverte");
       visionneuse.removeAttribute("aria-hidden");
-      document.body.classList.add("menu-ouvert");
+      document.body.classList.add("sans-defilement");
       var fermer = $(".visionneuse__fermer", visionneuse);
       if (fermer) fermer.focus();
     };
@@ -588,28 +676,27 @@
     var fermerVisionneuse = function () {
       visionneuse.classList.remove("est-ouverte");
       visionneuse.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("menu-ouvert");
+      document.body.classList.remove("sans-defilement");
       if (declencheur) declencheur.focus();
     };
 
     $$(".galerie__element", galerie).forEach(function (bouton) {
       bouton.addEventListener("click", function () {
-        var liste = elementsVisibles();
-        ouvrirVisionneuse(liste.indexOf(bouton), bouton);
+        ouvrirVisionneuse(elementsVisibles().indexOf(bouton), bouton);
       });
     });
 
-    var precedent = $(".visionneuse__precedent", visionneuse);
-    var suivant = $(".visionneuse__suivant", visionneuse);
+    var precedentV = $(".visionneuse__precedent", visionneuse);
+    var suivantV = $(".visionneuse__suivant", visionneuse);
     var fermerBouton = $(".visionneuse__fermer", visionneuse);
 
-    if (precedent) {
-      precedent.addEventListener("click", function () {
+    if (precedentV) {
+      precedentV.addEventListener("click", function () {
         afficher(positionVue - 1);
       });
     }
-    if (suivant) {
-      suivant.addEventListener("click", function () {
+    if (suivantV) {
+      suivantV.addEventListener("click", function () {
         afficher(positionVue + 1);
       });
     }
@@ -635,13 +722,12 @@
   });
 
   /* ========================================================================
-     9. Formulaire de contact
+     11. Formulaire de contact
 
      Le site est hébergé en pages statiques : il n'y a pas de serveur pour
      recevoir les messages. Le formulaire vérifie les champs puis ouvre le
-     logiciel de messagerie de la personne avec le message pré-rempli.
-     Pour un envoi direct, il faudra brancher un service d'envoi (Formspree,
-     Web3Forms, EmailJS…) à la place de la fonction envoyer() ci-dessous.
+     logiciel de messagerie avec le message pré-rempli. Pour un envoi
+     direct, brancher ici un service d'envoi (Formspree, Web3Forms…).
      ===================================================================== */
 
   var formulaire = $("#formulaire-contact");
@@ -651,8 +737,7 @@
 
     var regles = {
       nom: function (valeur) {
-        if (!valeur.trim()) return "Indiquez votre nom.";
-        return "";
+        return valeur.trim() ? "" : "Indiquez votre nom.";
       },
       email: function (valeur) {
         if (!valeur.trim()) return "Indiquez votre adresse e-mail.";
@@ -714,45 +799,41 @@
         return;
       }
 
-      var nom = formulaire.elements.nom.value.trim();
-      var email = formulaire.elements.email.value.trim();
       var sujetChamp = formulaire.elements.sujet;
-      var sujet = sujetChamp && sujetChamp.value.trim()
-        ? sujetChamp.value.trim()
-        : "Message depuis le site du CURI";
-      var message = formulaire.elements.message.value.trim();
+      var sujet =
+        sujetChamp && sujetChamp.value.trim()
+          ? sujetChamp.value.trim()
+          : "Message depuis le site du CURI";
 
       var corps =
-        message +
+        formulaire.elements.message.value.trim() +
         "\n\n— — —\n" +
-        nom +
+        formulaire.elements.nom.value.trim() +
         "\n" +
-        email +
+        formulaire.elements.email.value.trim() +
         "\nMessage envoyé depuis le site du CURI.";
 
-      var lien =
+      if (etat) {
+        etat.hidden = false;
+        etat.setAttribute("data-ton", "info");
+        etat.textContent =
+          "Votre logiciel de messagerie va s'ouvrir avec le message prêt à envoyer. S'il ne s'ouvre pas, écrivez à " +
+          ADRESSE_DESTINATAIRE +
+          ".";
+      }
+
+      window.location.href =
         "mailto:" +
         ADRESSE_DESTINATAIRE +
         "?subject=" +
         encodeURIComponent(sujet) +
         "&body=" +
         encodeURIComponent(corps);
-
-      if (etat) {
-        etat.hidden = false;
-        etat.setAttribute("data-ton", "info");
-        etat.textContent =
-          "Votre logiciel de messagerie va s'ouvrir avec le message prêt à envoyer. S'il ne s'ouvre pas, écrivez directement à " +
-          ADRESSE_DESTINATAIRE +
-          ".";
-      }
-
-      window.location.href = lien;
     });
   }
 
   /* ========================================================================
-     10. Année du pied de page
+     12. Année du pied de page
      ===================================================================== */
 
   $$("[data-annee]").forEach(function (element) {

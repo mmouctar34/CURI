@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js');</script>
 <title>CURI — Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet | UCAD</title>
 <meta name="description" content="Le CURI forme au développement web et mobile, au multimédia et au commerce en ligne à l'Université Cheikh Anta Diop de Dakar, et gère le domaine national .sn.">
 <link rel="canonical" href="https://mmouctar34.github.io/CURI/index.html">
@@ -11,23 +12,47 @@
 <meta property="og:description" content="Formations au numérique à l'UCAD et gestion du domaine national .sn.">
 <meta property="og:image" content="images/web/hero-1600.webp">
 <meta property="og:locale" content="fr_SN">
-<meta name="theme-color" content="#0a1c33">
+<meta name="theme-color" content="#0f2440">
 <link rel="icon" href="images/web/logo-curi.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <a class="saut-contenu" href="#contenu">Aller au contenu</a>
 
-<!-- ============================ EN-TÊTE ============================ -->
+<!-- ======================= BARRE DU HAUT ======================= -->
+<div class="barre-haut">
+  <div class="enveloppe barre-haut__interieur">
+    <div class="barre-haut__gauche">
+      <span>Bienvenue au CURI</span>
+      <a href="tel:+221338219190">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        +221 33 821 91 90
+      </a>
+      <a href="mailto:curi@ucad.edu.sn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        curi@ucad.edu.sn
+      </a>
+    </div>
+    <div class="barre-haut__droite">
+      <span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        UCAD 3, Cité Claudel, Dakar
+      </span>
+      <a href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= EN-TÊTE ======================= -->
 <header class="entete">
   <div class="enveloppe entete__interieur">
 
     <a class="marque" href="index.html">
-      <img src="images/web/logo-curi.png" alt="" width="42" height="42">
+      <img src="images/web/logo-curi.png" alt="" width="44" height="44">
       <span>
         <span class="marque__nom">CURI</span>
         <span class="marque__sous">Technologies de l'Internet · UCAD</span>
@@ -37,9 +62,25 @@
     <nav class="nav-principale" aria-label="Navigation principale">
       <ul>
         <li><a href="index.html" aria-current="page">Accueil</a></li>
-        <li><a href="formation.html">Formations</a></li>
+        <li class="a-sous-menu">
+          <a href="formation.html">Formations</a>
+          <ul class="sous-menu">
+            <li><a href="formation.html#types">Initiale, continue, certifiante</a></li>
+            <li><a href="formation.html#developpement">Développement web et mobile</a></li>
+            <li><a href="formation.html#multimedia">Technologie web et multimédia</a></li>
+            <li><a href="formation.html#ecommerce">E-commerce et marketing digital</a></li>
+            <li><a href="formation.html#candidater">Candidater</a></li>
+          </ul>
+        </li>
         <li><a href="debouches.html">Débouchés</a></li>
-        <li><a href="equipe.html">Équipe</a></li>
+        <li class="a-sous-menu">
+          <a href="equipe.html">Le centre</a>
+          <ul class="sous-menu">
+            <li><a href="equipe.html">Équipe et direction</a></li>
+            <li><a href="equipe.html#poles">Les pôles</a></li>
+            <li><a href="index.html#missions">NIC Sénégal et le .sn</a></li>
+          </ul>
+        </li>
         <li><a href="evenements.html">Événements</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -47,7 +88,7 @@
 
     <div class="recherche">
       <div class="recherche__champ">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <label class="lecture-seule" for="recherche-bureau">Rechercher sur le site</label>
         <input type="search" id="recherche-bureau" placeholder="Rechercher…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="resultats-bureau">
         <button type="button" class="recherche__vider" aria-label="Effacer la recherche">✕</button>
@@ -62,23 +103,23 @@
   </div>
 </header>
 
-<!-- Menu mobile -->
+<!-- ======================= MENU MOBILE ======================= -->
 <div class="tiroir" id="tiroir-menu">
   <div class="tiroir__recherche">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <label class="lecture-seule" for="recherche-mobile">Rechercher sur le site</label>
     <input type="search" id="recherche-mobile" placeholder="Rechercher sur le site…" autocomplete="off">
   </div>
-  <div class="recherche__panneau tiroir__panneau" style="position:static;opacity:1;transform:none;pointer-events:auto;box-shadow:none;border:0;padding:0"></div>
+  <div class="recherche__panneau tiroir__panneau" style="position:static;opacity:1;transform:none;pointer-events:auto;box-shadow:none;border:0;padding:0;max-height:none"></div>
 
   <nav aria-label="Navigation mobile">
     <ul>
-      <li><a href="index.html" aria-current="page">Accueil <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="formation.html">Formations <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="debouches.html">Débouchés <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="equipe.html">Équipe <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="evenements.html">Événements <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="contact.html">Contact <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="index.html" aria-current="page">Accueil <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="formation.html">Formations <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="debouches.html">Débouchés <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="equipe.html">Le centre <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="evenements.html">Événements <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="contact.html">Contact <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
     </ul>
   </nav>
 
@@ -89,332 +130,452 @@
   <div class="tiroir__contact">
     <a href="tel:+221338219190">+221 33 821 91 90</a>
     <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
-    <span>UCAD 3, Cité Claudel, Dakar</span>
+    <span>UCAD 3, Cité Claudel, allées Bougainvillées, Dakar</span>
   </div>
 </div>
 
 <main id="contenu">
 
-  <!-- ============================ HÉROS ============================ -->
-  <section class="heros">
-    <div class="heros__fond">
-      <img src="images/web/hero-1600.webp"
-           srcset="images/web/hero-900.webp 900w, images/web/hero-1600.webp 1080w"
-           sizes="100vw"
-           alt="" width="1080" height="547" fetchpriority="high">
-    </div>
-    <div class="heros__voile"></div>
+  <!-- ======================= DIAPORAMA ======================= -->
+  <section class="diapo" aria-label="Présentation du centre" aria-roledescription="carrousel">
+    <div class="diapo__vue">
 
-    <div class="enveloppe heros__interieur">
-      <div class="heros__contenu anime-entree">
-        <p class="heros__domaine">
-          <span class="heros__point"></span>
-          nic.sn — registre du domaine national
-        </p>
-        <h1>L'internet sénégalais s'apprend ici<span class="point-or">.</span></h1>
-        <p class="heros__texte">
-          Le CURI forme au développement, au multimédia et au commerce en ligne
-          à l'Université Cheikh Anta Diop — et gère le domaine
-          <span class="domaine">.sn</span>, confié à l'UCAD depuis 1993.
-        </p>
-        <div class="heros__actions">
-          <a class="bouton bouton--or" href="formation.html">Voir les formations</a>
-          <a class="bouton bouton--clair" href="contact.html">Nous écrire</a>
+      <div class="diapo__ecran est-active" aria-hidden="false">
+        <img src="images/web/hero-1600.webp" srcset="images/web/hero-900.webp 900w, images/web/hero-1600.webp 1080w" sizes="100vw" alt="Étudiants du CURI réunis sur le campus" width="1080" height="547" fetchpriority="high">
+        <div class="diapo__voile"></div>
+      </div>
+
+      <div class="diapo__ecran" aria-hidden="true">
+        <img src="images/web/vr-1200.webp" srcset="images/web/vr-700.webp 700w, images/web/vr-1200.webp 1200w" sizes="100vw" alt="Participants portant des casques de réalité virtuelle au laboratoire du centre" width="1200" height="800" loading="lazy">
+        <div class="diapo__voile"></div>
+      </div>
+
+      <div class="diapo__ecran" aria-hidden="true">
+        <img src="images/web/amphi-1200.webp" srcset="images/web/amphi-700.webp 700w, images/web/amphi-1200.webp 1080w" sizes="100vw" alt="Amphithéâtre de l'UCAD rempli lors d'une conférence du centre" width="1080" height="608" loading="lazy">
+        <div class="diapo__voile"></div>
+      </div>
+
+      <div class="diapo__contenu">
+        <div class="enveloppe">
+          <p class="diapo__etiquette">Université Cheikh Anta Diop de Dakar</p>
+          <h1 class="diapo__titre">L'internet sénégalais s'apprend ici.</h1>
+          <p class="diapo__texte">
+            Le CURI forme au développement, au multimédia et au commerce en
+            ligne — et gère le domaine national .sn, confié à l'UCAD depuis 1993.
+          </p>
+          <div class="diapo__actions">
+            <a class="bouton bouton--or" href="formation.html">Voir les formations</a>
+            <a class="bouton bouton--clair" href="contact.html">Nous écrire</a>
+          </div>
         </div>
       </div>
+
+      <button type="button" class="diapo__fleche diapo__fleche--avant" aria-label="Image précédente">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="diapo__fleche diapo__fleche--apres" aria-label="Image suivante">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <div class="diapo__points" role="tablist" aria-label="Choisir une image">
+        <button type="button" class="diapo__point" role="tab" aria-selected="true" aria-label="Image 1"></button>
+        <button type="button" class="diapo__point" role="tab" aria-selected="false" aria-label="Image 2"></button>
+        <button type="button" class="diapo__point" role="tab" aria-selected="false" aria-label="Image 3"></button>
+      </div>
+
     </div>
   </section>
 
-  <!-- Rail de repères -->
-  <div class="enveloppe rail">
-    <div class="rail__grille">
-      <div class="rail__bloc">
-        <span class="rail__nombre">1993</span>
-        <span class="rail__legende">Le domaine <span class="domaine">.sn</span> est confié à l'UCAD</span>
-      </div>
-      <div class="rail__bloc">
-        <span class="rail__nombre">2021</span>
-        <span class="rail__legende">Création du centre, en février</span>
-      </div>
-      <div class="rail__bloc">
-        <span class="rail__nombre">3</span>
-        <span class="rail__legende">Spécialités en formation initiale</span>
-      </div>
-      <div class="rail__bloc">
-        <span class="rail__nombre">2 <span class="unite">ans</span></span>
-        <span class="rail__legende">Pour le diplôme de formation initiale</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================ DEUX MISSIONS ============================ -->
-  <section class="section" id="missions">
-    <div class="enveloppe">
-      <div class="entete-section entete-section--large">
-        <h2>Un centre, deux métiers</h2>
-        <p>Le CURI enseigne les technologies de l'Internet, et il en fait tourner une partie : le registre du domaine national.</p>
-      </div>
-
-      <div class="missions">
-
-        <article class="mission">
-          <span class="mission__marque">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
-          </span>
-          <h3>Former</h3>
-          <p>
-            Trois spécialités en formation initiale, ouvertes aussi aux
-            professionnels en formation continue et certifiante. Les cours se
-            tiennent sur le campus, avec des salles de travaux pratiques et un
-            laboratoire de réalité virtuelle et augmentée.
-          </p>
-          <p class="mission__note">
-            <a class="lien-fleche" href="formation.html">
-              Les formations en détail
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </p>
-        </article>
-
-        <article class="mission mission--accent">
-          <span class="mission__marque">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/></svg>
-          </span>
-          <h3>Faire tourner le <span class="domaine">.sn</span></h3>
-          <p>
-            La gestion du domaine national est confiée à l'UCAD depuis 1993 et
-            portée par NIC Sénégal. Le centre travaille avec l'ICANN, l'AFNIC et
-            l'AFTLD, et organise des ateliers DNS et DNSSEC pour les
-            professionnels de la région.
-          </p>
-          <p class="mission__note">
-            <a class="lien-fleche" href="evenements.html#dnssec" style="color:var(--or-clair)">
-              Les ateliers techniques
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </p>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================ FORMATIONS ============================ -->
-  <section class="section section--brume">
-    <div class="enveloppe">
-      <div class="entete-rang">
-        <div class="entete-section">
-          <h2>Trois spécialités</h2>
-          <p>Deux ans de formation initiale, un diplôme, un métier.</p>
-        </div>
-        <a class="bouton bouton--contour" href="formation.html">Toutes les formations</a>
-      </div>
-
-      <div class="formations">
-
-        <a class="formation" href="formation.html#developpement">
-          <div class="formation__corps">
-            <div class="formation__tete">
-              <h3>Développement web et mobile</h3>
-              <span class="formation__fleche" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
-              </span>
-            </div>
-            <p>Concevoir une application complète et la mettre en production : interface, serveur, base de données, téléphone.</p>
-            <p class="formation__meta">
-              <span>Formation initiale</span>
-              <span>2 ans</span>
-              <span>Projet de fin d'études</span>
-            </p>
-          </div>
-          <div class="formation__vignette">
-            <img src="images/web/code-1000.webp" srcset="images/web/code-620.webp 620w, images/web/code-1000.webp 736w" sizes="22rem" alt="" width="736" height="571" loading="lazy">
-          </div>
-        </a>
-
-        <a class="formation" href="formation.html#multimedia">
-          <div class="formation__corps">
-            <div class="formation__tete">
-              <h3>Technologie web et multimédia</h3>
-              <span class="formation__fleche" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
-              </span>
-            </div>
-            <p>Produire les contenus et les interfaces d'un site : graphisme, audiovisuel, intégration et publication en ligne.</p>
-            <p class="formation__meta">
-              <span>Formation initiale</span>
-              <span>2 ans</span>
-              <span>Atelier et studio</span>
-            </p>
-          </div>
-          <div class="formation__vignette">
-            <img src="images/web/vr-1200.webp" srcset="images/web/vr-700.webp 700w, images/web/vr-1200.webp 1200w" sizes="22rem" alt="" width="1200" height="800" loading="lazy">
-          </div>
-        </a>
-
-        <a class="formation" href="formation.html#ecommerce">
-          <div class="formation__corps">
-            <div class="formation__tete">
-              <h3>E-commerce et marketing digital</h3>
-              <span class="formation__fleche" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
-              </span>
-            </div>
-            <p>Lancer et piloter une activité en ligne : stratégie, acquisition, contenus, paiement et mesure des résultats.</p>
-            <p class="formation__meta">
-              <span>Formation initiale</span>
-              <span>2 ans</span>
-              <span>Projet d'entreprise</span>
-            </p>
-          </div>
-          <div class="formation__vignette">
-            <img src="images/web/travail-1000.webp" srcset="images/web/travail-620.webp 620w, images/web/travail-1000.webp 736w" sizes="22rem" alt="" width="736" height="981" loading="lazy">
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================ UNE ANNÉE AU CURI ============================ -->
+  <!-- ======================= CHIFFRES ======================= -->
   <section class="section">
     <div class="enveloppe">
-      <div class="entete-section">
-        <h2>Une année au centre</h2>
-        <p>Du premier cours au projet de fin d'études, le déroulé est le même pour les trois spécialités.</p>
-      </div>
+      <div class="chiffres apparait">
 
-      <div class="sequence">
-        <ol class="sequence__liste">
-          <li class="sequence__etape">
-            <span class="sequence__numero" aria-hidden="true">1</span>
-            <div>
-              <h3>Cours et travaux pratiques</h3>
-              <p>Des séances en salle, suivies d'exercices sur machine dans les salles du centre.</p>
-            </div>
-          </li>
-          <li class="sequence__etape">
-            <span class="sequence__numero" aria-hidden="true">2</span>
-            <div>
-              <h3>Encadrement pédagogique</h3>
-              <p>Un suivi rapproché par les enseignants, en petit groupe.</p>
-            </div>
-          </li>
-          <li class="sequence__etape">
-            <span class="sequence__numero" aria-hidden="true">3</span>
-            <div>
-              <h3>Laboratoires</h3>
-              <p>Salles équipées pour le réseau, le développement, et le laboratoire de réalité virtuelle et augmentée.</p>
-            </div>
-          </li>
-          <li class="sequence__etape">
-            <span class="sequence__numero" aria-hidden="true">4</span>
-            <div>
-              <h3>Projets de semestre</h3>
-              <p>Un travail en équipe rendu et soutenu à la fin de chaque semestre.</p>
-            </div>
-          </li>
-          <li class="sequence__etape">
-            <span class="sequence__numero" aria-hidden="true">5</span>
-            <div>
-              <h3>Vie de promotion</h3>
-              <p>Journées d'intégration, hackathons et ateliers ouverts aux étudiants.</p>
-            </div>
-          </li>
-          <li class="sequence__etape">
-            <span class="sequence__numero" aria-hidden="true">6</span>
-            <div>
-              <h3>Projet de fin d'études</h3>
-              <p>Le travail qui clôt le cursus et sert de première référence professionnelle.</p>
-            </div>
-          </li>
-        </ol>
+        <div class="chiffre">
+          <span class="chiffre__icone">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/></svg>
+          </span>
+          <span class="chiffre__nombre">1993</span>
+          <span class="chiffre__texte">Le domaine .sn confié à l'UCAD</span>
+        </div>
 
-        <figure class="sequence__image">
-          <img src="images/web/travail-1000.webp" srcset="images/web/travail-620.webp 620w, images/web/travail-1000.webp 736w" sizes="(min-width: 60rem) 24rem, 100vw" alt="Étudiants du CURI travaillant ensemble sur leurs ordinateurs portables" width="736" height="981" loading="lazy">
-        </figure>
+        <div class="chiffre">
+          <span class="chiffre__icone">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          </span>
+          <span class="chiffre__nombre">2021</span>
+          <span class="chiffre__texte">Création du centre, en février</span>
+        </div>
+
+        <div class="chiffre">
+          <span class="chiffre__icone">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M9 4v16"/></svg>
+          </span>
+          <span class="chiffre__nombre">3</span>
+          <span class="chiffre__texte">Spécialités en formation initiale</span>
+        </div>
+
+        <div class="chiffre">
+          <span class="chiffre__icone">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <span class="chiffre__nombre">2 ans</span>
+          <span class="chiffre__texte">Pour le diplôme de formation initiale</span>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ============================ PARTENAIRES ============================ -->
-  <section class="section section--encre">
+  <!-- ======================= FORMATIONS ======================= -->
+  <section class="section section--gris">
     <div class="enveloppe">
-      <div class="entete-section entete-section--large">
-        <h2>Des partenaires de la gouvernance de l'internet</h2>
+      <div class="tete apparait">
+        <p class="tete__sur">Le CURI couvre tout le cycle des technologies de l'internet</p>
+        <h2>Découvrir nos formations.</h2>
+      </div>
+
+      <div class="cartes-aplat apparait">
+        <a class="carte-aplat" href="formation.html#developpement">
+          <img class="carte-aplat__fond" src="images/web/code-620.webp" alt="" width="620" height="481" loading="lazy">
+          <h3>Développement web et mobile</h3>
+          <p>Concevoir une application complète et la mettre en production, du serveur au téléphone.</p>
+          <span class="carte-aplat__plus">Voir la formation</span>
+        </a>
+
+        <a class="carte-aplat" href="formation.html#multimedia">
+          <img class="carte-aplat__fond" src="images/web/vr-700.webp" alt="" width="700" height="467" loading="lazy">
+          <h3>Technologie web et multimédia</h3>
+          <p>Produire les contenus et les interfaces : graphisme, audiovisuel, publication en ligne.</p>
+          <span class="carte-aplat__plus">Voir la formation</span>
+        </a>
+
+        <a class="carte-aplat" href="formation.html#ecommerce">
+          <img class="carte-aplat__fond" src="images/web/travail-620.webp" alt="" width="620" height="826" loading="lazy">
+          <h3>E-commerce et marketing digital</h3>
+          <p>Lancer et piloter une activité en ligne : stratégie, acquisition, contenus, résultats.</p>
+          <span class="carte-aplat__plus">Voir la formation</span>
+        </a>
+      </div>
+
+      <div class="actions-centre">
+        <a class="bouton bouton--contour" href="formation.html">Toutes les formations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= LES DEUX MISSIONS ======================= -->
+  <section class="section" id="missions">
+    <div class="enveloppe">
+      <div class="duo apparait">
+        <div class="duo__image">
+          <img src="images/web/amphi-1200.webp" srcset="images/web/amphi-700.webp 700w, images/web/amphi-1200.webp 1080w" sizes="(min-width: 60rem) 34rem, 100vw" alt="Conférence du centre dans un amphithéâtre de l'UCAD" width="1080" height="608" loading="lazy">
+        </div>
+        <div>
+          <div class="tete tete--gauche" style="margin-bottom:0">
+            <p class="tete__sur">Un centre, deux missions</p>
+            <h2>Former, et faire tourner le .sn.</h2>
+          </div>
+          <p>
+            Le CURI enseigne les technologies de l'Internet, et il en fait
+            tourner une partie : la gestion du domaine national est confiée à
+            l'UCAD depuis 1993 et portée par NIC Sénégal.
+          </p>
+          <p>
+            Cette double position donne aux étudiants un accès rare : ceux qui
+            administrent le registre du pays enseignent dans les mêmes murs.
+          </p>
+          <ul class="duo__liste">
+            <li>Registre du domaine national .sn, avec NIC Sénégal</li>
+            <li>Ateliers DNS et DNSSEC pour les professionnels de la région</li>
+            <li>Partenariats avec l'ICANN, l'AFNIC et l'AFTLD</li>
+            <li>Laboratoire de réalité virtuelle et augmentée sur le campus</li>
+          </ul>
+          <p style="margin-top:1.75rem">
+            <a class="bouton bouton--bleu" href="evenements.html#dnssec">Les ateliers techniques</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= ACTUALITÉS ======================= -->
+  <section class="section section--gris">
+    <div class="enveloppe">
+      <div class="tete apparait">
+        <p class="tete__sur">À la une</p>
+        <h2>Suivre nos actualités</h2>
+      </div>
+
+      <div class="carrousel apparait">
+        <div class="carrousel__piste">
+
+          <a class="actu" href="evenements.html#dnssec">
+            <div class="actu__image">
+              <img src="images/web/affiche-dnssec-900.webp" alt="Affiche de la formation hybride DNS et DNSSEC du 7 au 11 novembre 2022" width="480" height="339" loading="lazy">
+            </div>
+            <div class="actu__corps">
+              <p class="actu__date">7 – 11 novembre 2022</p>
+              <h3>Formation hybride DNS et DNSSEC</h3>
+              <p>Une conférence publique au Centre de conférences UCAD 2, puis quatre jours d'atelier avec NIC Sénégal, l'ICANN, l'AFNIC et l'AFTLD.</p>
+              <span class="actu__lire">Lire l'événement</span>
+            </div>
+          </a>
+
+          <a class="actu" href="evenements.html#labo">
+            <div class="actu__image">
+              <img src="images/web/vr-1200.webp" srcset="images/web/vr-700.webp 700w, images/web/vr-1200.webp 1200w" sizes="(min-width: 64rem) 22rem, 84vw" alt="Participants portant des casques de réalité virtuelle lors d'un atelier" width="1200" height="800" loading="lazy">
+            </div>
+            <div class="actu__corps">
+              <p class="actu__date"><span class="a-confirmer">Date à confirmer</span></p>
+              <h3>Le laboratoire de réalité virtuelle</h3>
+              <p>Le centre dispose d'un laboratoire AR/VR, utilisé en atelier avec les étudiants et des publics invités.</p>
+              <span class="actu__lire">Lire l'événement</span>
+            </div>
+          </a>
+
+          <a class="actu" href="evenements.html#hackathon">
+            <div class="actu__image">
+              <img src="images/web/hackathon-1200.webp" srcset="images/web/hackathon-700.webp 700w, images/web/hackathon-1200.webp 1200w" sizes="(min-width: 64rem) 22rem, 84vw" alt="Participants d'un hackathon réunis devant les banderoles des partenaires" width="1200" height="900" loading="lazy">
+            </div>
+            <div class="actu__corps">
+              <p class="actu__date"><span class="a-confirmer">Date à confirmer</span></p>
+              <h3>Hackathon étudiant</h3>
+              <p>Le centre accueille des hackathons avec ses partenaires. Le détail de cette édition reste à compléter.</p>
+              <span class="actu__lire">Lire l'événement</span>
+            </div>
+          </a>
+
+          <a class="actu" href="evenements.html">
+            <div class="actu__image">
+              <img src="images/web/certificats-1200.webp" srcset="images/web/certificats-700.webp 700w, images/web/certificats-1200.webp 1200w" sizes="(min-width: 64rem) 22rem, 84vw" alt="Groupe de participants posant avec leurs certificats devant le bâtiment du centre" width="1200" height="800" loading="lazy">
+            </div>
+            <div class="actu__corps">
+              <p class="actu__date"><span class="a-confirmer">Date à confirmer</span></p>
+              <h3>Remise de certificats</h3>
+              <p>Fin de session pour un groupe de participants du centre.</p>
+              <span class="actu__lire">Lire l'événement</span>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="carrousel__nav">
+          <button type="button" class="carrousel__bouton carrousel__bouton--precedent" aria-label="Actualités précédentes">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="carrousel__bouton carrousel__bouton--suivant" aria-label="Actualités suivantes">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="actions-centre">
+        <a class="bouton bouton--contour" href="evenements.html">Tous les événements</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= VIE DU CENTRE ======================= -->
+  <section class="section">
+    <div class="enveloppe">
+      <div class="duo duo--inverse apparait">
+        <div class="duo__image">
+          <img src="images/web/travail-1000.webp" srcset="images/web/travail-620.webp 620w, images/web/travail-1000.webp 736w" sizes="(min-width: 60rem) 34rem, 100vw" alt="Étudiants du CURI travaillant ensemble sur leurs ordinateurs portables" width="736" height="981" loading="lazy">
+        </div>
+        <div>
+          <div class="tete tete--gauche" style="margin-bottom:0">
+            <p class="tete__sur">Vie du centre</p>
+            <h2>Une année au CURI</h2>
+          </div>
+          <p>
+            Du premier cours au projet de fin d'études, le déroulé est le même
+            pour les trois spécialités.
+          </p>
+          <ol class="sequence" style="margin-top:1.75rem">
+            <li class="sequence__etape">
+              <span class="sequence__numero" aria-hidden="true">1</span>
+              <div>
+                <h3>Cours et travaux pratiques</h3>
+                <p>Des séances en salle, suivies d'exercices sur machine.</p>
+              </div>
+            </li>
+            <li class="sequence__etape">
+              <span class="sequence__numero" aria-hidden="true">2</span>
+              <div>
+                <h3>Encadrement pédagogique</h3>
+                <p>Un suivi rapproché par les enseignants, en petit groupe.</p>
+              </div>
+            </li>
+            <li class="sequence__etape">
+              <span class="sequence__numero" aria-hidden="true">3</span>
+              <div>
+                <h3>Projets de semestre</h3>
+                <p>Un travail en équipe rendu et soutenu à chaque semestre.</p>
+              </div>
+            </li>
+            <li class="sequence__etape">
+              <span class="sequence__numero" aria-hidden="true">4</span>
+              <div>
+                <h3>Projet de fin d'études</h3>
+                <p>Le travail qui clôt le cursus et sert de première référence.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= PARTENAIRES ======================= -->
+  <section class="section section--marine">
+    <div class="enveloppe">
+      <div class="tete apparait">
+        <p class="tete__sur">Gouvernance de l'internet</p>
+        <h2>Nos partenaires</h2>
         <p>Le centre travaille avec les organisations qui administrent les noms de domaine en Afrique et dans le monde.</p>
       </div>
-      <ul class="partenaires">
-        <li class="partenaire">NIC Sénégal</li>
-        <li class="partenaire">ICANN</li>
-        <li class="partenaire">AFNIC</li>
-        <li class="partenaire">AFTLD</li>
-      </ul>
-      <p style="margin-top:1.75rem;font-size:var(--t-s);max-width:62ch">
-        Ces quatre organisations figurent sur les supports des ateliers DNS et DNSSEC
-        organisés par le centre. La liste complète des partenaires reste à compléter
-        avec la direction.
+
+      <div class="cartes cartes--quatre apparait">
+        <article class="carte">
+          <h3>NIC Sénégal</h3>
+          <p>Le registre du domaine national .sn, porté par l'UCAD depuis 1993.</p>
+        </article>
+        <article class="carte">
+          <h3>ICANN</h3>
+          <p>L'organisation qui coordonne le système des noms de domaine à l'échelle mondiale.</p>
+        </article>
+        <article class="carte">
+          <h3>AFNIC</h3>
+          <p>Le registre français, partenaire des ateliers techniques du centre.</p>
+        </article>
+        <article class="carte">
+          <h3>AFTLD</h3>
+          <p>L'association des registres de domaines nationaux africains.</p>
+        </article>
+      </div>
+
+      <p class="centrer" style="margin-top:2rem;font-size:var(--t-petit);color:#a8bdd6">
+        Ces organisations figurent sur les supports des ateliers DNS et DNSSEC du centre.
+        La liste complète des partenaires reste à compléter avec la direction.
       </p>
     </div>
   </section>
 
-  <!-- ============================ ACTUALITÉS ============================ -->
-  <section class="section section--brume">
+  <!-- ======================= TÉMOIGNAGES ======================= -->
+  <section class="section section--gris">
     <div class="enveloppe">
-      <div class="entete-rang">
-        <div class="entete-section">
-          <h2>La vie du centre</h2>
-          <p>Ateliers techniques, hackathons et moments de promotion.</p>
-        </div>
-        <a class="bouton bouton--contour" href="evenements.html">Tous les événements</a>
+      <div class="tete apparait">
+        <p class="tete__sur">Ils sont passés par le centre</p>
+        <h2>Ce que disent nos étudiants</h2>
       </div>
 
-      <div class="actus">
+      <div class="carrousel apparait">
+        <div class="carrousel__piste">
 
-        <a class="actu actu--vedette" href="evenements.html#dnssec">
-          <div class="actu__image">
-            <img src="images/web/amphi-1200.webp" srcset="images/web/amphi-700.webp 700w, images/web/amphi-1200.webp 1080w" sizes="(min-width: 56rem) 40rem, 100vw" alt="Amphithéâtre de l'UCAD rempli lors d'une conférence du centre" width="1080" height="608" loading="lazy">
-          </div>
-          <div class="actu__corps">
-            <p class="actu__date">7 – 11 novembre 2022</p>
-            <h3>Formation hybride DNS et DNSSEC</h3>
-            <p>Une conférence publique au Centre de conférences UCAD 2, puis quatre jours d'atelier dans la salle de formation du centre, avec NIC Sénégal, l'ICANN, l'AFNIC et l'AFTLD.</p>
-            <span class="lien-fleche">Lire l'événement
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+          <figure class="temoignage">
+            <span class="temoignage__guillemet" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a3 3 0 0 0-3 3v7h7v-7H6a3 3 0 0 1 3-3Zm10 0h-4a3 3 0 0 0-3 3v7h7v-7h-3a3 3 0 0 1 3-3Z"/></svg>
             </span>
-          </div>
-        </a>
+            <blockquote><span class="a-confirmer">Témoignage à recueillir auprès d'un diplômé</span></blockquote>
+            <figcaption>
+              <strong>Nom du diplômé</strong>
+              <span>Promotion à préciser</span>
+            </figcaption>
+          </figure>
 
-        <a class="actu" href="evenements.html#hackathon">
-          <div class="actu__image">
-            <img src="images/web/hackathon-1200.webp" srcset="images/web/hackathon-700.webp 700w, images/web/hackathon-1200.webp 1200w" sizes="(min-width: 56rem) 20rem, 100vw" alt="Participants d'un hackathon réunis devant les banderoles des partenaires" width="1200" height="900" loading="lazy">
-          </div>
-          <div class="actu__corps">
-            <p class="actu__date">Date à confirmer</p>
-            <h3>Hackathon étudiant</h3>
-            <p>Le centre accueille des hackathons avec ses partenaires. Le détail de cette édition reste à compléter.</p>
-          </div>
-        </a>
+          <figure class="temoignage">
+            <span class="temoignage__guillemet" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a3 3 0 0 0-3 3v7h7v-7H6a3 3 0 0 1 3-3Zm10 0h-4a3 3 0 0 0-3 3v7h7v-7h-3a3 3 0 0 1 3-3Z"/></svg>
+            </span>
+            <blockquote><span class="a-confirmer">Témoignage à recueillir auprès d'un diplômé</span></blockquote>
+            <figcaption>
+              <strong>Nom du diplômé</strong>
+              <span>Promotion à préciser</span>
+            </figcaption>
+          </figure>
 
-        <a class="actu" href="evenements.html#labo">
-          <div class="actu__image">
-            <img src="images/web/vr-1200.webp" srcset="images/web/vr-700.webp 700w, images/web/vr-1200.webp 1200w" sizes="(min-width: 56rem) 20rem, 100vw" alt="Participants portant des casques de réalité virtuelle lors d'un atelier" width="1200" height="800" loading="lazy">
-          </div>
-          <div class="actu__corps">
-            <p class="actu__date">Date à confirmer</p>
-            <h3>Laboratoire réalité virtuelle</h3>
-            <p>Le centre dispose d'un laboratoire AR/VR, utilisé en atelier avec les étudiants et des publics invités.</p>
-          </div>
-        </a>
+          <figure class="temoignage">
+            <span class="temoignage__guillemet" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a3 3 0 0 0-3 3v7h7v-7H6a3 3 0 0 1 3-3Zm10 0h-4a3 3 0 0 0-3 3v7h7v-7h-3a3 3 0 0 1 3-3Z"/></svg>
+            </span>
+            <blockquote><span class="a-confirmer">Témoignage à recueillir auprès d'un diplômé</span></blockquote>
+            <figcaption>
+              <strong>Nom du diplômé</strong>
+              <span>Promotion à préciser</span>
+            </figcaption>
+          </figure>
 
+          <figure class="temoignage">
+            <span class="temoignage__guillemet" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a3 3 0 0 0-3 3v7h7v-7H6a3 3 0 0 1 3-3Zm10 0h-4a3 3 0 0 0-3 3v7h7v-7h-3a3 3 0 0 1 3-3Z"/></svg>
+            </span>
+            <blockquote><span class="a-confirmer">Témoignage à recueillir auprès d'un diplômé</span></blockquote>
+            <figcaption>
+              <strong>Nom du diplômé</strong>
+              <span>Promotion à préciser</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
+        <div class="carrousel__nav">
+          <button type="button" class="carrousel__bouton carrousel__bouton--precedent" aria-label="Témoignages précédents">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="carrousel__bouton carrousel__bouton--suivant" aria-label="Témoignages suivants">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ APPEL ============================ -->
+  <!-- ======================= GALERIE ======================= -->
   <section class="section">
     <div class="enveloppe">
-      <div class="appel">
+      <div class="tete apparait">
+        <p class="tete__sur">Le CURI en images</p>
+        <h2>La vie sur le campus</h2>
+      </div>
+
+      <div class="galerie apparait">
+        <button type="button" class="galerie__element" data-categorie="conference">
+          <img src="images/web/amphi-700.webp" data-grand="images/web/amphi-1200.webp" alt="Amphithéâtre de l'UCAD rempli lors d'une conférence du centre" width="700" height="394" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="atelier">
+          <img src="images/web/vr-700.webp" data-grand="images/web/vr-1200.webp" alt="Participants portant des casques de réalité virtuelle" width="700" height="467" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="atelier">
+          <img src="images/web/atelier-620.webp" data-grand="images/web/atelier-1000.webp" alt="Salle d'atelier du centre, matériel installé sur les tables" width="620" height="413" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="promotion">
+          <img src="images/web/certificats-700.webp" data-grand="images/web/certificats-1200.webp" alt="Groupe de participants posant avec leurs certificats" width="700" height="467" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="promotion">
+          <img src="images/web/promotion-700.webp" data-grand="images/web/promotion-1200.webp" alt="Photo de groupe d'une promotion du centre" width="700" height="467" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="promotion">
+          <img src="images/web/remise-700.webp" data-grand="images/web/remise-1200.webp" alt="Remise d'un certificat à une participante" width="700" height="467" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="conference">
+          <img src="images/web/hackathon-700.webp" data-grand="images/web/hackathon-1200.webp" alt="Participants d'un hackathon devant les banderoles des partenaires" width="700" height="525" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="atelier">
+          <img src="images/web/code-620.webp" data-grand="images/web/code-1000.webp" alt="Écran d'ordinateur portable affichant du code" width="620" height="481" loading="lazy">
+        </button>
+      </div>
+
+      <div class="actions-centre">
+        <a class="bouton bouton--contour" href="evenements.html">Voir toute la galerie</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= APPEL ======================= -->
+  <section class="section section--gris">
+    <div class="enveloppe">
+      <div class="appel apparait">
         <div>
           <h2>Vous souhaitez rejoindre le centre ?</h2>
           <p>Écrivez-nous ou passez à UCAD 3 : l'équipe répond aux questions sur l'admission, le déroulement des cours et la formation continue.</p>
@@ -429,7 +590,24 @@
 
 </main>
 
-<!-- ============================ PIED DE PAGE ============================ -->
+<!-- ======================= VISIONNEUSE ======================= -->
+<div class="visionneuse" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image agrandie">
+  <button type="button" class="visionneuse__fermer" aria-label="Fermer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12"/><path d="m18 6-12 12"/></svg>
+  </button>
+  <button type="button" class="visionneuse__precedent" aria-label="Image précédente">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button type="button" class="visionneuse__suivant" aria-label="Image suivante">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+  <figure style="margin:0;text-align:center">
+    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+    <figcaption class="visionneuse__legende"></figcaption>
+  </figure>
+</div>
+
+<!-- ======================= PIED DE PAGE ======================= -->
 <footer class="pied">
   <div class="enveloppe">
     <div class="pied__grille">
@@ -442,17 +620,17 @@
         <p class="pied__intro">
           Centre Universitaire de Recherche et de Formation aux Technologies de
           l'Internet, Université Cheikh Anta Diop de Dakar. Gestionnaire du
-          domaine national <span class="domaine">.sn</span>.
+          domaine national .sn.
         </p>
         <div class="pied__reseaux">
           <a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank" rel="noopener" aria-label="Le CURI sur Facebook">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
           </a>
           <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/" target="_blank" rel="noopener" aria-label="Le CURI sur LinkedIn">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5A1.5 1.5 0 1 1 5 6.5a1.5 1.5 0 0 1 0-3ZM3.5 8h3v12.5h-3Zm6 0h2.9v1.7h.1c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v7.7h-3v-6.8c0-1.6 0-3.7-2.2-3.7s-2.6 1.8-2.6 3.6v6.9h-3Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5A1.5 1.5 0 1 1 5 6.5a1.5 1.5 0 0 1 0-3ZM3.5 8h3v12.5h-3Zm6 0h2.9v1.7h.1c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v7.7h-3v-6.8c0-1.6 0-3.7-2.2-3.7s-2.6 1.8-2.6 3.6v6.9h-3Z"/></svg>
           </a>
           <a href="https://x.com/CURISENEGAL" target="_blank" rel="noopener" aria-label="Le CURI sur X">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6Zm-1.1 16h1.8L7.7 4.8H5.8Z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6Zm-1.1 16h1.8L7.7 4.8H5.8Z"/></svg>
           </a>
         </div>
       </div>

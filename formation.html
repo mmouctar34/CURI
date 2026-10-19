@@ -3,81 +3,132 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js');</script>
 <title>Formations — CURI | UCAD Dakar</title>
-<meta name="description" content="Développement web et mobile, technologie web et multimédia, e-commerce et marketing digital : les formations du CURI à l'UCAD, en initiale, continue et certifiante.">
+<meta name="description" content="Développement web et mobile, technologie web et multimédia, e-commerce et marketing digital : les formations du CURI à l'UCAD.">
 <link rel="canonical" href="https://mmouctar34.github.io/CURI/formation.html">
-<meta property="og:title" content="Formations du CURI — UCAD Dakar">
-<meta property="og:description" content="Trois spécialités en deux ans, et des formations continues et certifiantes.">
+<meta property="og:title" content="Formations — CURI | UCAD Dakar">
+<meta property="og:description" content="Développement web et mobile, technologie web et multimédia, e-commerce et marketing digital : les formations du CURI à l'UCAD.">
 <meta property="og:image" content="images/web/code-1000.webp">
-<meta name="theme-color" content="#0a1c33">
+<meta name="theme-color" content="#0f2440">
 <link rel="icon" href="images/web/logo-curi.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <a class="saut-contenu" href="#contenu">Aller au contenu</a>
 
+<!-- ======================= BARRE DU HAUT ======================= -->
+<div class="barre-haut">
+  <div class="enveloppe barre-haut__interieur">
+    <div class="barre-haut__gauche">
+      <span>Bienvenue au CURI</span>
+      <a href="tel:+221338219190">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        +221 33 821 91 90
+      </a>
+      <a href="mailto:curi@ucad.edu.sn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        curi@ucad.edu.sn
+      </a>
+    </div>
+    <div class="barre-haut__droite">
+      <span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        UCAD 3, Cité Claudel, Dakar
+      </span>
+      <a href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= EN-TÊTE ======================= -->
 <header class="entete">
   <div class="enveloppe entete__interieur">
+
     <a class="marque" href="index.html">
-      <img src="images/web/logo-curi.png" alt="" width="42" height="42">
+      <img src="images/web/logo-curi.png" alt="" width="44" height="44">
       <span>
         <span class="marque__nom">CURI</span>
         <span class="marque__sous">Technologies de l'Internet · UCAD</span>
       </span>
     </a>
+
     <nav class="nav-principale" aria-label="Navigation principale">
       <ul>
         <li><a href="index.html">Accueil</a></li>
-        <li><a href="formation.html" aria-current="page">Formations</a></li>
+        <li class="a-sous-menu">
+          <a href="formation.html">Formations</a>
+          <ul class="sous-menu">
+            <li><a href="formation.html#types">Initiale, continue, certifiante</a></li>
+            <li><a href="formation.html#developpement">Développement web et mobile</a></li>
+            <li><a href="formation.html#multimedia">Technologie web et multimédia</a></li>
+            <li><a href="formation.html#ecommerce">E-commerce et marketing digital</a></li>
+            <li><a href="formation.html#candidater">Candidater</a></li>
+          </ul>
+        </li>
         <li><a href="debouches.html">Débouchés</a></li>
-        <li><a href="equipe.html">Équipe</a></li>
+        <li class="a-sous-menu">
+          <a href="equipe.html">Le centre</a>
+          <ul class="sous-menu">
+            <li><a href="equipe.html">Équipe et direction</a></li>
+            <li><a href="equipe.html#poles">Les pôles</a></li>
+            <li><a href="index.html#missions">NIC Sénégal et le .sn</a></li>
+          </ul>
+        </li>
         <li><a href="evenements.html">Événements</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+
     <div class="recherche">
       <div class="recherche__champ">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <label class="lecture-seule" for="recherche-bureau">Rechercher sur le site</label>
         <input type="search" id="recherche-bureau" placeholder="Rechercher…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="resultats-bureau">
         <button type="button" class="recherche__vider" aria-label="Effacer la recherche">✕</button>
       </div>
       <div class="recherche__panneau" id="resultats-bureau" role="listbox" aria-label="Résultats de recherche"></div>
     </div>
+
     <button type="button" class="bascule-menu" aria-expanded="false" aria-controls="tiroir-menu" aria-label="Ouvrir le menu">
       <span></span><span></span><span></span>
     </button>
+
   </div>
 </header>
 
+<!-- ======================= MENU MOBILE ======================= -->
 <div class="tiroir" id="tiroir-menu">
   <div class="tiroir__recherche">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <label class="lecture-seule" for="recherche-mobile">Rechercher sur le site</label>
     <input type="search" id="recherche-mobile" placeholder="Rechercher sur le site…" autocomplete="off">
   </div>
-  <div class="recherche__panneau tiroir__panneau" style="position:static;opacity:1;transform:none;pointer-events:auto;box-shadow:none;border:0;padding:0"></div>
+  <div class="recherche__panneau tiroir__panneau" style="position:static;opacity:1;transform:none;pointer-events:auto;box-shadow:none;border:0;padding:0;max-height:none"></div>
+
   <nav aria-label="Navigation mobile">
     <ul>
-      <li><a href="index.html">Accueil <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="formation.html" aria-current="page">Formations <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="debouches.html">Débouchés <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="equipe.html">Équipe <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="evenements.html">Événements <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
-      <li><a href="contact.html">Contact <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="index.html">Accueil <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="formation.html" aria-current="page">Formations <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="debouches.html">Débouchés <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="equipe.html">Le centre <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="evenements.html">Événements <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+      <li><a href="contact.html">Contact <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
     </ul>
   </nav>
+
   <div class="tiroir__pied">
     <a class="bouton bouton--bleu" href="https://fad.curi.ucad.sn" target="_blank" rel="noopener">Plateforme de cours</a>
   </div>
+
   <div class="tiroir__contact">
     <a href="tel:+221338219190">+221 33 821 91 90</a>
     <a href="mailto:curi@ucad.edu.sn">curi@ucad.edu.sn</a>
-    <span>UCAD 3, Cité Claudel, Dakar</span>
+    <span>UCAD 3, Cité Claudel, allées Bougainvillées, Dakar</span>
   </div>
 </div>
 
@@ -96,34 +147,37 @@
           <li aria-current="page">Formations</li>
         </ol>
       </nav>
-      <h1>Formations</h1>
-      <p class="bandeau__texte">
-        Trois spécialités en formation initiale, ouvertes aussi aux
-        professionnels en formation continue et certifiante.
-      </p>
+      <h1>Nos formations</h1>
+      <p class="bandeau__texte">Trois spécialités en formation initiale, ouvertes aussi aux professionnels en formation continue et certifiante.</p>
     </div>
   </section>
 
-  <!-- Les trois manières de se former -->
   <section class="section" id="types">
     <div class="enveloppe">
-      <div class="entete-section entete-section--large">
-        <h2>Trois manières de se former</h2>
+      <div class="tete apparait">
+        <p class="tete__sur">Selon votre situation</p>
+        <h2>Trois manières de se former.</h2>
         <p>Le centre accueille des étudiants en cursus diplômant comme des professionnels déjà en poste.</p>
       </div>
-      <div class="trio">
-        <article class="trio__bloc">
-          <span class="trio__duree">2 ans</span>
+      <div class="cartes apparait">
+        <article class="carte">
+          <span class="carte__icone">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          </span>
           <h3>Formation initiale</h3>
-          <p>Le cursus diplômant, en deux ans, dans l'une des trois spécialités du centre. C'est la voie des étudiants qui arrivent après le baccalauréat ou un premier diplôme.</p>
+          <p>Le cursus diplômant, en deux ans, dans l'une des trois spécialités. C'est la voie des étudiants qui arrivent après le baccalauréat ou un premier diplôme.</p>
         </article>
-        <article class="trio__bloc">
-          <span class="trio__duree">Durée variable</span>
+        <article class="carte">
+          <span class="carte__icone">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
           <h3>Formation continue</h3>
-          <p>Des sessions pour les actifs qui veulent mettre à jour leurs compétences sans quitter leur emploi. Le calendrier et les modules sont fixés avec la direction.</p>
+          <p>Des sessions pour les actifs qui veulent mettre à jour leurs compétences sans quitter leur emploi. Le calendrier est fixé avec la direction.</p>
         </article>
-        <article class="trio__bloc">
-          <span class="trio__duree">Sur session</span>
+        <article class="carte">
+          <span class="carte__icone">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-3 5 3-1.5-7"/></svg>
+          </span>
           <h3>Formation certifiante</h3>
           <p>Des formations menées avec des partenaires certificateurs, comme les ateliers DNS et DNSSEC conduits avec NIC Sénégal, l'ICANN, l'AFNIC et l'AFTLD.</p>
         </article>
@@ -131,60 +185,74 @@
     </div>
   </section>
 
-  <!-- Les trois spécialités -->
-  <section class="section section--brume">
+  <section class="section section--gris">
     <div class="enveloppe">
-      <div class="entete-section">
-        <h2>Les trois spécialités</h2>
-        <p>Même durée, même rythme, trois métiers différents à la sortie.</p>
+      <div class="tete apparait">
+        <p class="tete__sur">Deux ans, un diplôme, un métier</p>
+        <h2>Les trois spécialités.</h2>
       </div>
 
-      <div class="grille-cartes">
-
-        <article class="carte" id="developpement">
-          <span class="carte__marque">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 16-4-4 4-4"/><path d="m16 8 4 4-4 4"/><path d="m13 5-2 14"/></svg>
-          </span>
-          <h3>Développement web et mobile</h3>
+      <div class="duo apparait" id="developpement" style="margin-bottom:var(--section-y)">
+        <div class="duo__image">
+          <img src="images/web/code-1000.webp" srcset="images/web/code-620.webp 620w, images/web/code-1000.webp 736w" sizes="(min-width: 60rem) 34rem, 100vw" alt="Écran d'ordinateur portable affichant du code" width="736" height="571" loading="lazy">
+        </div>
+        <div>
+          <h2>Développement web et mobile</h2>
           <p>Concevoir une application du début à la fin : interface, logique serveur, base de données, mise en production, puis portage sur téléphone.</p>
-          <p><strong>Ce que vous saurez faire</strong></p>
-          <p><span class="a-confirmer">Liste des modules à compléter avec l'équipe pédagogique</span></p>
-        </article>
+          <ul class="duo__liste">
+            <li><span class="a-confirmer">Module à compléter avec l'équipe pédagogique</span></li>
+            <li><span class="a-confirmer">Module à compléter avec l'équipe pédagogique</span></li>
+            <li>Projet de fin d'études</li>
+          </ul>
+          <p style="margin-top:1.5rem"><a class="bouton bouton--bleu" href="#candidater">Conditions d'admission</a></p>
+        </div>
+      </div>
 
-        <article class="carte" id="multimedia">
-          <span class="carte__marque">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
-          </span>
-          <h3>Technologie web et multimédia</h3>
+      <div class="duo duo--inverse apparait" id="multimedia" style="margin-bottom:var(--section-y)">
+        <div class="duo__image">
+          <img src="images/web/vr-1200.webp" srcset="images/web/vr-700.webp 700w, images/web/vr-1200.webp 1200w" sizes="(min-width: 60rem) 34rem, 100vw" alt="Atelier du centre avec des casques de réalité virtuelle" width="1200" height="800" loading="lazy">
+        </div>
+        <div>
+          <h2>Technologie web et multimédia</h2>
           <p>Produire les contenus et les interfaces d'un site : identité graphique, image, son et vidéo, intégration, publication et mise à jour.</p>
-          <p><strong>Ce que vous saurez faire</strong></p>
-          <p><span class="a-confirmer">Liste des modules à compléter avec l'équipe pédagogique</span></p>
-        </article>
+          <ul class="duo__liste">
+            <li><span class="a-confirmer">Module à compléter avec l'équipe pédagogique</span></li>
+            <li><span class="a-confirmer">Module à compléter avec l'équipe pédagogique</span></li>
+            <li>Projet de fin d'études</li>
+          </ul>
+          <p style="margin-top:1.5rem"><a class="bouton bouton--bleu" href="#candidater">Conditions d'admission</a></p>
+        </div>
+      </div>
 
-        <article class="carte" id="ecommerce">
-          <span class="carte__marque">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 3.5-4 3 2.5L20 7"/></svg>
-          </span>
-          <h3>E-commerce et marketing digital</h3>
+      <div class="duo apparait" id="ecommerce">
+        <div class="duo__image">
+          <img src="images/web/travail-1000.webp" srcset="images/web/travail-620.webp 620w, images/web/travail-1000.webp 736w" sizes="(min-width: 60rem) 34rem, 100vw" alt="Étudiants travaillant sur leurs ordinateurs portables" width="736" height="981" loading="lazy">
+        </div>
+        <div>
+          <h2>E-commerce et marketing digital</h2>
           <p>Lancer une activité en ligne et la faire vivre : offre, boutique, paiement, acquisition de clients, contenus et lecture des résultats.</p>
-          <p><strong>Ce que vous saurez faire</strong></p>
-          <p><span class="a-confirmer">Liste des modules à compléter avec l'équipe pédagogique</span></p>
-        </article>
-
+          <ul class="duo__liste">
+            <li><span class="a-confirmer">Module à compléter avec l'équipe pédagogique</span></li>
+            <li><span class="a-confirmer">Module à compléter avec l'équipe pédagogique</span></li>
+            <li>Projet de fin d'études</li>
+          </ul>
+          <p style="margin-top:1.5rem"><a class="bouton bouton--bleu" href="#candidater">Conditions d'admission</a></p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Candidater -->
   <section class="section" id="candidater">
     <div class="enveloppe">
-      <div class="contact-grille">
+      <div class="tete apparait">
+        <p class="tete__sur">Rejoindre le centre</p>
+        <h2>Candidater.</h2>
+        <p>Les conditions exactes sont en cours de vérification avec la direction.</p>
+      </div>
+
+      <div class="contact-grille apparait">
         <div>
-          <div class="entete-section">
-            <h2>Candidater</h2>
-            <p>Les étapes pour rejoindre le centre. Les conditions exactes sont en cours de vérification avec la direction.</p>
-          </div>
-          <ol class="sequence__liste">
+          <ol class="sequence">
             <li class="sequence__etape">
               <span class="sequence__numero" aria-hidden="true">1</span>
               <div>
@@ -214,9 +282,6 @@
               </div>
             </li>
           </ol>
-          <p style="margin-top:2rem">
-            <a class="bouton bouton--bleu" href="contact.html">Poser une question</a>
-          </p>
         </div>
 
         <aside class="carte">
@@ -233,20 +298,18 @@
     </div>
   </section>
 
-  <!-- Questions fréquentes -->
-  <section class="section section--brume">
+  <section class="section section--gris">
     <div class="enveloppe">
-      <div class="entete-section">
+      <div class="tete apparait">
+        <p class="tete__sur">Bon à savoir</p>
         <h2>Questions fréquentes</h2>
       </div>
-      <div class="accordeon">
+      <div class="accordeon apparait">
         <div class="accordeon__element">
           <h3>
             <button type="button" class="accordeon__bouton" aria-expanded="false" aria-controls="faq-1">
               Faut-il savoir programmer avant d'entrer ?
-              <span class="accordeon__signe" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-              </span>
+              <span class="accordeon__signe" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
             </button>
           </h3>
           <div class="accordeon__panneau" id="faq-1">
@@ -259,9 +322,7 @@
           <h3>
             <button type="button" class="accordeon__bouton" aria-expanded="false" aria-controls="faq-2">
               Les cours se tiennent-ils en présentiel ?
-              <span class="accordeon__signe" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-              </span>
+              <span class="accordeon__signe" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
             </button>
           </h3>
           <div class="accordeon__panneau" id="faq-2">
@@ -274,9 +335,7 @@
           <h3>
             <button type="button" class="accordeon__bouton" aria-expanded="false" aria-controls="faq-3">
               Peut-on se former tout en travaillant ?
-              <span class="accordeon__signe" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-              </span>
+              <span class="accordeon__signe" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
             </button>
           </h3>
           <div class="accordeon__panneau" id="faq-3">
@@ -289,9 +348,7 @@
           <h3>
             <button type="button" class="accordeon__bouton" aria-expanded="false" aria-controls="faq-4">
               Combien coûte la formation ?
-              <span class="accordeon__signe" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-              </span>
+              <span class="accordeon__signe" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
             </button>
           </h3>
           <div class="accordeon__panneau" id="faq-4">
@@ -304,12 +361,12 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--gris">
     <div class="enveloppe">
-      <div class="appel">
+      <div class="appel apparait">
         <div>
           <h2>Une question sur une formation ?</h2>
-          <p>L'équipe répond sur les conditions d'admission, le déroulement des cours et les sessions de formation continue.</p>
+          <p>L'équipe répond sur l'admission, le déroulement des cours et les sessions de formation continue.</p>
         </div>
         <div class="appel__actions">
           <a class="bouton bouton--or" href="contact.html">Nous écrire</a>
@@ -324,6 +381,7 @@
 <footer class="pied">
   <div class="enveloppe">
     <div class="pied__grille">
+
       <div>
         <a class="pied__marque" href="index.html">
           <img src="images/web/logo-curi.png" alt="" width="46" height="46">
@@ -332,20 +390,21 @@
         <p class="pied__intro">
           Centre Universitaire de Recherche et de Formation aux Technologies de
           l'Internet, Université Cheikh Anta Diop de Dakar. Gestionnaire du
-          domaine national <span class="domaine">.sn</span>.
+          domaine national .sn.
         </p>
         <div class="pied__reseaux">
           <a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank" rel="noopener" aria-label="Le CURI sur Facebook">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
           </a>
           <a href="https://www.linkedin.com/company/curi-ucad-s%C3%A9n%C3%A9gal/" target="_blank" rel="noopener" aria-label="Le CURI sur LinkedIn">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5A1.5 1.5 0 1 1 5 6.5a1.5 1.5 0 0 1 0-3ZM3.5 8h3v12.5h-3Zm6 0h2.9v1.7h.1c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v7.7h-3v-6.8c0-1.6 0-3.7-2.2-3.7s-2.6 1.8-2.6 3.6v6.9h-3Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5A1.5 1.5 0 1 1 5 6.5a1.5 1.5 0 0 1 0-3ZM3.5 8h3v12.5h-3Zm6 0h2.9v1.7h.1c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v7.7h-3v-6.8c0-1.6 0-3.7-2.2-3.7s-2.6 1.8-2.6 3.6v6.9h-3Z"/></svg>
           </a>
           <a href="https://x.com/CURISENEGAL" target="_blank" rel="noopener" aria-label="Le CURI sur X">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6Zm-1.1 16h1.8L7.7 4.8H5.8Z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6Zm-1.1 16h1.8L7.7 4.8H5.8Z"/></svg>
           </a>
         </div>
       </div>
+
       <nav aria-labelledby="pied-site">
         <h2 id="pied-site">Le site</h2>
         <ul>
@@ -356,6 +415,7 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+
       <nav aria-labelledby="pied-liens">
         <h2 id="pied-liens">Liens utiles</h2>
         <ul>
@@ -366,6 +426,7 @@
           <li><a href="https://www.ucad.sn" target="_blank" rel="noopener">Site de l'UCAD</a></li>
         </ul>
       </nav>
+
       <div>
         <h2 id="pied-contact">Nous trouver</h2>
         <div class="pied__contact" aria-labelledby="pied-contact">
@@ -383,7 +444,9 @@
           </div>
         </div>
       </div>
+
     </div>
+
     <div class="pied__bas">
       <span>© <span data-annee>2026</span> CURI — Université Cheikh Anta Diop de Dakar</span>
       <ul>
