@@ -24,4 +24,28 @@
     <loc>https://mmouctar34.github.io/CURI/contact.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://mmouctar34.github.io/CURI/evenement-colab-2025.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mmouctar34.github.io/CURI/evenement-leadership-2025.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mmouctar34.github.io/CURI/evenement-laboratoire-2024.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mmouctar34.github.io/CURI/evenement-senagro-2024.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mmouctar34.github.io/CURI/evenement-hackathon-2024.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mmouctar34.github.io/CURI/evenement-dnssec-2022.html</loc>
+    <priority>0.5</priority>
+  </url>
 </urlset>

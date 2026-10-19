@@ -107,18 +107,46 @@
       mots: "actualite actualité news hackathon atelier conference conférence ceremonie cérémonie"
     },
     {
-      titre: "Atelier DNS et DNSSEC",
-      extrait: "Formation hybride organisée avec NIC Sénégal, l'ICANN, l'AFNIC et l'AFTLD.",
-      page: "evenements.html#dnssec",
+      titre: "Portes ouvertes sur les technologies immersives",
+      extrait: "Juin 2025 — des lycéens de Dakar en immersion dans la réalité virtuelle au centre.",
+      page: "evenement-colab-2025.html",
       section: "Événements",
-      mots: "dns dnssec atelier formation hybride icann afnic aftld nic securite sécurité"
+      mots: "colab portes ouvertes lycee lycée lyceens lycéens realite réalité virtuelle vr afretec asedu mariama ba keur rokhaya 2025"
     },
     {
-      titre: "Laboratoire réalité virtuelle et augmentée",
-      extrait: "Le centre dispose d'un laboratoire AR/VR utilisé en atelier.",
-      page: "evenements.html#labo",
+      titre: "Formation au leadership et à la communication",
+      extrait: "Avril 2025 — vingt doctorants de l'EDMI formés au leadership et à l'entrepreneuriat.",
+      page: "evenement-leadership-2025.html",
       section: "Événements",
-      mots: "vr ar realite réalité virtuelle augmentee augmentée casque laboratoire labo immersif"
+      mots: "leadership communication doctorant doctorants edmi afretec idrissa sarr nalla mbaye lamine sane attestation entrepreneuriat 2025"
+    },
+    {
+      titre: "Lancement du laboratoire des technologies immersives",
+      extrait: "Septembre 2024 — le centre ouvre son laboratoire de réalité étendue avec Imisi3D.",
+      page: "evenement-laboratoire-2024.html",
+      section: "Événements",
+      mots: "laboratoire labo immersif immersive realite réalité etendue étendue virtuelle augmentee augmentée imisi3d nigeria 2024"
+    },
+    {
+      titre: "Atelier SenAgro",
+      extrait: "Avril 2024 — intelligence artificielle et science des données au service de l'agriculture.",
+      page: "evenement-senagro-2024.html",
+      section: "Événements",
+      mots: "senagro agriculture intelligence artificielle ia donnees données sorbonne cnrs mil phosphore opensimroot these thèse 2024"
+    },
+    {
+      titre: "Hackathon du Parc de Technologies Numériques",
+      extrait: "Septembre 2024 — 72 heures de travail collaboratif avec la plateforme Wutiko.",
+      page: "evenement-hackathon-2024.html",
+      section: "Événements",
+      mots: "hackathon ptn wutiko parc technologies numeriques numériques pitch concours bad 2024"
+    },
+    {
+      titre: "Formation hybride DNS et DNSSEC",
+      extrait: "Novembre 2022 — conférence publique puis atelier avec NIC Sénégal, l'ICANN, l'AFNIC et l'AFTLD.",
+      page: "evenement-dnssec-2022.html",
+      section: "Événements",
+      mots: "dns dnssec atelier hybride icann afnic aftld nic senegal sénégal domaine securite sécurité 2022"
     },
     {
       titre: "Nous écrire",
