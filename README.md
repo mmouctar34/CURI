@@ -8,6 +8,11 @@ suivantes. Tout est en HTML, CSS et JavaScript simples : **aucun outil à
 installer**, aucune compilation. On ouvre un fichier, on modifie, on
 enregistre.
 
+> **Vous reprenez le projet, ou vous travaillez avec un assistant de
+> code ?** Lisez d'abord [`CLAUDE.md`](CLAUDE.md) : état des branches,
+> direction visuelle et ses sources, décisions prises, pièges connus et
+> liste de ce qui reste à faire.
+
 ---
 
 ## Démarrer en deux minutes
@@ -29,12 +34,14 @@ Puis ouvrir <http://localhost:8000>.
 ## Les fichiers
 
 ```
-index.html          Accueil
+index.html          Accueil (diaporama, chiffres, formations, actualités, galerie)
 formation.html      Formations (3 spécialités, candidater, questions fréquentes)
 debouches.html      Métiers et secteurs après le centre
-equipe.html         Direction, enseignants, pôles
-evenements.html     Événements et galerie photo
+equipe.html         Mission, direction, enseignants, pôles
+evenements.html     Liste des événements et galerie photo
 contact.html        Coordonnées, formulaire, plan d'accès
+
+evenement-*.html    Un article par événement (six pages)
 
 css/style.css       Toute la mise en forme (un seul fichier, commenté par section)
 js/script.js        Tout le comportement (un seul fichier, commenté par section)
@@ -42,9 +49,14 @@ js/script.js        Tout le comportement (un seul fichier, commenté par section
 images/             Photos d'origine, telles que reçues
 images/web/         Versions optimisées en WebP, utilisées par le site
 
+CLAUDE.md           État du projet, décisions, ce qui reste à faire
 robots.txt          Pour les moteurs de recherche
 sitemap.xml         Liste des pages, pour les moteurs de recherche
 ```
+
+**Attention :** la barre du haut, l'en-tête, le menu mobile et le pied de
+page sont recopiés à l'identique dans les douze pages. Si vous changez un
+lien de menu ou une coordonnée, faites-le **partout**.
 
 ---
 
@@ -69,8 +81,22 @@ défiler automatiquement et se met en pause au survol.
 
 ### Ajouter un événement
 
-Dans `evenements.html`, copier un bloc `<article class="actu">` existant et
-remplacer la date, le titre, le texte et l'image.
+Chaque événement a sa propre page. Il faut faire trois choses :
+
+1. **Créer la page.** Copier un fichier `evenement-*.html` existant, le
+   renommer, puis remplacer le titre, la date, la durée, le lieu, le texte et
+   les photos. La structure à garder : le fil d'Ariane, le bloc
+   `.article__meta`, l'image principale, le texte dans `.prose`, la galerie,
+   et les liens vers l'événement précédent et suivant.
+2. **L'ajouter à la liste.** Dans `evenements.html`, copier un bloc
+   `<a class="evenement">` et le faire pointer vers la nouvelle page.
+   Les événements sont rangés du plus récent au plus ancien.
+3. **L'ajouter à la recherche et au plan du site.** Une entrée dans le
+   tableau `INDEX` en haut de `js/script.js`, une entrée dans
+   `sitemap.xml`.
+
+Pour le mettre aussi en avant sur l'accueil, copier un bloc
+`<a class="actu">` dans le carrousel des actualités de `index.html`.
 
 ### Ajouter une photo à la galerie
 
