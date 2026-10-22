@@ -939,15 +939,40 @@ mark {
   display: block;
 }
 
-/* « CURI » dans un aplat bleu UCAD, comme les titres surlignés de uam.sn */
+/* « CURI » miroitant : les lettres elles-mêmes sont bleues et comme en
+   verre, sans fond derrière. Un reflet lumineux traverse le mot en boucle.
+   Technique : un dégradé bleu → blanc → bleu sert de « peinture » aux
+   lettres (background-clip: text), et on le fait glisser. Le halo bleu
+   vient de filter: drop-shadow (text-shadow transparaîtrait à travers). */
 .diapo__titre-curi {
   display: inline-block;
-  margin-top: 0.12em;
-  padding: 0.04em 0.28em 0.1em;
-  background: var(--accent);
-  color: var(--blanc);
-  letter-spacing: 0.02em;
+  margin-top: 0.08em;
+  font-size: 1.18em;
+  letter-spacing: 0.04em;
+  color: var(--accent-clair);
+  background: linear-gradient(
+    110deg,
+    #2892cc 0%,
+    #5fb4e6 22%,
+    #e9f6ff 42%,
+    #ffffff 48%,
+    #7cc4ee 56%,
+    #2892cc 74%,
+    #1b6ea8 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(124, 196, 238, 0.55);
   text-shadow: none;
+  filter: drop-shadow(0 2px 3px rgba(10, 26, 44, 0.55)) drop-shadow(0 6px 26px rgba(40, 146, 204, 0.6));
+  animation: curi-miroir 4.5s linear infinite;
+}
+
+@keyframes curi-miroir {
+  from { background-position: 120% 0; }
+  to { background-position: -130% 0; }
 }
 
 /* Le nom du centre, surligné ligne par ligne */
