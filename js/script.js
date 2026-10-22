@@ -22,6 +22,7 @@
      13. Chiffres qui défilent  (accueil)
      14. Vidéo de présentation  (accueil)
      15. Galerie défilante      (accueil)
+     16. Onglets                (programme des formations)
    ========================================================================== */
 
 (function () {
@@ -1018,5 +1019,58 @@
     // Vitesse constante quel que soit le nombre de photos : environ 5 s par photo
     bande.style.setProperty("--duree-defilement", originaux.length * 5 + "s");
     bande.classList.add("est-animee");
+  });
+
+  /* ========================================================================
+     16. Onglets (programme des formations)
+     Un bloc [data-onglets] contient une liste de boutons role="tab", chacun
+     relié à son panneau par aria-controls. Les blocs peuvent s'imbriquer
+     (années, puis filières). Sans JavaScript, tous les panneaux restent
+     visibles. Flèches gauche/droite pour passer d'un onglet à l'autre.
+     ===================================================================== */
+
+  $$("[data-onglets]").forEach(function (bloc) {
+    var liste = $(".onglets__liste", bloc);
+    if (!liste) return;
+    // Seulement les onglets de CE bloc, pas ceux d'un bloc imbriqué
+    var onglets = $$('[role="tab"]', liste);
+
+    var choisir = function (onglet, donnerFocus) {
+      onglets.forEach(function (autre) {
+        var actif = autre === onglet;
+        autre.setAttribute("aria-selected", actif ? "true" : "false");
+        autre.setAttribute("tabindex", actif ? "0" : "-1");
+        var panneau = document.getElementById(autre.getAttribute("aria-controls"));
+        if (!panneau) return;
+        panneau.hidden = !actif;
+        if (actif && !mouvementReduit) {
+          panneau.classList.remove("est-entree");
+          void panneau.offsetWidth;
+          panneau.classList.add("est-entree");
+        }
+      });
+      if (donnerFocus) onglet.focus();
+    };
+
+    onglets.forEach(function (onglet, i) {
+      onglet.addEventListener("click", function () {
+        choisir(onglet, false);
+      });
+      onglet.addEventListener("keydown", function (evenement) {
+        var cible = null;
+        if (evenement.key === "ArrowRight") cible = onglets[(i + 1) % onglets.length];
+        if (evenement.key === "ArrowLeft") cible = onglets[(i - 1 + onglets.length) % onglets.length];
+        if (evenement.key === "Home") cible = onglets[0];
+        if (evenement.key === "End") cible = onglets[onglets.length - 1];
+        if (!cible) return;
+        evenement.preventDefault();
+        choisir(cible, true);
+      });
+    });
+
+    var depart = onglets.filter(function (onglet) {
+      return onglet.getAttribute("aria-selected") === "true";
+    })[0] || onglets[0];
+    choisir(depart, false);
   });
 })();

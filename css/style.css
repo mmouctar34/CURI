@@ -2337,6 +2337,353 @@ mark {
   }
 }
 
+/* --- Programme des formations : onglets, semestres, diplômes --- */
+
+/* Onglets (section 16 du script). Sans JavaScript, tous les panneaux
+   s'affichent les uns sous les autres. */
+.onglets__liste {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.onglet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  padding: 1rem 1.25rem;
+  background: var(--blanc);
+  border: 1.5px solid var(--trait);
+  color: var(--marine);
+  text-align: left;
+  font: inherit;
+  transition: border-color var(--vitesse) var(--courbe), background var(--vitesse) var(--courbe),
+    color var(--vitesse) var(--courbe);
+}
+
+.onglet:hover {
+  border-color: var(--accent);
+  background: var(--bleu-pale);
+}
+
+.onglet[aria-selected="true"] {
+  background: var(--bleu);
+  border-color: var(--bleu);
+  color: var(--blanc);
+}
+
+/* Petit triangle sous l'onglet actif, qui pointe vers son contenu */
+.onglet[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  bottom: -9px;
+  border: 8px solid transparent;
+  border-bottom: 0;
+  border-top-color: var(--bleu);
+}
+
+.onglet__titre {
+  font-family: var(--police-titre);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.onglet__sous {
+  font-size: var(--t-mini);
+  color: var(--texte-doux);
+}
+
+.onglet[aria-selected="true"] .onglet__sous {
+  color: #cfe3f3;
+}
+
+.onglets__panneau + .onglets__panneau {
+  margin-top: 2.5rem;
+}
+
+.js .onglets__panneau + .onglets__panneau {
+  margin-top: 0;
+}
+
+.onglets__panneau.est-entree {
+  animation: onglet-entree 0.45s var(--courbe) both;
+}
+
+@keyframes onglet-entree {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Onglets des filières, plus discrets */
+.onglets--secondaires {
+  margin-top: 2.25rem;
+}
+
+.onglets--secondaires .onglets__liste {
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  margin-bottom: 1.5rem;
+}
+
+.onglets--secondaires .onglet {
+  padding: 0.8rem 1.1rem;
+  border-width: 0 0 3px;
+  background: var(--gris);
+}
+
+.onglets--secondaires .onglet[aria-selected="true"] {
+  background: var(--marine);
+  border-color: var(--accent);
+}
+
+.onglets--secondaires .onglet[aria-selected="true"]::after {
+  border-top-color: var(--marine);
+}
+
+.onglets--secondaires .onglet__titre {
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* Encart d'information en tête de panneau */
+.encart {
+  margin-bottom: 1.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--bleu-pale);
+  border-left: 4px solid var(--accent);
+  color: var(--marine);
+  font-size: var(--t-petit);
+}
+
+/* Cartes de semestre */
+.semestres {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 60rem) {
+  .semestres {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.semestre {
+  background: var(--blanc);
+  border: 1px solid var(--trait);
+}
+
+.semestre__tete {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--marine);
+  color: var(--blanc);
+}
+
+.semestre:nth-child(2) .semestre__tete {
+  background: var(--bleu);
+}
+
+.semestre__num {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  background: var(--accent);
+  font-family: var(--police-titre);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--blanc);
+}
+
+.semestre:nth-child(2) .semestre__num {
+  background: var(--blanc);
+  color: var(--bleu);
+}
+
+.semestre__tete h3 {
+  font-size: 1.2rem;
+  color: var(--blanc);
+}
+
+.semestre__tete p {
+  font-size: var(--t-mini);
+  color: #bcd3e8;
+}
+
+.semestre__ues {
+  padding: 0.5rem 0;
+}
+
+/* Une unité d'enseignement : au survol, la ligne s'éclaire et les
+   matières qui la composent ressortent */
+.ue {
+  padding: 0.85rem 1.25rem;
+  border-left: 3px solid transparent;
+  transition: background var(--vitesse) var(--courbe), border-color var(--vitesse) var(--courbe);
+}
+
+.ue + .ue {
+  border-top: 1px solid var(--trait);
+}
+
+.ue:hover {
+  background: var(--bleu-pale);
+  border-left-color: var(--accent);
+}
+
+.ue h4 {
+  font-family: var(--police-texte);
+  font-size: var(--t-petit);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--marine);
+}
+
+.ue__ecs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.ue__ecs li {
+  padding: 0.25rem 0.6rem;
+  background: var(--gris);
+  border: 1px solid var(--trait);
+  font-size: var(--t-mini);
+  line-height: 1.4;
+  color: var(--texte);
+  transition: background var(--vitesse) var(--courbe), border-color var(--vitesse) var(--courbe);
+}
+
+.ue:hover .ue__ecs li {
+  background: var(--blanc);
+  border-color: rgba(40, 146, 204, 0.45);
+}
+
+.semestre__attente {
+  margin: 1.25rem;
+  padding: 1.25rem;
+  background: var(--bleu-pale);
+  border-left: 4px solid var(--accent);
+}
+
+.semestre__attente strong {
+  display: block;
+  color: var(--marine);
+}
+
+.semestre__attente p {
+  margin: 0.35rem 0 1.1rem;
+  font-size: var(--t-petit);
+  color: var(--texte-doux);
+}
+
+/* Jalons de deuxième année */
+.jalons {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+}
+
+.jalon {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.1rem 1.25rem;
+  background: var(--blanc);
+  border: 1px solid var(--trait);
+}
+
+.jalon__icone {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  background: var(--bleu-pale);
+  color: var(--bleu);
+}
+
+.jalon strong {
+  color: var(--marine);
+}
+
+.jalon p {
+  margin-top: 0.2rem;
+  font-size: var(--t-petit);
+  color: var(--texte-doux);
+}
+
+/* Diplômes */
+.diplomes {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+}
+
+.diplome {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  background: var(--blanc);
+  border: 1px solid var(--trait);
+  border-top: 4px solid var(--bleu);
+  transition: transform var(--vitesse) var(--courbe), box-shadow var(--vitesse) var(--courbe);
+}
+
+.diplome:first-child {
+  border-top-color: var(--marine);
+}
+
+.diplome:last-child {
+  border-top-color: var(--accent);
+}
+
+.diplome:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 40px -28px rgba(10, 26, 44, 0.55);
+}
+
+.diplome__etiquette {
+  align-self: flex-start;
+  padding: 0.2rem 0.6rem;
+  background: var(--bleu-pale);
+  font-size: var(--t-mini);
+  font-weight: 500;
+  color: var(--accent-texte);
+}
+
+.diplome h3 {
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.diplome p {
+  font-size: var(--t-petit);
+  color: var(--texte-doux);
+}
+
+/* Ligne « Diplôme : … » sous les modules d'une spécialité */
+.duo .duo__diplome {
+  margin-top: 1.25rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--accent);
+  font-size: var(--t-petit);
+  color: var(--marine);
+}
+
 /* ==========================================================================
    11. Galerie et visionneuse
    ========================================================================== */
