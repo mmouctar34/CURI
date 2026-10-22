@@ -28,12 +28,17 @@ laissé aux promotions suivantes.
 
 | Branche | Contenu | Statut |
 | --- | --- | --- |
-| `main` | L'ancien site, celui qui est déployé en ligne aujourd'hui | **Ne pas y toucher sans accord explicite** |
-| `refonte-2026` | La refonte complète, en attente de validation | Branche de travail |
+| `main` | **La refonte, mise en ligne le 22 oct. 2026** à la demande du propriétaire (GitHub Pages) | **Ne pas y pousser sans accord explicite** |
+| `refonte-2026` | Même contenu que `main` au moment de la mise en ligne | Branche de travail |
+| étiquette `sauvegarde-site-en-ligne-2026-10-22` | L'ancien site, tel qu'il était en ligne avant la refonte | Pour revenir en arrière si besoin |
 
-La refonte n'est **pas** fusionnée. Le propriétaire veut relire et valider
-avant que `main` ne bouge. Travaille sur `refonte-2026` ou sur une branche
-qui en part.
+Travaille sur `refonte-2026` ou sur une branche qui en part, montre le
+résultat au propriétaire, et ne mets à jour `main` (donc le site public)
+que lorsqu'il le demande explicitement (« mets en ligne »).
+
+Revenir à l'ancien site en cas de problème :
+`git push --force origin sauvegarde-site-en-ligne-2026-10-22^{commit}:main`
+(uniquement sur demande du propriétaire).
 
 Trois commits composent la refonte :
 
