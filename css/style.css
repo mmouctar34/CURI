@@ -837,64 +837,87 @@ mark {
    5. Diaporama d'accueil et bandeaux de page
    ========================================================================== */
 
+/* Diaporama d'accueil, dans l'esprit de uam.sn :
+   - photos plein écran, bien visibles, qui zooment lentement ;
+   - passage à la photo suivante par un volet qui balaie de gauche à droite ;
+   - titre centré, très grand, qui se réanime à chaque photo ;
+   - une barre de progression dans le point de la photo en cours. */
 .diapo {
+  --duree-diapo: 7s;
   position: relative;
   background: var(--marine);
   overflow: hidden;
 }
 
+/* Le texte est dans le flux : c'est lui qui donne sa hauteur au diaporama
+   quand l'écran est petit, les photos remplissent le fond. */
 .diapo__vue {
   position: relative;
-  min-height: clamp(25rem, 62vh, 36rem);
-}
-
-/* Sur téléphone, le texte d'accueil prend plus de hauteur :
-   on laisse de la place pour que les points ne chevauchent pas les boutons */
-@media (max-width: 47.99rem) {
-  .diapo__vue {
-    min-height: 37rem;
-  }
-
-  .diapo__contenu {
-    padding-bottom: 2.5rem;
-  }
+  display: grid;
+  min-height: clamp(34rem, 86vh, 48rem);
 }
 
 .diapo__ecran {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transition: opacity 0.9s var(--courbe);
+  visibility: hidden;
+  overflow: hidden;
+}
+
+/* La photo qui s'en va reste visible sous la nouvelle pendant le volet */
+.diapo__ecran.est-precedente {
+  visibility: visible;
+  z-index: 1;
 }
 
 .diapo__ecran.est-active {
-  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+  animation: diapo-volet 1.1s var(--courbe) both;
+}
+
+.diapo__ecran.sans-volet {
+  animation: none;
+}
+
+@keyframes diapo-volet {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
 }
 
 .diapo__ecran img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 32%;
+  object-position: center 35%;
 }
 
+/* Zoom lent (effet « Ken Burns ») sur la photo en cours */
+.diapo__ecran.est-active img {
+  animation: diapo-zoom calc(var(--duree-diapo) + 2s) linear both;
+}
+
+@keyframes diapo-zoom {
+  from { transform: scale(1.14); }
+  to { transform: scale(1); }
+}
+
+/* Voile léger : la photo reste lisible, le texte aussi grâce au halo central */
 .diapo__voile {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    95deg,
-    rgba(10, 26, 44, 0.95) 0%,
-    rgba(10, 26, 44, 0.84) 42%,
-    rgba(10, 26, 44, 0.42) 100%
-  );
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 48%, rgba(10, 26, 44, 0.62) 0%, rgba(10, 26, 44, 0.2) 100%),
+    linear-gradient(180deg, rgba(10, 26, 44, 0.35) 0%, rgba(10, 26, 44, 0) 30%, rgba(10, 26, 44, 0.55) 100%);
 }
 
 .diapo__contenu {
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 3;
   display: grid;
   align-content: center;
+  text-align: center;
+  padding-block: clamp(3rem, 2rem + 4vw, 5rem) clamp(4.5rem, 3rem + 4vw, 7rem);
   pointer-events: none;
 }
 
@@ -904,23 +927,43 @@ mark {
 
 .diapo h1,
 .diapo__titre {
-  max-width: 19ch;
-  font-size: var(--t-heros);
-  font-weight: 600;
-  letter-spacing: -1.5px;
+  font-size: clamp(2.9rem, 1.4rem + 6.4vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--blanc);
+  text-shadow: 0 4px 30px rgba(10, 26, 44, 0.45);
+}
+
+.diapo__ligne {
+  display: block;
+}
+
+/* « CURI » dans un aplat bleu UCAD, comme les titres surlignés de uam.sn */
+.diapo__titre-curi {
+  display: inline-block;
+  margin-top: 0.12em;
+  padding: 0.04em 0.28em 0.1em;
+  background: var(--accent);
+  color: var(--blanc);
+  letter-spacing: 0.02em;
+  text-shadow: none;
+}
+
+/* Le nom du centre, surligné ligne par ligne */
+.diapo__sous-titre {
+  margin: 1.4rem auto 0;
+  max-width: 40ch;
+  font-size: clamp(1.1rem, 0.9rem + 0.9vw, 1.55rem);
+  line-height: 1.75;
   color: var(--blanc);
 }
 
-.diapo__titre-curi {
-  color: var(--accent-clair);
-}
-
-.diapo__sous-titre {
-  margin-top: 0.9rem;
-  max-width: 34ch;
-  font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.4rem);
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.92);
+.diapo__sous-titre span {
+  padding: 0.15em 0.5em;
+  background: rgba(10, 26, 44, 0.78);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .diapo__sous-titre strong {
@@ -929,24 +972,108 @@ mark {
 }
 
 .diapo__texte {
-  margin-top: 1.1rem;
-  max-width: 50ch;
+  margin: 1.2rem auto 0;
+  max-width: 52ch;
   font-size: 1.0625rem;
-  color: #cfe0ef;
+  color: #e3eef8;
+  text-shadow: 0 1px 12px rgba(10, 26, 44, 0.8);
 }
 
 .diapo__actions {
   margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
+}
+
+/* Entrée animée du texte, rejouée à chaque photo (classe posée par le script) */
+.diapo__contenu.est-anime .diapo__ligne,
+.diapo__contenu.est-anime .diapo__sous-titre,
+.diapo__contenu.est-anime .diapo__texte,
+.diapo__contenu.est-anime .diapo__actions {
+  animation: diapo-monte 0.9s var(--courbe) both;
+}
+
+.diapo__contenu.est-anime .diapo__ligne:nth-child(2) { animation-delay: 0.12s; }
+.diapo__contenu.est-anime .diapo__sous-titre { animation-delay: 0.3s; }
+.diapo__contenu.est-anime .diapo__texte { animation-delay: 0.45s; }
+.diapo__contenu.est-anime .diapo__actions { animation-delay: 0.6s; }
+
+@keyframes diapo-monte {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Carte « À la une » en bas à gauche de certaines photos */
+.diapo__une {
+  position: absolute;
+  z-index: 4;
+  left: clamp(1rem, 4vw, 3rem);
+  bottom: 3.6rem;
+  display: none;
+  max-width: 21rem;
+  padding: 0.9rem 1.1rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-left: 4px solid var(--accent);
+  color: var(--marine);
+  text-decoration: none;
+  transform: translateX(-12px);
+  opacity: 0;
+  transition: transform var(--vitesse) var(--courbe), background var(--vitesse) var(--courbe);
+}
+
+.est-active .diapo__une {
+  animation: diapo-une 0.7s 0.9s var(--courbe) both;
+}
+
+@keyframes diapo-une {
+  from { opacity: 0; transform: translateX(-24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.diapo__une:hover,
+.diapo__une:focus-visible {
+  background: var(--blanc);
+  transform: translateX(4px);
+}
+
+.diapo__une-sur {
+  display: block;
+  font-size: var(--t-mini);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-texte);
+}
+
+.diapo__une-titre {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--police-titre);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+
+.diapo__une-titre::after {
+  content: " →";
+  color: var(--accent-texte);
+}
+
+/* Seulement sur grand écran : en dessous, elle chevaucherait les boutons */
+@media (min-width: 80rem) {
+  .diapo__une {
+    display: block;
+  }
 }
 
 /* Commandes du diaporama */
 .diapo__points {
   position: absolute;
   z-index: 4;
-  bottom: 1.4rem;
+  bottom: 1.6rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -954,16 +1081,36 @@ mark {
 }
 
 .diapo__point {
-  width: 34px;
+  position: relative;
+  width: 42px;
   height: 4px;
   padding: 0;
   border: none;
   background: rgba(255, 255, 255, 0.35);
-  transition: background var(--vitesse) var(--courbe);
+  overflow: hidden;
 }
 
-.diapo__point[aria-selected="true"] {
+/* Le point de la photo en cours se remplit pendant qu'elle est affichée */
+.diapo__point::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.diapo__point[aria-selected="true"]::after {
+  transform: scaleX(1);
+}
+
+.diapo.est-en-lecture .diapo__point[aria-selected="true"]::after {
+  animation: diapo-progression var(--duree-diapo) linear both;
+}
+
+@keyframes diapo-progression {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 .diapo__fleche {
@@ -973,15 +1120,17 @@ mark {
   transform: translateY(-50%);
   display: none;
   place-items: center;
-  width: 48px;
-  height: 48px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 52px;
+  height: 52px;
+  background: rgba(10, 26, 44, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   color: var(--blanc);
+  transition: background var(--vitesse) var(--courbe), border-color var(--vitesse) var(--courbe);
 }
 
 .diapo__fleche:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .diapo__fleche--avant {
@@ -1648,9 +1797,11 @@ mark {
   height: 76px;
   padding-left: 4px;
   border-radius: 50%;
-  background: var(--accent);
+  /* Rouge « YouTube », triangle blanc : on reconnaît tout de suite une vidéo */
+  background: #e01e1e;
+  color: var(--blanc);
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 0 rgba(40, 146, 204, 0.6);
+  box-shadow: 0 0 0 0 rgba(224, 30, 30, 0.6);
   animation: pulsation 2.4s infinite;
   transition: transform var(--vitesse) var(--courbe), background var(--vitesse) var(--courbe);
 }
@@ -1677,15 +1828,14 @@ mark {
 
 .video:hover .video__lecture,
 .video:focus-visible .video__lecture {
-  background: var(--blanc);
-  color: var(--bleu);
-  transform: translate(-50%, -50%) scale(1.1);
+  background: #ff2a2a;
+  transform: translate(-50%, -50%) scale(1.12);
 }
 
 @keyframes pulsation {
-  0% { box-shadow: 0 0 0 0 rgba(40, 146, 204, 0.6); }
-  70% { box-shadow: 0 0 0 22px rgba(40, 146, 204, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(40, 146, 204, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(224, 30, 30, 0.6); }
+  70% { box-shadow: 0 0 0 22px rgba(224, 30, 30, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(224, 30, 30, 0); }
 }
 
 /* Les trois piliers sous le texte « À propos » */
@@ -2010,40 +2160,6 @@ mark {
   padding-bottom: 1.4rem;
 }
 
-/* Appel à l'action */
-.appel {
-  display: grid;
-  gap: 1.75rem;
-  align-items: center;
-  padding: clamp(2rem, 1.2rem + 3vw, 3.25rem);
-  background: var(--marine);
-  color: #c4d2e4;
-}
-
-.appel h2 {
-  font-size: var(--t-sous);
-  color: var(--blanc);
-}
-
-.appel p {
-  margin-top: 0.6rem;
-  max-width: 54ch;
-  font-size: var(--t-petit);
-}
-
-.appel__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-@media (min-width: 52rem) {
-  .appel {
-    grid-template-columns: 1fr auto;
-    gap: 2.5rem;
-  }
-}
-
 /* --- Article d'événement --- */
 .article {
   max-width: 50rem;
@@ -2260,7 +2376,8 @@ mark {
   grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr));
 }
 
-.galerie__element {
+.galerie__element,
+.galerie__copie {
   position: relative;
   padding: 0;
   border: none;
@@ -2269,19 +2386,69 @@ mark {
   background: var(--gris);
 }
 
-.galerie__element img {
+.galerie__element img,
+.galerie__copie img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s var(--courbe);
 }
 
-.galerie__element:hover img {
+.galerie__element:hover img,
+.galerie__copie:hover img {
   transform: scale(1.07);
 }
 
 .galerie__element[hidden] {
   display: none;
+}
+
+/* Galerie défilante de l'accueil : les vignettes gardent leur taille et
+   leur forme (4/3) et passent en continu de droite à gauche, comme le
+   bandeau de photos de uam.sn. Survoler la bande la met en pause.
+   Sans JavaScript, la bande se fait défiler à la main. */
+.galerie--defilante {
+  display: block;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.galerie--defilante::-webkit-scrollbar {
+  display: none;
+}
+
+.galerie--defilante .galerie__piste {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+}
+
+.galerie--defilante .galerie__element,
+.galerie--defilante .galerie__copie {
+  flex: none;
+  width: clamp(14rem, 22vw, 17rem);
+}
+
+.galerie--defilante.est-animee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+
+.galerie--defilante.est-animee .galerie__piste {
+  animation: galerie-defile var(--duree-defilement, 45s) linear infinite;
+}
+
+.galerie--defilante.est-animee:hover .galerie__piste,
+.galerie--defilante.est-animee:focus-within .galerie__piste {
+  animation-play-state: paused;
+}
+
+/* La piste contient deux fois les photos : on la décale de la moitié,
+   puis on recommence, sans saut visible. */
+@keyframes galerie-defile {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.375rem)); }
 }
 
 .visionneuse {

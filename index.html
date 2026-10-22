@@ -132,7 +132,15 @@
 
 <main id="contenu">
 
-  <!-- ======================= DIAPORAMA ======================= -->
+  <!-- ======================= DIAPORAMA =======================
+       Inspiré de uam.sn : photos plein écran qui zooment doucement, passage
+       d'une photo à l'autre par un volet, titre d'accueil qui se réanime à
+       chaque photo.
+       Le titre « Bienvenue au CURI » reste affiché sur toutes les photos.
+       Chaque photo peut porter une petite carte « À la une » (.diapo__une)
+       qui mène vers l'article de l'événement.
+       Pour ajouter une photo : copier un bloc .diapo__ecran et ajouter un
+       bouton dans .diapo__points. -->
   <section class="diapo" aria-label="Présentation du centre" aria-roledescription="carrousel">
     <div class="diapo__vue">
 
@@ -142,13 +150,21 @@
       </div>
 
       <div class="diapo__ecran" aria-hidden="true">
-        <img src="images/web/vr-1200.webp" srcset="images/web/vr-700.webp 700w, images/web/vr-1200.webp 1200w" sizes="100vw" alt="Participants portant des casques de réalité virtuelle au laboratoire du centre" width="1200" height="800" loading="lazy">
+        <img src="images/web/colab-2-1200.webp" srcset="images/web/colab-2-700.webp 700w, images/web/colab-2-1200.webp 1200w" sizes="100vw" alt="Lycéens découvrant la réalité virtuelle au laboratoire du centre" width="1200" height="800" loading="lazy">
         <div class="diapo__voile"></div>
+        <a class="diapo__une" href="evenement-colab-2025.html">
+          <span class="diapo__une-sur">À la une · Juin 2025</span>
+          <span class="diapo__une-titre">Portes ouvertes sur les technologies immersives</span>
+        </a>
       </div>
 
       <div class="diapo__ecran" aria-hidden="true">
-        <img src="images/web/amphi-1200.webp" srcset="images/web/amphi-700.webp 700w, images/web/amphi-1200.webp 1080w" sizes="100vw" alt="Amphithéâtre de l'UCAD rempli lors d'une conférence du centre" width="1080" height="608" loading="lazy">
+        <img src="images/web/hackathon-1200.webp" srcset="images/web/hackathon-700.webp 700w, images/web/hackathon-1200.webp 1200w" sizes="100vw" alt="Participants du hackathon réunis devant les banderoles des partenaires" width="1200" height="900" loading="lazy">
         <div class="diapo__voile"></div>
+        <a class="diapo__une" href="evenement-hackathon-2024.html">
+          <span class="diapo__une-sur">À la une · Septembre 2024</span>
+          <span class="diapo__une-titre">Hackathon du Parc de Technologies Numériques</span>
+        </a>
       </div>
 
       <div class="diapo__ecran" aria-hidden="true">
@@ -156,12 +172,32 @@
         <div class="diapo__voile"></div>
       </div>
 
+      <div class="diapo__ecran" aria-hidden="true">
+        <img src="images/web/labo-1-1200.webp" srcset="images/web/labo-1-700.webp 700w, images/web/labo-1-1200.webp 1200w" sizes="100vw" alt="Lancement des activités du laboratoire des technologies immersives" width="1200" height="800" loading="lazy">
+        <div class="diapo__voile"></div>
+        <a class="diapo__une" href="evenement-laboratoire-2024.html">
+          <span class="diapo__une-sur">À la une · Septembre 2024</span>
+          <span class="diapo__une-titre">Lancement du laboratoire des technologies immersives</span>
+        </a>
+      </div>
+
+      <div class="diapo__ecran" aria-hidden="true">
+        <img src="images/web/senagro-2-1200.webp" srcset="images/web/senagro-2-700.webp 700w, images/web/senagro-2-1200.webp 1024w" sizes="100vw" alt="Atelier SenAgro sur l'intelligence artificielle et l'agriculture" width="1024" height="682" loading="lazy">
+        <div class="diapo__voile"></div>
+        <a class="diapo__une" href="evenement-senagro-2024.html">
+          <span class="diapo__une-sur">À la une · Avril 2024</span>
+          <span class="diapo__une-titre">Atelier SenAgro : l'IA au service de l'agriculture</span>
+        </a>
+      </div>
+
       <div class="diapo__contenu">
         <div class="enveloppe">
-          <h1 class="diapo__titre">Bienvenue au <span class="diapo__titre-curi">CURI</span></h1>
+          <h1 class="diapo__titre">
+            <span class="diapo__ligne">Bienvenue au</span>
+            <span class="diapo__ligne"><span class="diapo__titre-curi">CURI</span></span>
+          </h1>
           <p class="diapo__sous-titre">
-            Centre Universitaire de Recherche et de Formation aux
-            <strong>Technologies de l'Internet</strong>
+            <span>Centre Universitaire de Recherche et de Formation aux <strong>Technologies de l'Internet</strong></span>
           </p>
           <p class="diapo__texte">
             Pôle d'excellence académique de l'UCAD, le CURI forme en deux ans les
@@ -187,6 +223,8 @@
         <button type="button" class="diapo__point" role="tab" aria-selected="false" aria-label="Image 2"></button>
         <button type="button" class="diapo__point" role="tab" aria-selected="false" aria-label="Image 3"></button>
         <button type="button" class="diapo__point" role="tab" aria-selected="false" aria-label="Image 4"></button>
+        <button type="button" class="diapo__point" role="tab" aria-selected="false" aria-label="Image 5"></button>
+        <button type="button" class="diapo__point" role="tab" aria-selected="false" aria-label="Image 6"></button>
       </div>
 
     </div>
@@ -599,7 +637,25 @@
         <h2>La vie sur le campus</h2>
       </div>
 
-      <div class="galerie apparait">
+      <!-- Bande de photos qui défile toute seule (section 15 du script).
+           Pour ajouter une photo : copier un bouton .galerie__element. -->
+      <div class="galerie galerie--defilante apparait">
+        <div class="galerie__piste">
+        <button type="button" class="galerie__element" data-categorie="atelier">
+          <img src="images/web/colab-1-700.webp" data-grand="images/web/colab-1-1200.webp" alt="Atelier de découverte de la réalité virtuelle" width="700" height="467" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="conference">
+          <img src="images/web/hackathon-panel-700.webp" data-grand="images/web/hackathon-panel-1200.webp" alt="Table ronde d'ouverture du hackathon" width="700" height="467" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="atelier">
+          <img src="images/web/leadership-2-700.webp" data-grand="images/web/leadership-2-1200.webp" alt="Séance de travail pendant la formation au leadership" width="700" height="467" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="conference">
+          <img src="images/web/senagro-1-700.webp" data-grand="images/web/senagro-1-1200.webp" alt="Présentation des travaux de thèse pendant l'atelier SenAgro" width="700" height="467" loading="lazy">
+        </button>
+        <button type="button" class="galerie__element" data-categorie="atelier">
+          <img src="images/web/labo-2-700.webp" data-grand="images/web/labo-2-1200.webp" alt="Matériel de réalité virtuelle installé au laboratoire" width="700" height="467" loading="lazy">
+        </button>
         <button type="button" class="galerie__element" data-categorie="conference">
           <img src="images/web/amphi-700.webp" data-grand="images/web/amphi-1200.webp" alt="Amphithéâtre de l'UCAD rempli lors d'une conférence du centre" width="700" height="394" loading="lazy">
         </button>
@@ -624,6 +680,7 @@
         <button type="button" class="galerie__element" data-categorie="atelier">
           <img src="images/web/code-620.webp" data-grand="images/web/code-1000.webp" alt="Écran d'ordinateur portable affichant du code" width="620" height="481" loading="lazy">
         </button>
+        </div>
       </div>
 
       <div class="actions-centre">

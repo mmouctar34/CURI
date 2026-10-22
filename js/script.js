@@ -21,6 +21,7 @@
      12. Année du pied de page
      13. Chiffres qui défilent  (accueil)
      14. Vidéo de présentation  (accueil)
+     15. Galerie défilante      (accueil)
    ========================================================================== */
 
 (function () {
@@ -495,19 +496,53 @@
   if (diapo) {
     var ecrans = $$(".diapo__ecran", diapo);
     var points = $$(".diapo__point", diapo);
+    var texteDiapo = $(".diapo__contenu", diapo);
     var position = 0;
     var minuterie = null;
-    var DUREE = 6500;
+    var finVolet = null;
+    // Doit correspondre à --duree-diapo dans css/style.css
+    var DUREE = 7000;
 
-    var montrer = function (index) {
+    // Relance une animation CSS : on retire la classe, on force le
+    // navigateur à recalculer, puis on la remet.
+    var rejouer = function (element, classe) {
+      if (!element) return;
+      element.classList.remove(classe);
+      void element.offsetWidth;
+      element.classList.add(classe);
+    };
+
+    var montrer = function (index, premiereFois) {
+      var ancienne = position;
       position = (index + ecrans.length) % ecrans.length;
+
       ecrans.forEach(function (ecran, i) {
-        ecran.classList.toggle("est-active", i === position);
-        ecran.setAttribute("aria-hidden", i === position ? "false" : "true");
+        var active = i === position;
+        ecran.classList.remove("est-precedente", "sans-volet");
+        ecran.classList.toggle("est-active", active);
+        ecran.setAttribute("aria-hidden", active ? "false" : "true");
+        // Les liens des photos cachées ne doivent pas recevoir le focus
+        if (active) ecran.removeAttribute("inert");
+        else ecran.setAttribute("inert", "");
       });
+
+      if (premiereFois || ancienne === position) {
+        ecrans[position].classList.add("sans-volet");
+      } else {
+        // L'ancienne photo reste dessous le temps que le volet passe
+        ecrans[ancienne].classList.add("est-precedente");
+        window.clearTimeout(finVolet);
+        finVolet = window.setTimeout(function () {
+          ecrans[ancienne].classList.remove("est-precedente");
+        }, 1200);
+      }
+
       points.forEach(function (point, i) {
         point.setAttribute("aria-selected", i === position ? "true" : "false");
       });
+
+      if (!mouvementReduit) rejouer(texteDiapo, "est-anime");
+      if (minuterie) rejouer(diapo, "est-en-lecture");
     };
 
     var lancer = function () {
@@ -516,11 +551,13 @@
       minuterie = window.setInterval(function () {
         montrer(position + 1);
       }, DUREE);
+      rejouer(diapo, "est-en-lecture");
     };
 
     var arreter = function () {
       if (minuterie) window.clearInterval(minuterie);
       minuterie = null;
+      diapo.classList.remove("est-en-lecture");
     };
 
     points.forEach(function (point, i) {
@@ -546,9 +583,15 @@
       });
     }
 
-    // On met en pause quand la personne survole ou navigue au clavier
-    diapo.addEventListener("mouseenter", arreter);
-    diapo.addEventListener("mouseleave", lancer);
+    // On met en pause quand la personne survole un élément cliquable
+    // (boutons, carte « À la une », points, flèches) ou navigue au clavier.
+    // Survoler simplement la photo ne l'arrête pas.
+    $$(".diapo__actions, .diapo__une, .diapo__points, .diapo__fleche", diapo).forEach(
+      function (zone) {
+        zone.addEventListener("mouseenter", arreter);
+        zone.addEventListener("mouseleave", lancer);
+      }
+    );
     diapo.addEventListener("focusin", arreter);
     diapo.addEventListener("focusout", lancer);
 
@@ -558,7 +601,7 @@
       else lancer();
     });
 
-    montrer(0);
+    montrer(0, true);
     lancer();
   }
 
@@ -944,5 +987,36 @@
       lien.parentNode.replaceChild(cadre, lien);
       lecteur.focus();
     });
+  });
+
+  /* ========================================================================
+     15. Galerie défilante (accueil)
+     On recopie une fois les photos à la suite des originales pour que la
+     bande boucle sans trou. Les copies sont cachées aux lecteurs d'écran et
+     au clavier ; un clic sur une copie ouvre la photo d'origine dans la
+     visionneuse.
+     ===================================================================== */
+
+  $$(".galerie--defilante").forEach(function (bande) {
+    var piste = $(".galerie__piste", bande);
+    if (!piste || mouvementReduit) return;
+
+    var originaux = $$(".galerie__element", piste);
+    originaux.forEach(function (original) {
+      var copie = original.cloneNode(true);
+      // Pas de classe galerie__element : la visionneuse ne doit compter
+      // que les originaux quand on passe d'une photo à l'autre.
+      copie.className = "galerie__copie";
+      copie.setAttribute("aria-hidden", "true");
+      copie.setAttribute("tabindex", "-1");
+      copie.addEventListener("click", function () {
+        original.click();
+      });
+      piste.appendChild(copie);
+    });
+
+    // Vitesse constante quel que soit le nombre de photos : environ 5 s par photo
+    bande.style.setProperty("--duree-defilement", originaux.length * 5 + "s");
+    bande.classList.add("est-animee");
   });
 })();
