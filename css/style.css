@@ -1002,8 +1002,8 @@ mark {
 }
 
 /* « CURI » miroitant : les lettres elles-mêmes sont bleues et comme en
-   verre, sans fond derrière. Un reflet lumineux traverse le mot en boucle.
-   Technique : un dégradé bleu → blanc → bleu sert de « peinture » aux
+   verre, sans fond derrière. Un reflet bleu clair traverse le mot en boucle.
+   Technique : un dégradé de bleus sert de « peinture » aux
    lettres (background-clip: text), et on le fait glisser. Le halo bleu
    vient de filter: drop-shadow (text-shadow transparaîtrait à travers). */
 .diapo__titre-curi {
@@ -1012,14 +1012,16 @@ mark {
   font-size: 1.18em;
   letter-spacing: 0.04em;
   color: var(--accent-clair);
+  /* Uniquement des bleus (pas de reflet blanc, demande du propriétaire) :
+     un bleu clair passe doucement sur le bleu du logo UCAD. */
   background: linear-gradient(
     110deg,
-    #2892cc 0%,
-    #5fb4e6 22%,
-    #e9f6ff 42%,
-    #ffffff 48%,
-    #7cc4ee 56%,
-    #2892cc 74%,
+    #1b6ea8 0%,
+    #2892cc 25%,
+    #5fb4e6 42%,
+    #7cc4ee 50%,
+    #5fb4e6 58%,
+    #2892cc 75%,
     #1b6ea8 100%
   );
   background-size: 250% 100%;
@@ -1029,7 +1031,7 @@ mark {
   -webkit-text-stroke: 1px rgba(124, 196, 238, 0.55);
   text-shadow: none;
   filter: drop-shadow(0 2px 3px rgba(10, 26, 44, 0.55)) drop-shadow(0 6px 26px rgba(40, 146, 204, 0.6));
-  animation: curi-miroir 4.5s linear infinite;
+  animation: curi-miroir 6s linear infinite;
 }
 
 @keyframes curi-miroir {
