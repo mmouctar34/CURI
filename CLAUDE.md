@@ -119,7 +119,7 @@ evenement-colab-2025.html       \
 evenement-leadership-2025.html   |
 evenement-laboratoire-2024.html  |  Un article par événement
 evenement-senagro-2024.html      |
-evenement-hackathon-2024.html    |
+evenement-hackathon-2021.html    |
 evenement-dnssec-2022.html      /
 
 css/style.css                   Toute la mise en forme, un seul fichier commenté par section
@@ -231,6 +231,7 @@ Ces éléments sont sourcés. Ne les modifie pas sans raison.
 | Programme S1 à S4, diplômes (DES), admission par CampuSen après le BAC (toutes séries, sans concours), horaires d'accueil, équipe, métiers, témoignages | site actuellement déployé (branche `main`), repris à la demande du propriétaire |
 | Trois missions : formations diplômantes et certifiantes, recherche et innovation, service à la communauté / gestion du .sn | page LinkedIn officielle du CURI |
 | Les six événements : dates, lieux, partenaires, citations | articles du site actuellement déployé |
+| Hackathon PTN – UCAD : **du 26 au 28 novembre 2021**, organisé par le CURI avec le PTN, Wutiko et le LITA de l'ESP (et non « septembre 2024 ») | [journaluniversitaire.com/hackathon-ucad](https://journaluniversitaire.com/hackathon-ucad/) et la carte du site en ligne ; l'article a été renommé `evenement-hackathon-2021.html` |
 
 Une incohérence a été tranchée en cours de route : l'ancien site indiquait
 « Campus UCAD, Fann Résidence ». Deux sources officielles donnent **Cité

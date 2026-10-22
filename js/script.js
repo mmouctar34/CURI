@@ -140,10 +140,10 @@
     },
     {
       titre: "Hackathon du Parc de Technologies Numériques",
-      extrait: "Septembre 2024 — 72 heures de travail collaboratif avec la plateforme Wutiko.",
-      page: "evenement-hackathon-2024.html",
+      extrait: "Novembre 2021 — un week-end de travail collaboratif organisé par le CURI avec le PTN et Wutiko.",
+      page: "evenement-hackathon-2021.html",
       section: "Événements",
-      mots: "hackathon ptn wutiko parc technologies numeriques numériques pitch concours bad 2024"
+      mots: "hackathon ptn wutiko parc technologies numeriques numériques pitch concours bad 2021 novembre"
     },
     {
       titre: "Formation hybride DNS et DNSSEC",
