@@ -249,7 +249,11 @@ logo UCAD/CURI, accueil « Bienvenue au CURI » (diaporama plein écran animé
 façon uam.sn, chiffres qui défilent, vidéo YouTube, témoignages, partenaires
 en bas, galerie défilante), encart « en savoir plus » retiré de toutes les
 pages, programme complet en onglets sur Formations, Débouchés / Équipe /
-Contact complétés. Sauvegarde du site en ligne : étiquette git
+Contact complétés. Le texte d'accueil du diaporama reste fixe (seules les
+photos changent). Poursuite d'études, stages et insertion : **sur
+recommandation du CURI, hautement sélectif, stages non obligatoires**
+(précision du propriétaire). Pas d'« équipe technique » : M. Corentin et
+M. Kasse figurent parmi les enseignants. Sauvegarde du site en ligne : étiquette git
 `sauvegarde-site-en-ligne-2026-10-22`.
 
 En attente d'une réponse du propriétaire :

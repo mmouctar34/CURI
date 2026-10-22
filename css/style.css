@@ -1712,6 +1712,18 @@ mark {
   transform: translateX(4px);
 }
 
+/* Petite mention en bas d'une carte (ex. « Sur recommandation du CURI ») */
+.carte__mention {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.25rem 0.65rem;
+  background: var(--bleu-pale);
+  border-left: 3px solid var(--accent);
+  font-size: var(--t-mini);
+  font-weight: 500;
+  color: var(--accent-texte);
+}
+
 /* Métiers (page Débouchés) */
 .metiers {
   display: grid;
