@@ -81,20 +81,27 @@ un ou deux sites de référence avant de coder.** Les descriptions verbales
 Georgia est une police système : rien à télécharger, repli serif propre là où
 elle manque. Rubik vient de Google Fonts.
 
-Les couleurs sont dans `:root`, en haut de `css/style.css` :
+Les couleurs sont dans `:root`, en haut de `css/style.css`. **Depuis le
+22 oct. 2026, ce sont celles du logo de l'UCAD : bleu ciel, noir, blanc.
+Plus d'or ni d'orange** (demande du propriétaire).
 
 ```css
---marine: #0f2440;   /* fonds sombres, pied de page */
---bleu: #17539c;     /* couleur principale */
---bleu-fonce: #103a6e;
---or: #e3a008;       /* accent */
---or-texte: #8a6100; /* l'or en version lisible sur blanc */
---encre: #101010;    /* titres */
---texte: #333333;    /* texte courant */
+--marine: #0a1a2c;        /* fonds sombres, pied de page */
+--bleu: #1b6ea8;          /* couleur principale, boutons */
+--bleu-clair: #2892cc;    /* le bleu exact du logo UCAD */
+--accent: #2892cc;        /* accent (remplace l'ancien or) */
+--accent-clair: #7cc4ee;  /* accent sur fond sombre */
+--accent-texte: #17679b;  /* accent lisible sur fond blanc */
 ```
 
-L'or vif n'est **jamais** utilisé comme couleur de texte sur blanc : le
-contraste est insuffisant. Utilise `--or-texte`.
+Le bleu vif du logo n'est **jamais** utilisé comme couleur de texte sur
+blanc : le contraste est insuffisant. Utilise `--accent-texte`.
+
+**Logo de l'en-tête :** `images/web/logo-ucad-curi.png`, le logo UCAD + CURI
+du site en ligne. Le propriétaire veut exactement celui-là, ne pas le changer.
+
+**Seule exception au bleu :** le bouton de lecture de la vidéo est rouge
+(rouge « YouTube », triangle blanc), à la demande du propriétaire.
 
 ---
 
@@ -220,7 +227,9 @@ Ces éléments sont sourcés. Ne les modifie pas sans raison.
 | Directeur : **Pr Idrissa Sarr** | articles du site actuel du CURI |
 | Domaine national `.sn` confié à l'UCAD **depuis 1993**, via NIC Sénégal | curi.sn |
 | Partenaires des ateliers DNS : **NIC Sénégal, ICANN, AFNIC, AFTLD** | affiche officielle |
-| **200+** étudiants par an, **2 000+** diplômés | site actuellement déployé (branche `main`) |
+| **100+** étudiants par an (admission sélective), **20+** enseignants, **2 000+** diplômés, **2 ans** de formation | décision du propriétaire, 22 oct. 2026 (remplace les 200+ de l'ancien site) |
+| Programme S1 à S4, diplômes (DES), admission par CampuSen après le BAC (toutes séries, sans concours), horaires d'accueil, équipe, métiers, témoignages | site actuellement déployé (branche `main`), repris à la demande du propriétaire |
+| Trois missions : formations diplômantes et certifiantes, recherche et innovation, service à la communauté / gestion du .sn | page LinkedIn officielle du CURI |
 | Les six événements : dates, lieux, partenaires, citations | articles du site actuellement déployé |
 
 Une incohérence a été tranchée en cours de route : l'ancien site indiquait
@@ -230,6 +239,31 @@ Claudel**. C'est Cité Claudel qui a été retenu.
 ---
 
 ## 9. Ce qui reste à faire
+
+### Session du 22 oct. 2026 (fusion avec le site en ligne)
+
+Le propriétaire aime la **structure et les contenus** du site en ligne
+(`main`) et le **style** de la refonte. On reprend donc tous les contenus de
+`main` dans la refonte, avec le style uam.sn et les couleurs UCAD. Fait :
+logo UCAD/CURI, accueil « Bienvenue au CURI » (diaporama plein écran animé
+façon uam.sn, chiffres qui défilent, vidéo YouTube, témoignages, partenaires
+en bas, galerie défilante), encart « en savoir plus » retiré de toutes les
+pages, programme complet en onglets sur Formations, Débouchés / Équipe /
+Contact complétés. Sauvegarde du site en ligne : étiquette git
+`sauvegarde-site-en-ligne-2026-10-22`.
+
+En attente d'une réponse du propriétaire :
+- **Équipe** : la page `curi.sn/personnels` (site officiel) donne une liste
+  plus complète et parfois différente de celle du site en ligne (fonctions
+  de M. Kebe et de Mme/Mlle Aïdara, M. Diandy absent). Demander laquelle
+  publier.
+- Articles du site en ligne absents de la refonte : « Ouverture des
+  inscriptions 2025–2026 » (date limite passée) et « Hackathon CICES 2026 ».
+- Section « Former, et faire tourner le .sn » de l'accueil : garder ou non.
+- Événements à trouver sur Facebook / LinkedIn / X : ces pages ne montrent
+  rien sans connexion ; il faut que le propriétaire fournisse les contenus.
+
+### Liste d'origine
 
 Par ordre d'importance :
 
