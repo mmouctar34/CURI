@@ -23,6 +23,7 @@
      14. Vidéo de présentation  (accueil)
      15. Galerie défilante      (accueil)
      16. Onglets                (programme des formations)
+     17. Aller exactement à l'endroit demandé (ancres, recherche)
    ========================================================================== */
 
 (function () {
@@ -40,96 +41,404 @@
      ===================================================================== */
 
   var INDEX = [
+    /* --- Formations ---------------------------------------------------- */
     {
       titre: "Nos formations",
-      extrait: "Développement web et mobile, technologies web et multimédia, e-commerce et marketing digital.",
+      extrait: "Deux ans : un tronc commun, puis une spécialisation parmi trois filières.",
       page: "formation.html",
       section: "Formations",
-      mots: "dess filiere filière specialite spécialité cursus diplome diplôme etudier étudier"
+      mots: "des filiere filière specialite spécialité cursus diplome diplôme etudier étudier etudes études formation"
+    },
+    {
+      titre: "Les trois spécialités",
+      extrait: "Développement web et mobile, technologie web et multimédia, e-commerce et marketing digital.",
+      page: "formation.html#specialites",
+      section: "Formations",
+      mots: "specialites spécialités filieres filières choisir parcours"
     },
     {
       titre: "Développement web et mobile",
-      extrait: "Concevoir et mettre en production des applications complètes, du serveur au téléphone.",
+      extrait: "Android, frameworks mobiles, UX design, géolocalisation, jeux vidéo, projet de fin d'études.",
       page: "formation.html#developpement",
       section: "Formations",
-      mots: "code programmation application mobile android backend front javascript"
+      mots: "code coder programmation programmer application appli mobile android framework backend front javascript developpeur développeur dev web"
     },
     {
       titre: "Technologie web et multimédia",
-      extrait: "Création de contenus et d'interfaces : graphisme, audiovisuel, publication en ligne.",
+      extrait: "Infographie, pages web, UX design et interactivité, jeux vidéo.",
       page: "formation.html#multimedia",
       section: "Formations",
-      mots: "design graphisme video vidéo audiovisuel creation création interface"
+      mots: "multimedia multimédia design graphisme graphiste infographie video vidéo audiovisuel creation création interface webdesign"
     },
     {
       titre: "E-commerce et marketing digital",
-      extrait: "Piloter une activité en ligne : stratégie, acquisition, contenus et mesure des résultats.",
+      extrait: "Stratégie éditoriale, vente en ligne, réseaux sociaux, référencement (SEO), CRM.",
       page: "formation.html#ecommerce",
       section: "Formations",
-      mots: "commerce vente marketing digital reseaux réseaux sociaux publicité"
+      mots: "ecommerce e-commerce commerce vente marketing digital numerique numérique reseaux réseaux sociaux publicite publicité seo boutique"
     },
     {
       titre: "Formation initiale, continue, certifiante",
       extrait: "Trois manières de se former au CURI selon votre situation.",
       page: "formation.html#types",
       section: "Formations",
-      mots: "initiale continue certifiante professionnelle adulte salarié reconversion"
+      mots: "initiale continue certifiante certification professionnelle adulte salarie salarié reconversion travailleur"
+    },
+    {
+      titre: "Le programme, semestre par semestre",
+      extrait: "Toutes les unités d'enseignement et les matières, du semestre 1 au semestre 4.",
+      page: "formation.html#programme",
+      section: "Formations › Programme",
+      mots: "programme maquette cours matieres matières modules ue unite unité enseignement semestre emploi du temps"
+    },
+    {
+      titre: "1re année : le tronc commun",
+      extrait: "Tous les étudiants suivent les mêmes cours en première année (semestres 1 et 2).",
+      page: "formation.html#panneau-an1",
+      section: "Formations › Programme",
+      mots: "premiere première annee année tronc commun l1 debut début"
+    },
+    {
+      titre: "Semestre 1",
+      extrait: "Systèmes d'exploitation, bureautique, algorithmique, programmation, bases de données, droit, économie, anglais.",
+      page: "formation.html#s1",
+      section: "Formations › Programme › 1re année",
+      mots: "s1 semestre1 environnement informatique systemes systèmes exploitation bureautique algorithme algorithmique algo programmation outils conception logiciel bases donnees données sql merise projet professionnel personnel droit economie économie techniques expression anglais communication"
+    },
+    {
+      titre: "Semestre 2",
+      extrait: "Cloud et réseaux sociaux, HTML/CSS, langage de script, infographie, programmation avancée, marketing, gestion de projet.",
+      page: "formation.html#s2",
+      section: "Formations › Programme › 1re année",
+      mots: "s2 semestre2 bureautique cloud reseaux réseaux sociaux langages mise forme pages web statiques html css script javascript infographie traitement images photoshop dessin vectoriel illustrator programmation avancee avancée algorithme avance avancé management marketing fondamental communication entreprise gestion projet"
+    },
+    {
+      titre: "2e année : les spécialisations",
+      extrait: "Deux filières, un projet par semestre, puis le projet de fin d'études et le mémoire.",
+      page: "formation.html#panneau-an2",
+      section: "Formations › Programme",
+      mots: "deuxieme deuxième annee année specialisation spécialisation filiere filière projet semestre fin etudes études pfe memoire mémoire soutenance jury"
+    },
+    {
+      titre: "Semestre 3 · Développement web, mobile et multimédia",
+      extrait: "Géolocalisation, UX design, développement Android et frameworks, jeux vidéo, création d'entreprise.",
+      page: "formation.html#s3-dw",
+      section: "Formations › Programme › 2e année",
+      mots: "s3 semestre3 geolocalisation géolocalisation cartographie donnees données ux design programmation avancee avancée android frameworks mobile jeux video vidéo jeu creation création entreprise entrepreneuriat anglais developpement développement"
+    },
+    {
+      titre: "Semestre 4 · Développement web, mobile et multimédia",
+      extrait: "Programme en cours de mise à jour : contactez l'administration.",
+      page: "formation.html#s4-dw",
+      section: "Formations › Programme › 2e année",
+      mots: "s4 semestre4 developpement développement web mobile multimedia multimédia"
+    },
+    {
+      titre: "Semestre 3 · E-commerce et marketing digital",
+      extrait: "Stratégie éditoriale, rédaction web, marché numérique, vente en ligne, médias sociaux et e-réputation.",
+      page: "formation.html#s3-mk",
+      section: "Formations › Programme › 2e année",
+      mots: "s3 semestre3 strategie stratégie editoriale éditoriale redaction rédaction articles web marche marché numerique numérique vente ligne distribution merchandising reglementation réglementation statistiques medias médias sociaux reputation réputation omnicanalite omni-canalité cahier charges marketing ecommerce"
+    },
+    {
+      titre: "Semestre 4 · E-commerce et marketing digital",
+      extrait: "Référencement (SEO), stratégie digitale, CRM, force de vente, sécurité des paiements, propriété intellectuelle.",
+      page: "formation.html#s4-mk",
+      section: "Formations › Programme › 2e année",
+      mots: "s4 semestre4 referencement référencement seo strategie stratégie digitale marketing programmatique management decision décision crm relation client force vente systeme système information securite sécurité donnees données paiements propriete propriété intellectuelle industrielle ecommerce"
+    },
+    {
+      titre: "Les diplômes (DES)",
+      extrait: "Diplômes d'Études Supérieures reconnus par l'UCAD : tronc commun, puis trois spécialités.",
+      page: "formation.html#panneau-dipl",
+      section: "Formations › Programme",
+      mots: "diplome diplôme diplomes diplômes des etudes études superieures supérieures reconnu ucad internet management technologie web multimedia multimédia creation création applications ecommerce"
+    },
+    {
+      titre: "Une année au CURI : comment ça se passe ?",
+      extrait: "Cours et TP, encadrement, laboratoires, projets de semestre, vie sociale, projet de fin d'études.",
+      page: "formation.html#vie-au-centre",
+      section: "Formations",
+      mots: "vie etudiante étudiante campus cours tp travaux pratiques encadrement suivi tutorat permanence laboratoire labo ordinateur salle informatique projet vie sociale clubs associations pfe memoire mémoire"
     },
     {
       titre: "Comment candidater",
-      extrait: "Les étapes pour déposer un dossier et rejoindre le centre.",
+      extrait: "Avoir le BAC (toutes séries), puis postuler sur CampuSen. Pas de concours.",
       page: "formation.html#candidater",
-      section: "Formations",
-      mots: "admission inscription candidature dossier postuler rejoindre entrer"
+      section: "Formations › Candidater",
+      mots: "admission admis inscription inscrire candidature candidater dossier postuler rejoindre entrer integrer intégrer orientation conditions bac baccalaureat baccalauréat series séries concours"
+    },
+    {
+      titre: "CampuSen",
+      extrait: "La plateforme nationale d'orientation par laquelle on postule au CURI après le BAC.",
+      page: "formation.html#candidater",
+      section: "Formations › Candidater",
+      mots: "campusen campus sen orientation plateforme bachelier nouveau bachelier postuler"
+    },
+    {
+      titre: "Faut-il savoir programmer avant d'entrer ?",
+      extrait: "Non : le BAC suffit, la première année commence par les bases.",
+      page: "formation.html#faq-1",
+      section: "Formations › Questions fréquentes",
+      mots: "faq question prerequis prérequis niveau debutant débutant programmer savoir connaissances"
+    },
+    {
+      titre: "Les cours se tiennent-ils en présentiel ?",
+      extrait: "Oui, sur le campus à UCAD 3, avec une plateforme en ligne pour les ressources.",
+      page: "formation.html#faq-2",
+      section: "Formations › Questions fréquentes",
+      mots: "faq question presentiel présentiel distance en ligne hybride campus fad"
+    },
+    {
+      titre: "Peut-on se former tout en travaillant ?",
+      extrait: "Oui, grâce à la formation continue et aux formations certifiantes.",
+      page: "formation.html#faq-3",
+      section: "Formations › Questions fréquentes",
+      mots: "faq question travailler travail emploi salarie salarié continue certifiante soir"
+    },
+    {
+      titre: "Combien coûte la formation ?",
+      extrait: "Les frais de scolarité sont à confirmer auprès de la direction.",
+      page: "formation.html#faq-4",
+      section: "Formations › Questions fréquentes",
+      mots: "faq question prix cout coût frais scolarite scolarité inscription payer argent tarif"
+    },
+
+    /* --- Accueil -------------------------------------------------------- */
+    {
+      titre: "Le CURI en vidéo",
+      extrait: "Présentation du centre : une institution au service du numérique africain.",
+      page: "index.html#a-propos",
+      section: "Accueil › À propos",
+      mots: "video vidéo youtube presentation présentation decouvrir découvrir a propos à propos mission recherche partenariats"
+    },
+    {
+      titre: "Le CURI en chiffres",
+      extrait: "100+ étudiants par an, 20+ enseignants, 2 000+ diplômés, 2 ans de formation.",
+      page: "index.html#chiffres",
+      section: "Accueil",
+      mots: "chiffres statistiques combien nombre etudiants étudiants enseignants diplomes diplômés duree durée ans selectif sélectif"
     },
     {
       titre: "NIC Sénégal et le domaine .sn",
       extrait: "La gestion du domaine national .sn est confiée à l'UCAD depuis 1993.",
       page: "index.html#missions",
       section: "Accueil",
-      mots: "nic registre domaine dns dnssec internet gouvernance icann afnic aftld"
+      mots: "nic registre domaine sn dns dnssec internet gouvernance nom de domaine"
     },
+    {
+      titre: "Nos partenaires",
+      extrait: "NIC Sénégal, ICANN, AFNIC et AFTLD.",
+      page: "index.html#partenaires",
+      section: "Accueil",
+      mots: "partenaire partenaires nic icann afnic aftld organisations"
+    },
+    {
+      titre: "Ce que disent nos étudiants",
+      extrait: "Les témoignages de Ruqqaya Faye, Fatou Dior et Ousmane Sane.",
+      page: "index.html#temoignages",
+      section: "Accueil",
+      mots: "temoignage témoignage temoignages témoignages avis anciens alumni diplomes diplômés ruqqaya faye fatou dior ousmane sane"
+    },
+    {
+      titre: "La vie sur le campus en images",
+      extrait: "Photos des ateliers, conférences et promotions du centre.",
+      page: "evenements.html#galerie",
+      section: "Événements › Galerie",
+      mots: "photo photos image images galerie album campus"
+    },
+
+    /* --- Débouchés ------------------------------------------------------ */
     {
       titre: "Débouchés après le CURI",
-      extrait: "Les métiers visés à la sortie et les secteurs qui recrutent.",
+      extrait: "Métiers visés, secteurs qui recrutent, poursuite d'études et insertion.",
       page: "debouches.html",
       section: "Débouchés",
-      mots: "metier métier emploi travail carriere carrière embauche stage insertion"
+      mots: "debouches débouchés metier métier emploi travail carriere carrière embauche avenir apres après"
     },
+    {
+      titre: "Les métiers accessibles",
+      extrait: "Développeur web, développeur mobile, designer UX/UI, marketing digital, e-commerce, entrepreneur.",
+      page: "debouches.html#metiers",
+      section: "Débouchés",
+      mots: "metiers métiers emploi poste profession"
+    },
+    {
+      titre: "Développeur web full-stack",
+      extrait: "Conception et développement d'applications web complètes.",
+      page: "debouches.html#metier-developpeur-web-full-stack",
+      section: "Débouchés › Métiers",
+      mots: "developpeur développeur web fullstack full stack front back"
+    },
+    {
+      titre: "Développeur mobile",
+      extrait: "Applications Android et multiplateformes.",
+      page: "debouches.html#metier-developpeur-mobile",
+      section: "Débouchés › Métiers",
+      mots: "developpeur développeur mobile android application appli"
+    },
+    {
+      titre: "Designer UX/UI",
+      extrait: "Création d'interfaces intuitives et d'expériences utilisateur.",
+      page: "debouches.html#metier-designer-ux-ui",
+      section: "Débouchés › Métiers",
+      mots: "designer design ux ui interface experience expérience utilisateur"
+    },
+    {
+      titre: "Responsable marketing digital",
+      extrait: "Stratégies de communication et de vente en ligne.",
+      page: "debouches.html#metier-responsable-marketing-digital",
+      section: "Débouchés › Métiers",
+      mots: "responsable marketing digital community manager communication"
+    },
+    {
+      titre: "Chef de projet e-commerce",
+      extrait: "Gestion de boutiques en ligne et de l'activité commerciale sur internet.",
+      page: "debouches.html#metier-chef-de-projet-e-commerce",
+      section: "Débouchés › Métiers",
+      mots: "chef projet ecommerce e-commerce boutique en ligne"
+    },
+    {
+      titre: "Entrepreneur numérique",
+      extrait: "Créer sa propre jeune entreprise dans les technologies de l'internet.",
+      page: "debouches.html#metier-entrepreneur-numerique",
+      section: "Débouchés › Métiers",
+      mots: "entrepreneur entreprise startup creer créer creation création"
+    },
+    {
+      titre: "Secteurs qui recrutent",
+      extrait: "Entreprises tech, banque, e-commerce, santé, éducation, énergie, ONG, agences.",
+      page: "debouches.html#secteurs",
+      section: "Débouchés",
+      mots: "secteur secteurs recrutent recrutement banque finance sante santé education éducation energie énergie ong institutions agences"
+    },
+    {
+      titre: "Poursuite d'études",
+      extrait: "Licence, master, MBA ou certification, sur recommandation du CURI.",
+      page: "debouches.html#opportunites",
+      section: "Débouchés › Opportunités",
+      mots: "poursuite etudes études continuer licence master mba certification universite université partenaire recommandation"
+    },
+    {
+      titre: "Stages",
+      extrait: "Non obligatoires : le CURI peut recommander l'étudiant à une entreprise partenaire.",
+      page: "debouches.html#opportunites",
+      section: "Débouchés › Opportunités",
+      mots: "stage stages stagiaire entreprise recommandation obligatoire experience expérience"
+    },
+    {
+      titre: "Insertion professionnelle",
+      extrait: "Un accompagnement vers l'emploi, hautement sélectif.",
+      page: "debouches.html#opportunites",
+      section: "Débouchés › Opportunités",
+      mots: "insertion emploi travail embauche reseau réseau alumni anciens accompagnement"
+    },
+
+    /* --- Équipe --------------------------------------------------------- */
     {
       titre: "L'équipe du CURI",
-      extrait: "Direction, enseignants-chercheurs et équipe administrative du centre.",
+      extrait: "Administration et enseignants du centre.",
       page: "equipe.html",
       section: "Équipe",
-      mots: "enseignant professeur directeur personnel encadrement responsable pole pôle"
+      mots: "equipe équipe enseignant enseignants professeur prof personnel encadrement staff"
     },
     {
+      titre: "Pourquoi le centre existe",
+      extrait: "Créé en février 2021 pour renforcer le capital humain du numérique au Sénégal.",
+      page: "equipe.html#mission",
+      section: "Équipe",
+      mots: "histoire creation création cree créé fevrier février 2021 raison etre être mission"
+    },
+    {
+      titre: "Les trois missions du centre",
+      extrait: "Formations diplômantes et certifiantes, recherche et innovation, gestion du .sn.",
+      page: "equipe.html#poles",
+      section: "Équipe",
+      mots: "missions poles pôles recherche innovation formation service communaute communauté sn"
+    },
+    {
+      titre: "L'équipe administrative",
+      extrait: "Direction, département, études et scolarité.",
+      page: "equipe.html#administration",
+      section: "Équipe",
+      mots: "administration administratif direction bureau secretariat secrétariat"
+    },
+    {
+      titre: "Pr Idrissa Sarr",
+      extrait: "Directeur du CURI.",
+      page: "equipe.html#membre-idrissa-sarr",
+      section: "Équipe › Administration",
+      mots: "directeur direction idrissa sarr afretec chef"
+    },
+    {
+      titre: "M. Diandy",
+      extrait: "Chef de département, gestion du CURI.",
+      page: "equipe.html#membre-diandy",
+      section: "Équipe › Administration",
+      mots: "diandy chef departement département gestion"
+    },
+    {
+      titre: "Mme Mareme Aidara",
+      extrait: "Chargée d'études : suivi pédagogique et stages.",
+      page: "equipe.html#membre-mareme-aidara",
+      section: "Équipe › Administration",
+      mots: "mareme marème aidara aïdara chargee chargée etudes études suivi pedagogique pédagogique stages"
+    },
+    {
+      titre: "M. Kebe",
+      extrait: "Scolarité : inscriptions et dossiers étudiants.",
+      page: "equipe.html#membre-kebe",
+      section: "Équipe › Administration",
+      mots: "kebe kébé scolarite scolarité inscriptions dossiers etudiants étudiants"
+    },
+    {
+      titre: "Enseignants et intervenants",
+      extrait: "Les enseignants du centre et leurs matières.",
+      page: "equipe.html#enseignants",
+      section: "Équipe",
+      mots: "enseignants intervenants professeurs profs corps enseignant cours matieres matières"
+    },
+    { titre: "M. Thiam", extrait: "Algorithmes et structures de données.", page: "equipe.html#membre-thiam", section: "Équipe › Enseignants", mots: "thiam algorithme algorithmique algo structures donnees données" },
+    { titre: "Mme K. T. Dansokho", extrait: "Outils de développement logiciel.", page: "equipe.html#membre-k-t-dansokho", section: "Équipe › Enseignants", mots: "dansokho outils developpement développement logiciel conception bases donnees données" },
+    { titre: "M. Alex Corentin", extrait: "Systèmes d'exploitation et réseaux.", page: "equipe.html#membre-alex-corentin", section: "Équipe › Enseignants", mots: "corentin corenthin alex systemes systèmes exploitation reseaux réseaux linux" },
+    { titre: "M. Moctar Diop", extrait: "Communication d'entreprise.", page: "equipe.html#membre-moctar-diop", section: "Équipe › Enseignants", mots: "moctar mactar diop communication entreprise" },
+    { titre: "M. Bassirou Kasse", extrait: "Langages de mise en forme (HTML, CSS, JavaScript).", page: "equipe.html#membre-bassirou-kasse", section: "Équipe › Enseignants", mots: "bassirou kasse kassé langages mise forme html css javascript web" },
+    { titre: "M. Diouf", extrait: "Anglais.", page: "equipe.html#membre-diouf", section: "Équipe › Enseignants", mots: "diouf anglais english langue" },
+    { titre: "Mme Ndoye", extrait: "Gestion de projets.", page: "equipe.html#membre-ndoye", section: "Équipe › Enseignants", mots: "ndoye gestion projets projet" },
+    { titre: "M. Lo", extrait: "Traitement d'images.", page: "equipe.html#membre-lo", section: "Équipe › Enseignants", mots: "lo traitement images infographie photoshop dessin vectoriel" },
+    { titre: "M. Diasse", extrait: "Bases de données.", page: "equipe.html#membre-diasse", section: "Équipe › Enseignants", mots: "diasse diassy bases donnees données sql programmation" },
+    { titre: "M. Ndiaye", extrait: "Marketing.", page: "equipe.html#membre-ndiaye", section: "Équipe › Enseignants", mots: "ndiaye marketing" },
+    { titre: "M. Niane", extrait: "Réseaux sociaux.", page: "equipe.html#membre-niane", section: "Équipe › Enseignants", mots: "niane reseaux réseaux sociaux cloud" },
+    { titre: "M. Dia", extrait: "Bureautique.", page: "equipe.html#membre-dia", section: "Équipe › Enseignants", mots: "dia bureautique word excel" },
+
+    /* --- Événements ----------------------------------------------------- */
+    {
       titre: "Événements et actualités",
-      extrait: "Ateliers, hackathons, conférences et remises de diplômes du centre.",
-      page: "evenements.html",
+      extrait: "Ateliers, hackathons, conférences et formations du centre.",
+      page: "evenements.html#liste",
       section: "Événements",
-      mots: "actualite actualité news hackathon atelier conference conférence ceremonie cérémonie"
+      mots: "evenement événement evenements événements actualite actualité actualites actualités news hackathon atelier conference conférence"
     },
     {
       titre: "Portes ouvertes sur les technologies immersives",
       extrait: "Juin 2025 — des lycéens de Dakar en immersion dans la réalité virtuelle au centre.",
       page: "evenement-colab-2025.html",
       section: "Événements",
-      mots: "colab portes ouvertes lycee lycée lyceens lycéens realite réalité virtuelle vr afretec asedu mariama ba keur rokhaya 2025"
+      mots: "colab portes ouvertes jpo lycee lycée lyceens lycéens realite réalité virtuelle vr casque afretec asedu mariama ba keur rokhaya 2025"
     },
     {
       titre: "Formation au leadership et à la communication",
       extrait: "Avril 2025 — vingt doctorants de l'EDMI formés au leadership et à l'entrepreneuriat.",
       page: "evenement-leadership-2025.html",
       section: "Événements",
-      mots: "leadership communication doctorant doctorants edmi afretec idrissa sarr nalla mbaye lamine sane attestation entrepreneuriat 2025"
+      mots: "leadership communication doctorant doctorants edmi afretec idrissa sarr nalla mbaye lamine sane attestation entrepreneuriat cohorte 2025"
     },
     {
       titre: "Lancement du laboratoire des technologies immersives",
       extrait: "Septembre 2024 — le centre ouvre son laboratoire de réalité étendue avec Imisi3D.",
       page: "evenement-laboratoire-2024.html",
       section: "Événements",
-      mots: "laboratoire labo immersif immersive realite réalité etendue étendue virtuelle augmentee augmentée imisi3d nigeria 2024"
+      mots: "laboratoire labo ar vr arvr immersif immersive realite réalité etendue étendue virtuelle augmentee augmentée casque imisi3d nigeria 2024"
     },
     {
       titre: "Atelier SenAgro",
@@ -139,13 +448,6 @@
       mots: "senagro agriculture intelligence artificielle ia donnees données sorbonne cnrs mil phosphore opensimroot these thèse 2024"
     },
     {
-      titre: "Hackathon du Parc de Technologies Numériques",
-      extrait: "Novembre 2021 — un week-end de travail collaboratif organisé par le CURI avec le PTN et Wutiko.",
-      page: "evenement-hackathon-2021.html",
-      section: "Événements",
-      mots: "hackathon ptn wutiko parc technologies numeriques numériques pitch concours bad 2021 novembre"
-    },
-    {
       titre: "Formation hybride DNS et DNSSEC",
       extrait: "Novembre 2022 — conférence publique puis atelier avec NIC Sénégal, l'ICANN, l'AFNIC et l'AFTLD.",
       page: "evenement-dnssec-2022.html",
@@ -153,25 +455,48 @@
       mots: "dns dnssec atelier hybride icann afnic aftld nic senegal sénégal domaine securite sécurité 2022"
     },
     {
-      titre: "Nous écrire",
-      extrait: "Formulaire de contact, adresse du centre et plan d'accès.",
-      page: "contact.html",
+      titre: "Hackathon du Parc de Technologies Numériques",
+      extrait: "Novembre 2021 — un week-end de travail collaboratif organisé par le CURI avec le PTN et Wutiko.",
+      page: "evenement-hackathon-2021.html",
+      section: "Événements",
+      mots: "hackathon ptn wutiko parc technologies numeriques numériques pitch concours bad 2021 novembre"
+    },
+
+    /* --- Contact -------------------------------------------------------- */
+    {
+      titre: "Écrire au centre",
+      extrait: "Le formulaire de contact pour poser vos questions.",
+      page: "contact.html#formulaire-contact",
       section: "Contact",
-      mots: "contact adresse telephone téléphone email mail ecrire écrire joindre venir plan carte"
+      mots: "contact contacter ecrire écrire message formulaire question joindre"
+    },
+    {
+      titre: "Téléphone et e-mail",
+      extrait: "+221 33 821 91 90 · curi@ucad.edu.sn",
+      page: "contact.html#coordonnees",
+      section: "Contact",
+      mots: "telephone téléphone tel appeler numero numéro email e-mail mail courriel adresse coordonnees coordonnées"
+    },
+    {
+      titre: "Horaires d'accueil",
+      extrait: "Du lundi au vendredi de 8 h à 17 h, le samedi de 8 h à 12 h.",
+      page: "contact.html#horaires",
+      section: "Contact",
+      mots: "horaire horaires heure heures ouvert ouverture ferme fermé accueil quand samedi lundi vendredi"
     },
     {
       titre: "Où se trouve le CURI",
       extrait: "UCAD 3, Cité Claudel, allées Bougainvillées, Dakar.",
       page: "contact.html#acces",
       section: "Contact",
-      mots: "adresse localisation lieu ou où situé claudel bougainvillees bougainvillées dakar ucad3 acces accès"
+      mots: "adresse localisation lieu ou où situe situé trouver claudel bougainvillees bougainvillées dakar ucad3 ucad acces accès plan carte venir itineraire itinéraire"
     },
     {
-      titre: "Plateforme de cours",
+      titre: "Plateforme de cours (FAD)",
       extrait: "Les cours, ressources et résultats des étudiants du centre.",
       page: "https://fad.curi.ucad.sn",
       section: "Lien externe",
-      mots: "moodle cours en ligne ressources notes resultats résultats plateforme connexion"
+      mots: "fad moodle cours en ligne distance ressources notes resultats résultats plateforme connexion"
     }
   ];
 
@@ -262,46 +587,126 @@
      5. Recherche fondue dans l'en-tête
      ===================================================================== */
 
-  /** Score de pertinence ; 0 signifie « pas de correspondance ». */
-  function scorer(entree, termes) {
-    var titre = normaliser(entree.titre);
-    var extrait = normaliser(entree.extrait);
-    var mots = normaliser(entree.mots || "");
-    var section = normaliser(entree.section || "");
-    var total = 0;
+  // Petits mots ignorés : « comment candidater au curi » cherche « candidater »
+  var MOTS_VIDES = (
+    "a au aux avec ce ces comment dans de des du elle en est et il je la le les " +
+    "leur ma mes mon ne ou par pas pour quand que quel quelle quels qui sa se ses " +
+    "son sur ta te tu un une vos votre y l d j c qu s t curi"
+  ).split(" ");
 
-    for (var i = 0; i < termes.length; i++) {
-      var terme = termes[i];
-      var point = 0;
-      if (titre.indexOf(terme) === 0) point = 10;
-      else if (titre.indexOf(terme) > -1) point = 7;
-      else if (mots.indexOf(terme) > -1) point = 5;
-      else if (section.indexOf(terme) > -1) point = 3;
-      else if (extrait.indexOf(terme) > -1) point = 2;
-
-      if (point === 0) return 0; // tous les termes doivent correspondre
-      total += point;
-    }
-    return total;
+  /** Découpe une recherche en termes utiles, sans accents. */
+  function decouper(requete) {
+    var termes = normaliser(requete)
+      .replace(/[’'`.,;:!?()«»"\-\/]/g, " ")
+      .split(/\s+/)
+      .filter(Boolean);
+    var utiles = termes.filter(function (terme) {
+      return MOTS_VIDES.indexOf(terme) === -1;
+    });
+    // Si l'élève n'a tapé que des petits mots (« le curi »), on les garde
+    return utiles.length ? utiles : termes;
   }
 
-  function chercher(requete) {
-    var termes = normaliser(requete).split(/\s+/).filter(Boolean);
-    if (!termes.length) return [];
+  /** Forme sans pluriel : « formations » → « formation », « réseaux » → « reseau ». */
+  function racine(terme) {
+    if (terme.length > 4 && /aux$/.test(terme)) return terme.slice(0, -3) + "al";
+    if (terme.length > 3 && /[sx]$/.test(terme)) return terme.slice(0, -1);
+    return terme;
+  }
 
-    return INDEX.map(function (entree) {
-      return { entree: entree, score: scorer(entree, termes) };
-    })
-      .filter(function (ligne) {
-        return ligne.score > 0;
-      })
-      .sort(function (a, b) {
-        return b.score - a.score;
-      })
-      .slice(0, 6)
-      .map(function (ligne) {
-        return ligne.entree;
+  /** Vrai si a et b diffèrent d'une seule lettre (faute de frappe). */
+  function presque(a, b) {
+    if (Math.abs(a.length - b.length) > 1) return false;
+    var i = 0;
+    var j = 0;
+    var ecarts = 0;
+    while (i < a.length && j < b.length) {
+      if (a[i] === b[j]) {
+        i++;
+        j++;
+        continue;
+      }
+      if (++ecarts > 1) return false;
+      if (a.length > b.length) i++;
+      else if (b.length > a.length) j++;
+      else {
+        i++;
+        j++;
+      }
+    }
+    return ecarts + (a.length - i) + (b.length - j) <= 1;
+  }
+
+  /** Points gagnés par un terme dans un texte (0 s'il n'y est pas). */
+  function pointsTerme(terme, texte, mots, valeurs) {
+    var forme = racine(terme);
+    if (texte.indexOf(terme) === 0) return valeurs[0];
+    if (mots.some(function (mot) { return mot.indexOf(forme) === 0; })) return valeurs[1];
+    if (forme.length > 2 && texte.indexOf(forme) > -1) return valeurs[2];
+    // Faute de frappe : seulement pour des mots d'au moins 5 lettres
+    if (terme.length >= 5 && mots.some(function (mot) { return presque(racine(mot), forme); })) {
+      return valeurs[3];
+    }
+    return 0;
+  }
+
+  /** Score de pertinence d'une entrée, et nombre de termes trouvés. */
+  function scorer(entree, termes) {
+    var champs = [
+      { texte: normaliser(entree.titre), valeurs: [12, 10, 7, 4] },
+      { texte: normaliser(entree.mots || ""), valeurs: [6, 6, 4, 2] },
+      { texte: normaliser(entree.section || ""), valeurs: [3, 3, 2, 1] },
+      { texte: normaliser(entree.extrait), valeurs: [3, 3, 2, 1] }
+    ];
+    champs.forEach(function (champ) {
+      champ.mots = champ.texte.split(/[^a-z0-9]+/).filter(Boolean);
+    });
+
+    var total = 0;
+    var trouves = 0;
+    termes.forEach(function (terme) {
+      var meilleur = 0;
+      champs.forEach(function (champ) {
+        meilleur = Math.max(meilleur, pointsTerme(terme, champ.texte, champ.mots, champ.valeurs));
       });
+      if (meilleur > 0) trouves++;
+      total += meilleur;
+    });
+    return { score: total, trouves: trouves };
+  }
+
+  /**
+   * Renvoie { resultats, approchant }. On montre d'abord les entrées qui
+   * contiennent tous les termes ; s'il n'y en a aucune, les entrées qui en
+   * contiennent le plus (« résultats approchants »).
+   */
+  function chercher(requete) {
+    var termes = decouper(requete);
+    if (!termes.length) return { resultats: [], approchant: false };
+
+    var lignes = INDEX.map(function (entree) {
+      var r = scorer(entree, termes);
+      return { entree: entree, score: r.score, trouves: r.trouves };
+    }).filter(function (ligne) {
+      return ligne.trouves > 0;
+    });
+
+    var complets = lignes.filter(function (ligne) {
+      return ligne.trouves === termes.length;
+    });
+    var approchant = complets.length === 0;
+    var retenus = approchant ? lignes : complets;
+
+    retenus.sort(function (a, b) {
+      return b.trouves - a.trouves || b.score - a.score;
+    });
+
+    return {
+      resultats: retenus.slice(0, 8).map(function (ligne) {
+        return ligne.entree;
+      }),
+      approchant: approchant
+    };
   }
 
   /** Met en évidence les termes trouvés, sans tenir compte des accents. */
@@ -361,8 +766,9 @@
     }
 
     function dessiner(requete) {
-      var termes = normaliser(requete).split(/\s+/).filter(Boolean);
-      var resultats = chercher(requete);
+      var termes = decouper(requete).map(racine);
+      var recherche = chercher(requete);
+      var resultats = recherche.resultats;
 
       if (!requete.trim()) {
         fermerPanneau();
@@ -374,9 +780,11 @@
         panneau.innerHTML =
           '<p class="recherche__vide">Aucun résultat pour <strong>' +
           echapper(requete) +
-          "</strong>.<br>Essayez « formation », « contact » ou « dnssec ».</p>";
+          "</strong>.<br>Essayez « inscription », « semestre 2 », « horaires » ou le nom d'un enseignant.</p>";
       } else {
-        panneau.innerHTML = resultats
+        panneau.innerHTML = (recherche.approchant
+          ? '<p class="recherche__approchant">Résultats approchants</p>'
+          : "") + resultats
           .map(function (entree) {
             var externe = entree.page.indexOf("http") === 0;
             return (
@@ -1074,5 +1482,142 @@
       return onglet.getAttribute("aria-selected") === "true";
     })[0] || onglets[0];
     choisir(depart, false);
+  });
+
+  /* ========================================================================
+     17. Aller exactement à l'endroit demandé
+     Quand on arrive sur une page avec une ancre (#s2, #faq-4, #membre-thiam…),
+     par la recherche ou par un lien :
+       - si la cible est dans un onglet fermé, on ouvre le bon onglet ;
+       - si c'est une question fréquente, on la déplie ;
+       - on fait défiler jusqu'à elle et on l'encadre brièvement en bleu.
+     ===================================================================== */
+
+  function allerA(id, instantane) {
+    if (!id) return;
+    var cible = document.getElementById(id);
+    if (!cible) return;
+
+    // 1. Ouvrir les onglets qui contiennent la cible, du plus extérieur au plus intérieur
+    var panneaux = [];
+    var noeud = cible;
+    while (noeud && noeud !== document.body) {
+      if (noeud.classList && noeud.classList.contains("onglets__panneau")) panneaux.unshift(noeud);
+      noeud = noeud.parentNode;
+    }
+    panneaux.forEach(function (panneau) {
+      var onglet = $('[role="tab"][aria-controls="' + panneau.id + '"]');
+      if (onglet && onglet.getAttribute("aria-selected") !== "true") onglet.click();
+    });
+
+    // 2. Déplier une question fréquente
+    var aEncadrer = cible;
+    if (cible.classList.contains("accordeon__panneau")) {
+      var bouton = $('[aria-controls="' + id + '"]');
+      if (bouton && bouton.getAttribute("aria-expanded") !== "true") bouton.click();
+      aEncadrer = cible.closest(".accordeon__element") || cible;
+    }
+
+    // 3. Montrer la section si elle attend encore son apparition au défilement
+    var apparait = cible.closest(".apparait");
+    if (apparait) apparait.classList.add("est-visible");
+    $$(".apparait", cible).forEach(function (bloc) {
+      bloc.classList.add("est-visible");
+    });
+
+    // 4. Défiler puis encadrer (petit délai : le temps que l'onglet ouvert
+    //    ait pris sa place dans la page)
+    window.setTimeout(function () {
+      aEncadrer.scrollIntoView({
+        behavior: instantane || mouvementReduit ? "instant" : "smooth",
+        block: "start"
+      });
+      aEncadrer.classList.remove("est-cible");
+      void aEncadrer.offsetWidth;
+      aEncadrer.classList.add("est-cible");
+      window.setTimeout(function () {
+        aEncadrer.classList.remove("est-cible");
+      }, 2400);
+      garderCale(aEncadrer);
+    }, 40);
+  }
+
+  /**
+   * Pendant 2,5 s, si la page bouge sous nos pieds (police ou images qui
+   * finissent de charger au-dessus), on recale la cible en haut de l'écran.
+   * Dès que la personne fait défiler elle-même, on la laisse faire.
+   */
+  function garderCale(element) {
+    if (!("ResizeObserver" in window)) return;
+    var libre = false;
+    var liberer = function () {
+      libre = true;
+    };
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (type) {
+      window.addEventListener(type, liberer, { once: true, passive: true });
+    });
+    var premierAppel = true;
+    var observateur = new ResizeObserver(function () {
+      // Le premier appel arrive tout de suite, sans changement réel : on l'ignore
+      if (premierAppel) {
+        premierAppel = false;
+        return;
+      }
+      if (libre) return;
+      var haut = element.getBoundingClientRect().top;
+      var attendu = parseFloat(getComputedStyle(element).scrollMarginTop) || 0;
+      if (Math.abs(haut - attendu) > 30) {
+        element.scrollIntoView({ behavior: "instant", block: "start" });
+      }
+    });
+    observateur.observe(document.body);
+    window.setTimeout(function () {
+      observateur.disconnect();
+    }, 2500);
+  }
+
+  // À l'arrivée sur la page. Le navigateur peut replacer la page après
+  // nous (position mémorisée, images qui finissent de charger) : on
+  // désactive sa mémoire de position et on recale une fois tout chargé.
+  if (window.location.hash) {
+    var idArrivee = decodeURIComponent(window.location.hash.slice(1));
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+    window.setTimeout(function () {
+      allerA(idArrivee, true);
+    }, 80);
+    window.addEventListener("load", function () {
+      var cible = document.getElementById(idArrivee);
+      if (!cible) return;
+      var ecart = Math.abs(cible.getBoundingClientRect().top);
+      if (ecart > 200) {
+        cible.scrollIntoView({ behavior: "instant", block: "start" });
+      }
+    });
+  }
+
+  // Liens vers un endroit de la même page (résultats de recherche compris)
+  document.addEventListener("click", function (evenement) {
+    var lien = evenement.target.closest ? evenement.target.closest("a[href*='#']") : null;
+    // Le lien d'évitement « Aller au contenu » garde son fonctionnement normal
+    if (!lien || lien.target === "_blank" || lien.classList.contains("saut-contenu")) return;
+    var url = new URL(lien.href, window.location.href);
+    var memePage =
+      url.pathname.replace(/\/index\.html$/, "/") ===
+      window.location.pathname.replace(/\/index\.html$/, "/");
+    if (!memePage || !url.hash || url.hash === "#") return;
+    var id = decodeURIComponent(url.hash.slice(1));
+    if (!document.getElementById(id)) return;
+
+    evenement.preventDefault();
+    fermerMenu();
+    $$(".recherche__panneau").forEach(function (panneau) {
+      panneau.classList.remove("est-visible");
+    });
+    if (window.history && window.history.pushState) window.history.pushState(null, "", url.hash);
+    allerA(id);
+  });
+
+  window.addEventListener("popstate", function () {
+    allerA(decodeURIComponent(window.location.hash.slice(1)));
   });
 })();

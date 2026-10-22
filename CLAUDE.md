@@ -168,6 +168,22 @@ Le fichier est découpé en sections numérotées et commentées :
 10. Galerie et visionneuse
 11. Formulaire de contact
 12. Année du pied de page
+13. Chiffres qui défilent (accueil, équipe)
+14. Vidéo de présentation (YouTube lancée sur place)
+15. Galerie défilante de l'accueil
+16. Onglets (programme des formations)
+17. Aller exactement à l'endroit demandé : ouvre l'onglet ou la question
+    qui contient l'ancre visée, fait défiler, encadre la cible en bleu
+
+**Recherche (sections 1 et 5).** L'index compte environ 75 entrées : chaque
+semestre, chaque enseignant, chaque métier, chaque question fréquente,
+horaires, téléphone… Chaque entrée pointe vers une **ancre précise**
+(`formation.html#s3-mk`, `equipe.html#membre-thiam`). La recherche ignore les
+petits mots, accepte les pluriels et une faute de frappe, et propose des
+« résultats approchants » si rien ne correspond exactement.
+**Quand tu ajoutes un contenu (enseignant, matière, événement), ajoute son
+entrée dans `INDEX` et un `id` sur l'élément visé.** Vérification : chaque
+`page#ancre` de l'index doit exister dans le fichier HTML.
 
 ---
 
