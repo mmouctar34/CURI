@@ -19,6 +19,8 @@
      10. Galerie et visionneuse
      11. Formulaire de contact
      12. Année du pied de page
+     13. Chiffres qui défilent  (accueil)
+     14. Vidéo de présentation  (accueil)
    ========================================================================== */
 
 (function () {
@@ -866,5 +868,81 @@
 
   $$("[data-annee]").forEach(function (element) {
     element.textContent = String(new Date().getFullYear());
+  });
+
+  /* ========================================================================
+     13. Chiffres qui défilent
+     Chaque <span data-cible="2000"> part de 0 et monte jusqu'à sa valeur
+     quand il entre à l'écran. Le HTML contient déjà la valeur finale :
+     sans JavaScript, ou si l'utilisateur a demandé moins d'animations,
+     rien ne bouge et le bon nombre s'affiche.
+     ===================================================================== */
+
+  var compteurs = $$("[data-cible]");
+
+  function formaterNombre(nombre) {
+    // 2000 -> « 2 000 », à la française (espace fine insécable)
+    return String(nombre).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+
+  function faireDefiler(compteur) {
+    var cible = parseInt(compteur.getAttribute("data-cible"), 10);
+    var duree = 1600;
+    var depart = null;
+
+    var etape = function (instant) {
+      if (depart === null) depart = instant;
+      var avancement = Math.min((instant - depart) / duree, 1);
+      // Démarre vite et ralentit à l'arrivée
+      var adouci = 1 - Math.pow(1 - avancement, 3);
+      compteur.textContent = formaterNombre(Math.round(cible * adouci));
+      if (avancement < 1) window.requestAnimationFrame(etape);
+    };
+
+    window.requestAnimationFrame(etape);
+  }
+
+  if (compteurs.length && !mouvementReduit && "IntersectionObserver" in window) {
+    var observateurChiffres = new IntersectionObserver(
+      function (entrees) {
+        entrees.forEach(function (entree) {
+          if (!entree.isIntersecting) return;
+          faireDefiler(entree.target);
+          observateurChiffres.unobserve(entree.target);
+        });
+      },
+      { threshold: 0.6 }
+    );
+    compteurs.forEach(function (compteur) {
+      compteur.textContent = "0";
+      observateurChiffres.observe(compteur);
+    });
+  }
+
+  /* ========================================================================
+     14. Vidéo de présentation
+     Le lien .video mène à YouTube. Avec JavaScript, le clic remplace la
+     miniature par le lecteur, sans quitter la page. youtube-nocookie.com
+     évite de déposer des cookies tant que la vidéo n'est pas lancée.
+     ===================================================================== */
+
+  $$(".video[data-video]").forEach(function (lien) {
+    lien.addEventListener("click", function (evenement) {
+      evenement.preventDefault();
+      var lecteur = document.createElement("iframe");
+      lecteur.src =
+        "https://www.youtube-nocookie.com/embed/" +
+        encodeURIComponent(lien.getAttribute("data-video")) +
+        "?autoplay=1&rel=0";
+      lecteur.title = "Vidéo de présentation du CURI";
+      lecteur.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      lecteur.allowFullscreen = true;
+
+      var cadre = document.createElement("div");
+      cadre.className = "video";
+      cadre.appendChild(lecteur);
+      lien.parentNode.replaceChild(cadre, lien);
+      lecteur.focus();
+    });
   });
 })();

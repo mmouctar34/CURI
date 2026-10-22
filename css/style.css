@@ -6,7 +6,7 @@
    Direction visuelle : esprit institutionnel sénégalais, dans la lignée
    de uam.sn — texte en Rubik, titres en Georgia serrés (-1px), titres de
    section centrés, conteneur de 1140 px, aplats de couleur pleine.
-   Les couleurs sont celles du CURI : bleu et or.
+   Les couleurs sont celles du logo de l'UCAD : bleu ciel, noir et blanc.
 
    Sommaire
      1.  Jetons de design
@@ -30,17 +30,18 @@
    ========================================================================== */
 
 :root {
-  /* Bleus du CURI */
-  --marine: #0f2440;
-  --bleu: #17539c;
-  --bleu-fonce: #103a6e;
-  --bleu-clair: #1e6fc4;
-  --bleu-pale: #e8f0fa;
+  /* Couleurs du logo de l'UCAD : bleu ciel (#2892cc), noir, blanc */
+  --marine: #0a1a2c;
+  --bleu: #1b6ea8;
+  --bleu-fonce: #134f7a;
+  --bleu-clair: #2892cc;
+  --bleu-pale: #e8f3fb;
 
-  /* Or du CURI */
-  --or: #e3a008;
-  --or-clair: #f5c33b;
-  --or-texte: #8a6100;
+  /* Accent : le bleu du logo UCAD.
+     Sur fond blanc, utiliser --accent-texte (le bleu vif est trop clair pour du texte). */
+  --accent: #2892cc;
+  --accent-clair: #7cc4ee;
+  --accent-texte: #17679b;
 
   /* Neutres */
   --encre: #101010;
@@ -158,7 +159,7 @@ select {
 }
 
 :focus-visible {
-  outline: 3px solid var(--or);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -224,11 +225,11 @@ select {
   font-weight: 500;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--or-texte);
+  color: var(--accent-texte);
 }
 
 .section--marine .tete__sur {
-  color: var(--or-clair);
+  color: var(--accent-clair);
 }
 
 .tete h2 {
@@ -276,14 +277,19 @@ select {
   color: var(--blanc);
 }
 
-.bouton--or {
-  background: var(--or);
-  color: var(--marine);
+/* Bouton principal : le bleu du logo UCAD, texte blanc.
+   Le fond est le bleu soutenu (--bleu) pour que le texte blanc reste lisible ;
+   le bleu vif du logo apparaît en liseré et au survol. */
+.bouton--accent {
+  background: var(--bleu);
+  border-color: var(--accent);
+  color: var(--blanc);
 }
 
-.bouton--or:hover {
-  background: var(--or-clair);
-  color: var(--marine);
+.bouton--accent:hover {
+  background: var(--bleu-fonce);
+  border-color: var(--accent-clair);
+  color: var(--blanc);
 }
 
 .bouton--contour {
@@ -410,7 +416,7 @@ select {
 }
 
 .entete.est-collee {
-  box-shadow: 0 6px 26px -20px rgba(15, 36, 64, 0.75);
+  box-shadow: 0 6px 26px -20px rgba(10, 26, 44, 0.75);
 }
 
 .entete__interieur {
@@ -428,10 +434,18 @@ select {
   text-decoration: none;
 }
 
+/* Logo officiel UCAD + CURI (le même que sur le site en ligne) */
 .marque img {
-  width: 44px;
+  width: auto;
   height: 44px;
+  max-width: 62vw;
   object-fit: contain;
+}
+
+@media (min-width: 48rem) {
+  .marque img {
+    height: 56px;
+  }
 }
 
 .marque__nom {
@@ -488,7 +502,7 @@ select {
 
 .nav-principale a[aria-current="page"] {
   color: var(--bleu);
-  border-bottom-color: var(--or);
+  border-bottom-color: var(--accent);
   font-weight: 500;
 }
 
@@ -513,7 +527,7 @@ select {
   padding: 0.4rem;
   background: var(--blanc);
   border: 1px solid var(--trait);
-  box-shadow: 0 20px 44px -26px rgba(15, 36, 64, 0.6);
+  box-shadow: 0 20px 44px -26px rgba(10, 26, 44, 0.6);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-6px);
@@ -613,7 +627,7 @@ select {
   padding: 0.4rem;
   background: var(--blanc);
   border: 1px solid var(--trait);
-  box-shadow: 0 24px 56px -28px rgba(15, 36, 64, 0.7);
+  box-shadow: 0 24px 56px -28px rgba(10, 26, 44, 0.7);
   opacity: 0;
   transform: translateY(-6px);
   pointer-events: none;
@@ -834,6 +848,18 @@ mark {
   min-height: clamp(25rem, 62vh, 36rem);
 }
 
+/* Sur téléphone, le texte d'accueil prend plus de hauteur :
+   on laisse de la place pour que les points ne chevauchent pas les boutons */
+@media (max-width: 47.99rem) {
+  .diapo__vue {
+    min-height: 37rem;
+  }
+
+  .diapo__contenu {
+    padding-bottom: 2.5rem;
+  }
+}
+
 .diapo__ecran {
   position: absolute;
   inset: 0;
@@ -857,9 +883,9 @@ mark {
   inset: 0;
   background: linear-gradient(
     95deg,
-    rgba(15, 36, 64, 0.95) 0%,
-    rgba(15, 36, 64, 0.84) 42%,
-    rgba(15, 36, 64, 0.42) 100%
+    rgba(10, 26, 44, 0.95) 0%,
+    rgba(10, 26, 44, 0.84) 42%,
+    rgba(10, 26, 44, 0.42) 100%
   );
 }
 
@@ -876,18 +902,6 @@ mark {
   pointer-events: auto;
 }
 
-.diapo__etiquette {
-  display: inline-block;
-  margin-bottom: 1.1rem;
-  padding: 0.4rem 1rem;
-  background: var(--or);
-  color: var(--marine);
-  font-size: var(--t-mini);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .diapo h1,
 .diapo__titre {
   max-width: 19ch;
@@ -897,11 +911,28 @@ mark {
   color: var(--blanc);
 }
 
+.diapo__titre-curi {
+  color: var(--accent-clair);
+}
+
+.diapo__sous-titre {
+  margin-top: 0.9rem;
+  max-width: 34ch;
+  font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.4rem);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.diapo__sous-titre strong {
+  font-weight: 600;
+  color: var(--accent-clair);
+}
+
 .diapo__texte {
-  margin-top: 1.25rem;
-  max-width: 46ch;
+  margin-top: 1.1rem;
+  max-width: 50ch;
   font-size: 1.0625rem;
-  color: #cadaed;
+  color: #cfe0ef;
 }
 
 .diapo__actions {
@@ -932,7 +963,7 @@ mark {
 }
 
 .diapo__point[aria-selected="true"] {
-  background: var(--or);
+  background: var(--accent);
 }
 
 .diapo__fleche {
@@ -990,7 +1021,7 @@ mark {
 .bandeau__voile {
   position: absolute;
   inset: 0;
-  background: linear-gradient(95deg, rgba(15, 36, 64, 0.96) 25%, rgba(15, 36, 64, 0.68) 100%);
+  background: linear-gradient(95deg, rgba(10, 26, 44, 0.96) 25%, rgba(10, 26, 44, 0.68) 100%);
 }
 
 .bandeau__interieur {
@@ -1040,49 +1071,126 @@ mark {
    6. Bandeau de chiffres
    ========================================================================== */
 
+/* Le bandeau colle au diaporama : fond bleu nuit, quatre colonnes séparées
+   par un filet. Au survol, la colonne s'éclaire et un trait bleu UCAD
+   se dessine sous le chiffre. */
+.bandeau-chiffres {
+  position: relative;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(40, 146, 204, 0.28), transparent 55%),
+    linear-gradient(180deg, var(--marine) 0%, #0e2742 100%);
+  color: var(--blanc);
+  border-top: 3px solid var(--accent);
+}
+
 .chiffres {
   display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 60rem) {
+  .chiffres {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .chiffre {
-  padding: clamp(1.4rem, 1rem + 1.4vw, 2rem) 1.25rem;
-  background: var(--bleu);
-  color: var(--blanc);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(1.75rem, 1.2rem + 2vw, 2.75rem) 1rem;
   text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background var(--vitesse) var(--courbe);
 }
 
-.chiffre:nth-child(even) {
-  background: var(--bleu-fonce);
+.chiffre::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: translateX(-50%);
+  transition: width 0.45s var(--courbe);
+}
+
+.chiffre:hover {
+  background: rgba(40, 146, 204, 0.12);
+}
+
+.chiffre:hover::after {
+  width: 60%;
+}
+
+@media (min-width: 60rem) {
+  .chiffre {
+    border-bottom: 0;
+  }
+
+  .chiffre:last-child {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 59.99rem) {
+  .chiffre:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .chiffre:nth-child(n + 3) {
+    border-bottom: 0;
+  }
 }
 
 .chiffre__icone {
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  margin: 0 auto 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: var(--or-clair);
+  width: 54px;
+  height: 54px;
+  margin-bottom: 1rem;
+  border: 1.5px solid rgba(124, 196, 238, 0.45);
+  border-radius: 50%;
+  color: var(--accent-clair);
+  transition: background var(--vitesse) var(--courbe), color var(--vitesse) var(--courbe),
+    transform 0.45s var(--courbe);
+}
+
+.chiffre:hover .chiffre__icone {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--blanc);
+  transform: translateY(-4px);
 }
 
 .chiffre__nombre {
   display: block;
   font-family: var(--police-titre);
-  font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.25rem);
+  font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.25rem);
   font-weight: 700;
-  letter-spacing: -1px;
-  line-height: 1.1;
+  letter-spacing: -1.5px;
+  line-height: 1;
   color: var(--blanc);
+  font-variant-numeric: tabular-nums;
 }
 
 .chiffre__texte {
   display: block;
-  margin-top: 0.45rem;
-  font-size: var(--t-petit);
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--blanc);
+}
+
+.chiffre__detail {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: var(--t-mini);
+  line-height: 1.4;
+  color: #a9c6e0;
 }
 
 /* ==========================================================================
@@ -1149,7 +1257,7 @@ mark {
   font-size: var(--t-mini);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--or-clair);
+  color: var(--accent-clair);
 }
 
 /* Carte claire ordinaire */
@@ -1205,7 +1313,7 @@ mark {
 
 .section--marine .carte__icone {
   background: rgba(227, 160, 8, 0.18);
-  color: var(--or-clair);
+  color: var(--accent-clair);
 }
 
 /* ==========================================================================
@@ -1273,6 +1381,84 @@ mark {
   color: var(--blanc);
 }
 
+/* Partenaires : des cartes-liens vers le site de chaque organisation */
+.partenaires {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+}
+
+.partenaire {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.6rem 1.4rem 1.4rem;
+  background: var(--blanc);
+  border: 1px solid var(--trait);
+  color: var(--texte);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform var(--vitesse) var(--courbe), border-color var(--vitesse) var(--courbe),
+    box-shadow var(--vitesse) var(--courbe);
+}
+
+.partenaire::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s var(--courbe);
+}
+
+.partenaire:hover,
+.partenaire:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 22px 40px -28px rgba(10, 26, 44, 0.55);
+}
+
+.partenaire:hover::before,
+.partenaire:focus-visible::before {
+  transform: scaleY(1);
+}
+
+.partenaire__sigle {
+  font-family: var(--police-titre);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--marine);
+}
+
+.partenaire__texte {
+  flex-grow: 1;
+  font-size: var(--t-petit);
+  line-height: 1.6;
+  color: var(--texte-doux);
+}
+
+.partenaire__lien {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--t-mini);
+  font-weight: 500;
+  color: var(--accent-texte);
+}
+
+.partenaire__lien::after {
+  content: "→";
+  transition: transform var(--vitesse) var(--courbe);
+}
+
+.partenaire:hover .partenaire__lien::after {
+  transform: translateX(4px);
+}
+
 /* Témoignage */
 .temoignage {
   display: flex;
@@ -1282,10 +1468,52 @@ mark {
   padding: clamp(1.5rem, 1rem + 1.4vw, 2rem);
   background: var(--blanc);
   border: 1px solid var(--trait);
+  border-top: 3px solid var(--accent);
+  transition: transform var(--vitesse) var(--courbe), box-shadow var(--vitesse) var(--courbe);
+}
+
+.temoignage:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 40px -28px rgba(10, 26, 44, 0.55);
 }
 
 .temoignage__guillemet {
-  color: var(--or);
+  color: var(--accent);
+}
+
+.temoignage figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.temoignage__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--marine);
+  color: var(--accent-clair);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.temoignage:nth-child(2) .temoignage__avatar {
+  background: var(--bleu);
+  color: var(--blanc);
+}
+
+.temoignage:nth-child(3) .temoignage__avatar {
+  background: var(--accent);
+  color: var(--marine);
+}
+
+.temoignage figcaption .temoignage__metier {
+  display: block;
+  color: var(--accent-texte);
+  font-weight: 500;
 }
 
 .temoignage blockquote {
@@ -1305,6 +1533,7 @@ mark {
 .temoignage figcaption strong {
   display: block;
   color: var(--encre);
+  font-size: var(--t-petit);
   font-weight: 500;
 }
 
@@ -1366,7 +1595,7 @@ mark {
   top: 0.65em;
   width: 7px;
   height: 7px;
-  background: var(--or);
+  background: var(--accent);
 }
 
 @media (min-width: 60rem) {
@@ -1377,6 +1606,137 @@ mark {
   .duo--inverse .duo__image {
     order: 2;
   }
+}
+
+/* Vidéo de présentation : miniature cliquable, la vidéo se lance sur place */
+.video {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--marine);
+  color: var(--blanc);
+  text-decoration: none;
+}
+
+.video img,
+.video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  border: 0;
+  object-fit: cover;
+  transition: transform 0.6s var(--courbe);
+}
+
+.video__voile {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 26, 44, 0.25) 0%, rgba(10, 26, 44, 0.75) 100%);
+  transition: background var(--vitesse) var(--courbe);
+}
+
+.video__lecture {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  padding-left: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 0 rgba(40, 146, 204, 0.6);
+  animation: pulsation 2.4s infinite;
+  transition: transform var(--vitesse) var(--courbe), background var(--vitesse) var(--courbe);
+}
+
+.video__legende {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.1rem;
+  text-align: center;
+  font-size: var(--t-petit);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.video:hover img,
+.video:focus-visible img {
+  transform: scale(1.05);
+}
+
+.video:hover .video__voile {
+  background: linear-gradient(180deg, rgba(10, 26, 44, 0.1) 0%, rgba(10, 26, 44, 0.65) 100%);
+}
+
+.video:hover .video__lecture,
+.video:focus-visible .video__lecture {
+  background: var(--blanc);
+  color: var(--bleu);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+@keyframes pulsation {
+  0% { box-shadow: 0 0 0 0 rgba(40, 146, 204, 0.6); }
+  70% { box-shadow: 0 0 0 22px rgba(40, 146, 204, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(40, 146, 204, 0); }
+}
+
+/* Les trois piliers sous le texte « À propos » */
+.piliers {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.pilier {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--trait);
+  border-left: 3px solid var(--accent);
+  background: var(--blanc);
+  transition: transform var(--vitesse) var(--courbe), border-color var(--vitesse) var(--courbe),
+    background var(--vitesse) var(--courbe);
+}
+
+.pilier:hover {
+  transform: translateX(6px);
+  background: var(--bleu-pale);
+  border-color: var(--accent);
+}
+
+.pilier__icone {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  background: var(--bleu-pale);
+  color: var(--bleu);
+  transition: background var(--vitesse) var(--courbe), color var(--vitesse) var(--courbe);
+}
+
+.pilier:hover .pilier__icone {
+  background: var(--bleu);
+  color: var(--blanc);
+}
+
+.pilier h3 {
+  font-size: 1.05rem;
+  letter-spacing: -0.5px;
+}
+
+.duo .pilier p {
+  margin-top: 0.2rem;
+  font-size: var(--t-petit);
 }
 
 /* ==========================================================================
@@ -1426,7 +1786,7 @@ mark {
 
 .actu__date {
   font-size: var(--t-mini);
-  color: var(--or-texte);
+  color: var(--accent-texte);
 }
 
 .actu h3 {
@@ -1519,7 +1879,7 @@ mark {
 }
 
 .sequence__etape:last-child .sequence__numero {
-  background: var(--or);
+  background: var(--accent);
   color: var(--marine);
 }
 
@@ -1739,13 +2099,13 @@ mark {
   top: 0.7em;
   width: 7px;
   height: 7px;
-  background: var(--or);
+  background: var(--accent);
 }
 
 .prose blockquote {
   margin: 2rem 0;
   padding: 1.25rem 0 1.25rem 1.5rem;
-  border-left: 3px solid var(--or);
+  border-left: 3px solid var(--accent);
   font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--encre);
@@ -1830,7 +2190,7 @@ mark {
   font-size: var(--t-mini);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--or-texte);
+  color: var(--accent-texte);
 }
 
 .evenement h3 {
@@ -1931,7 +2291,7 @@ mark {
   display: grid;
   place-items: center;
   padding: clamp(1rem, 4vw, 3rem);
-  background: rgba(15, 36, 64, 0.95);
+  background: rgba(10, 26, 44, 0.95);
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--vitesse) var(--courbe), visibility var(--vitesse);
@@ -2179,7 +2539,7 @@ mark {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--or-clair);
+  color: var(--accent-clair);
 }
 
 .pied ul {
@@ -2200,7 +2560,7 @@ mark {
   top: 0.7em;
   width: 5px;
   height: 5px;
-  background: var(--or);
+  background: var(--accent);
 }
 
 .pied a {

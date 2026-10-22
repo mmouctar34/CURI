@@ -52,11 +52,7 @@
   <div class="enveloppe entete__interieur">
 
     <a class="marque" href="index.html">
-      <img src="images/web/logo-curi.png" alt="" width="44" height="44">
-      <span>
-        <span class="marque__nom">CURI</span>
-        <span class="marque__sous">Technologies de l'Internet · UCAD</span>
-      </span>
+      <img src="images/web/logo-ucad-curi.png" alt="Université Cheikh Anta Diop de Dakar — CURI, Centre Universitaire de Recherche et de Formation aux Technologies de l'Internet" width="800" height="200">
     </a>
 
     <nav class="nav-principale" aria-label="Navigation principale">
@@ -162,16 +158,19 @@
 
       <div class="diapo__contenu">
         <div class="enveloppe">
-          <p class="diapo__etiquette">Université Cheikh Anta Diop de Dakar</p>
-          <h1 class="diapo__titre">Former ceux qui feront le numérique sénégalais.</h1>
+          <h1 class="diapo__titre">Bienvenue au <span class="diapo__titre-curi">CURI</span></h1>
+          <p class="diapo__sous-titre">
+            Centre Universitaire de Recherche et de Formation aux
+            <strong>Technologies de l'Internet</strong>
+          </p>
           <p class="diapo__texte">
-            Créé en février 2021, le CURI renforce le capital humain du numérique
-            au Sénégal : développement web et mobile, technologie web et
-            multimédia, commerce en ligne et marketing digital.
+            Pôle d'excellence académique de l'UCAD, le CURI forme en deux ans les
+            spécialistes des technologies internet pour le développement
+            numérique de l'Afrique.
           </p>
           <div class="diapo__actions">
-            <a class="bouton bouton--or" href="formation.html">Voir les formations</a>
-            <a class="bouton bouton--clair" href="contact.html">Nous écrire</a>
+            <a class="bouton bouton--accent" href="formation.html">Nos formations</a>
+            <a class="bouton bouton--clair" href="contact.html">Nous contacter</a>
           </div>
         </div>
       </div>
@@ -194,40 +193,47 @@
   </section>
 
   <!-- ======================= CHIFFRES ======================= -->
-  <section class="section">
+  <!-- Les nombres sont écrits en entier dans le HTML : sans JavaScript, ils
+       s'affichent tels quels. Avec JavaScript, ils défilent de 0 jusqu'à
+       data-cible quand le bandeau entre à l'écran (section 13 du script). -->
+  <section class="bandeau-chiffres" aria-label="Le CURI en chiffres">
     <div class="enveloppe">
       <div class="chiffres apparait">
 
         <div class="chiffre">
           <span class="chiffre__icone">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>
           </span>
-          <span class="chiffre__nombre">2021</span>
-          <span class="chiffre__texte">Création du centre, en février</span>
+          <span class="chiffre__nombre"><span data-cible="100">100</span>+</span>
+          <span class="chiffre__texte">Étudiants par an</span>
+          <span class="chiffre__detail">Une admission sélective</span>
         </div>
 
         <div class="chiffre">
           <span class="chiffre__icone">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8"/><path d="M12 16v4"/><path d="m8 10 2 2 4-4"/></svg>
           </span>
-          <span class="chiffre__nombre">200+</span>
-          <span class="chiffre__texte">Étudiants accueillis chaque année</span>
+          <span class="chiffre__nombre"><span data-cible="20">20</span>+</span>
+          <span class="chiffre__texte">Enseignants</span>
+          <span class="chiffre__detail">Universitaires et professionnels</span>
         </div>
 
         <div class="chiffre">
           <span class="chiffre__icone">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-3 5 3-1.5-7"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-3 5 3-1.5-7"/></svg>
           </span>
-          <span class="chiffre__nombre">2 000+</span>
-          <span class="chiffre__texte">Diplômés depuis la création</span>
+          <span class="chiffre__nombre"><span data-cible="2000">2 000</span>+</span>
+          <span class="chiffre__texte">Diplômés</span>
+          <span class="chiffre__detail">Depuis la création du centre</span>
         </div>
 
         <div class="chiffre">
           <span class="chiffre__icone">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
           </span>
-          <span class="chiffre__nombre">2 ans</span>
-          <span class="chiffre__texte">Pour le diplôme de formation initiale</span>
+          <span class="chiffre__nombre"><span data-cible="2">2</span> ans</span>
+          <span class="chiffre__texte">De formation</span>
+          <span class="chiffre__detail">Pour le diplôme de formation initiale</span>
         </div>
 
       </div>
@@ -267,6 +273,72 @@
 
       <div class="actions-centre">
         <a class="bouton bouton--contour" href="formation.html">Toutes les formations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= À PROPOS ET VIDÉO =======================
+       La vidéo est sur YouTube. Pour la changer, remplacer l'identifiant
+       49ruFeCfYO4 aux trois endroits ci-dessous (lien, data-video, miniature).
+       Sans JavaScript, un clic ouvre la vidéo sur YouTube ; avec JavaScript,
+       elle se lance dans la page (section 14 du script). -->
+  <section class="section" id="a-propos">
+    <div class="enveloppe">
+      <div class="duo apparait">
+        <div class="duo__image">
+          <a class="video" href="https://www.youtube.com/watch?v=49ruFeCfYO4" target="_blank" rel="noopener" data-video="49ruFeCfYO4">
+            <img src="https://img.youtube.com/vi/49ruFeCfYO4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+            <span class="video__voile"></span>
+            <span class="video__lecture" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12.5-7.5Z"/></svg>
+            </span>
+            <span class="video__legende">Découvrir le CURI en vidéo</span>
+          </a>
+        </div>
+        <div>
+          <div class="tete tete--gauche" style="margin-bottom:0">
+            <p class="tete__sur">À propos</p>
+            <h2>Une institution au service du numérique africain</h2>
+          </div>
+          <p>
+            Le CURI est une entité académique de l'Université Cheikh Anta Diop
+            de Dakar, dédiée à la formation aux technologies de l'internet, aux
+            sciences du numérique et à la recherche appliquée.
+          </p>
+          <p>
+            En deux ans, nos étudiants acquièrent les compétences nécessaires
+            pour répondre aux défis numériques du continent africain.
+          </p>
+          <ul class="piliers">
+            <li class="pilier">
+              <span class="pilier__icone" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>
+              </span>
+              <div>
+                <h3>Mission</h3>
+                <p>Former des spécialistes des technologies de l'internet.</p>
+              </div>
+            </li>
+            <li class="pilier">
+              <span class="pilier__icone" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2Z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8Z"/></svg>
+              </span>
+              <div>
+                <h3>Recherche</h3>
+                <p>Des travaux de recherche appliquée liés aux enjeux du développement.</p>
+              </div>
+            </li>
+            <li class="pilier">
+              <span class="pilier__icone" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.9-3.9a2 2 0 0 0-2.8 0l-.9.9a2 2 0 0 1-2.8 0 2 2 0 0 1 0-2.8L12 4"/><path d="m21 3-4 4"/><path d="M3 21l4-4"/><path d="m3 7 4-4 4 4"/></svg>
+              </span>
+              <div>
+                <h3>Partenariats</h3>
+                <p>Une collaboration avec le secteur privé et les institutions internationales.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -377,6 +449,8 @@
             </div>
           </a>
 
+        </div>
+
         <div class="carrousel__nav">
           <button type="button" class="carrousel__bouton carrousel__bouton--precedent" aria-label="Actualités précédentes">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
@@ -444,41 +518,6 @@
     </div>
   </section>
 
-  <!-- ======================= PARTENAIRES ======================= -->
-  <section class="section section--marine">
-    <div class="enveloppe">
-      <div class="tete apparait">
-        <p class="tete__sur">Gouvernance de l'internet</p>
-        <h2>Nos partenaires</h2>
-        <p>Le centre travaille avec les organisations qui administrent les noms de domaine en Afrique et dans le monde.</p>
-      </div>
-
-      <div class="cartes cartes--quatre apparait">
-        <article class="carte">
-          <h3>NIC Sénégal</h3>
-          <p>Le registre du domaine national .sn, porté par l'UCAD depuis 1993.</p>
-        </article>
-        <article class="carte">
-          <h3>ICANN</h3>
-          <p>L'organisation qui coordonne le système des noms de domaine à l'échelle mondiale.</p>
-        </article>
-        <article class="carte">
-          <h3>AFNIC</h3>
-          <p>Le registre français, partenaire des ateliers techniques du centre.</p>
-        </article>
-        <article class="carte">
-          <h3>AFTLD</h3>
-          <p>L'association des registres de domaines nationaux africains.</p>
-        </article>
-      </div>
-
-      <p class="centrer" style="margin-top:2rem;font-size:var(--t-petit);color:#a8bdd6">
-        Ces organisations figurent sur les supports des ateliers DNS et DNSSEC du centre.
-        La liste complète des partenaires reste à compléter avec la direction.
-      </p>
-    </div>
-  </section>
-
   <!-- ======================= TÉMOIGNAGES ======================= -->
   <section class="section section--gris">
     <div class="enveloppe">
@@ -490,14 +529,21 @@
       <div class="carrousel apparait">
         <div class="carrousel__piste">
 
+          <!-- Témoignages repris du site en ligne (page Débouchés).
+               Pour en ajouter un : copier un bloc <figure> et changer
+               les initiales, le texte, le nom, le métier et la promotion. -->
           <figure class="temoignage">
             <span class="temoignage__guillemet" aria-hidden="true">
               <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a3 3 0 0 0-3 3v7h7v-7H6a3 3 0 0 1 3-3Zm10 0h-4a3 3 0 0 0-3 3v7h7v-7h-3a3 3 0 0 1 3-3Z"/></svg>
             </span>
-            <blockquote><span class="a-confirmer">Témoignage à recueillir auprès d'un diplômé</span></blockquote>
+            <blockquote>Le CURI m'a donné les bases solides pour lancer ma carrière. En deux ans, j'ai acquis des compétences pratiques qui m'ont permis d'intégrer directement une entreprise tech à Dakar.</blockquote>
             <figcaption>
-              <strong>Nom du diplômé</strong>
-              <span>Promotion à préciser</span>
+              <span class="temoignage__avatar" aria-hidden="true">RF</span>
+              <span>
+                <strong>Ruqqaya Faye</strong>
+                <span class="temoignage__metier">Développeuse web</span>
+                <span>Promotion 2024</span>
+              </span>
             </figcaption>
           </figure>
 
@@ -505,10 +551,14 @@
             <span class="temoignage__guillemet" aria-hidden="true">
               <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a3 3 0 0 0-3 3v7h7v-7H6a3 3 0 0 1 3-3Zm10 0h-4a3 3 0 0 0-3 3v7h7v-7h-3a3 3 0 0 1 3-3Z"/></svg>
             </span>
-            <blockquote><span class="a-confirmer">Témoignage à recueillir auprès d'un diplômé</span></blockquote>
+            <blockquote>Grâce à la filière Marketing Digital du CURI, j'ai pu créer ma propre boutique en ligne. Le réseau Alumni m'a aussi beaucoup aidé dans mes débuts.</blockquote>
             <figcaption>
-              <strong>Nom du diplômé</strong>
-              <span>Promotion à préciser</span>
+              <span class="temoignage__avatar" aria-hidden="true">FD</span>
+              <span>
+                <strong>Fatou Dior</strong>
+                <span class="temoignage__metier">Cheffe de projet e-commerce</span>
+                <span>Promotion 2023</span>
+              </span>
             </figcaption>
           </figure>
 
@@ -516,21 +566,14 @@
             <span class="temoignage__guillemet" aria-hidden="true">
               <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a3 3 0 0 0-3 3v7h7v-7H6a3 3 0 0 1 3-3Zm10 0h-4a3 3 0 0 0-3 3v7h7v-7h-3a3 3 0 0 1 3-3Z"/></svg>
             </span>
-            <blockquote><span class="a-confirmer">Témoignage à recueillir auprès d'un diplômé</span></blockquote>
+            <blockquote>Les cours d'infographie et d'UX Design au CURI m'ont permis de devenir freelance. Je travaille maintenant avec des clients en France et au Canada.</blockquote>
             <figcaption>
-              <strong>Nom du diplômé</strong>
-              <span>Promotion à préciser</span>
-            </figcaption>
-          </figure>
-
-          <figure class="temoignage">
-            <span class="temoignage__guillemet" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a3 3 0 0 0-3 3v7h7v-7H6a3 3 0 0 1 3-3Zm10 0h-4a3 3 0 0 0-3 3v7h7v-7h-3a3 3 0 0 1 3-3Z"/></svg>
-            </span>
-            <blockquote><span class="a-confirmer">Témoignage à recueillir auprès d'un diplômé</span></blockquote>
-            <figcaption>
-              <strong>Nom du diplômé</strong>
-              <span>Promotion à préciser</span>
+              <span class="temoignage__avatar" aria-hidden="true">OS</span>
+              <span>
+                <strong>Ousmane Sane</strong>
+                <span class="temoignage__metier">Designer UX/UI, freelance</span>
+                <span>Promotion 2024</span>
+              </span>
             </figcaption>
           </figure>
 
@@ -589,19 +632,43 @@
     </div>
   </section>
 
-  <!-- ======================= APPEL ======================= -->
+  <!-- ======================= PARTENAIRES =======================
+       Chaque carte mène au site officiel de l'organisation. -->
   <section class="section section--gris">
     <div class="enveloppe">
-      <div class="appel apparait">
-        <div>
-          <h2>Vous souhaitez rejoindre le centre ?</h2>
-          <p>Écrivez-nous ou passez à UCAD 3 : l'équipe répond aux questions sur l'admission, le déroulement des cours et la formation continue.</p>
-        </div>
-        <div class="appel__actions">
-          <a class="bouton bouton--or" href="contact.html">Nous écrire</a>
-          <a class="bouton bouton--clair" href="tel:+221338219190">+221 33 821 91 90</a>
-        </div>
+      <div class="tete apparait">
+        <p class="tete__sur">Gouvernance de l'internet</p>
+        <h2>Nos partenaires</h2>
+        <p>Le centre travaille avec les organisations qui administrent les noms de domaine en Afrique et dans le monde.</p>
       </div>
+
+      <div class="partenaires apparait">
+        <a class="partenaire" href="https://www.nic.sn" target="_blank" rel="noopener">
+          <span class="partenaire__sigle">NIC Sénégal</span>
+          <span class="partenaire__texte">Le registre du domaine national .sn, porté par l'UCAD depuis 1993.</span>
+          <span class="partenaire__lien">nic.sn</span>
+        </a>
+        <a class="partenaire" href="https://www.icann.org" target="_blank" rel="noopener">
+          <span class="partenaire__sigle">ICANN</span>
+          <span class="partenaire__texte">L'organisation qui coordonne le système des noms de domaine à l'échelle mondiale.</span>
+          <span class="partenaire__lien">icann.org</span>
+        </a>
+        <a class="partenaire" href="https://www.afnic.fr" target="_blank" rel="noopener">
+          <span class="partenaire__sigle">AFNIC</span>
+          <span class="partenaire__texte">Le registre français, partenaire des ateliers techniques du centre.</span>
+          <span class="partenaire__lien">afnic.fr</span>
+        </a>
+        <a class="partenaire" href="https://aftld.org" target="_blank" rel="noopener">
+          <span class="partenaire__sigle">AFTLD</span>
+          <span class="partenaire__texte">L'association des registres de domaines nationaux africains.</span>
+          <span class="partenaire__lien">aftld.org</span>
+        </a>
+      </div>
+
+      <p class="centrer" style="margin-top:2rem;font-size:var(--t-petit);color:var(--texte-doux)">
+        Ces organisations figurent sur les supports des ateliers DNS et DNSSEC du centre.
+        La liste complète des partenaires reste à compléter avec la direction.
+      </p>
     </div>
   </section>
 
@@ -636,8 +703,7 @@
         </a>
         <p class="pied__intro">
           Centre Universitaire de Recherche et de Formation aux Technologies de
-          l'Internet, Université Cheikh Anta Diop de Dakar. Gestionnaire du
-          domaine national .sn.
+          l'Internet, Université Cheikh Anta Diop de Dakar.
         </p>
         <div class="pied__reseaux">
           <a href="https://www.facebook.com/profile.php?id=100075163244894" target="_blank" rel="noopener" aria-label="Le CURI sur Facebook">
