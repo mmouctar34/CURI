@@ -987,7 +987,9 @@ mark {
   gap: 0.75rem;
 }
 
-/* Entrée animée du texte, rejouée à chaque photo (classe posée par le script) */
+/* Entrée animée du texte, une seule fois au chargement de la page (classe
+   posée par le script). Ensuite le texte reste fixe pendant que les photos
+   défilent derrière lui. */
 .diapo__contenu.est-anime .diapo__ligne,
 .diapo__contenu.est-anime .diapo__sous-titre,
 .diapo__contenu.est-anime .diapo__texte,

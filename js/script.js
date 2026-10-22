@@ -542,7 +542,9 @@
         point.setAttribute("aria-selected", i === position ? "true" : "false");
       });
 
-      if (!mouvementReduit) rejouer(texteDiapo, "est-anime");
+      // Le texte d'accueil apparaît une seule fois, au chargement de la page,
+      // puis reste fixe : seules les photos changent derrière lui.
+      if (premiereFois && !mouvementReduit) rejouer(texteDiapo, "est-anime");
       if (minuterie) rejouer(diapo, "est-en-lecture");
     };
 
